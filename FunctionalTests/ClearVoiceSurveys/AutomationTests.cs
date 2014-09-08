@@ -17,7 +17,7 @@ namespace TestAutomation.FunctionalTests.ClearVoiceSurveys
         [TestMethod]
         public void Automation_Example_Real()
         {
-            Tuple<string, string> login = new Tuple<string, string>("djoceansidex@gmail.com", "password");
+            Tuple<string, string> login = new Tuple<string, string>("", "");
             List<string> tabsList = new List<string>() { "My Rewards Tab", "My Messages Tab", "My Achievements Tab", "My Account Tab", "My Sweepstakes Tab", "My Polls Tab" };
 
 
