@@ -11,7 +11,10 @@ namespace TestAutomation.Applications.ClearVoiceSurveys
 
         public static Sites Site { get { return Sites.ClearVoiceSurveys; } }
 
-        public ClearVoiceSurveysSession() : base(GlobalTestSettings.BaseTestPageType){}
+        public ClearVoiceSurveysSession() : base(GlobalTestSettings.BaseTestPageType)
+        {
+            Environment = GlobalTestSettings.Environment;
+        }
 
         public ClearVoiceSurveysSession(ITestableWebPage baseObject) : base(baseObject){}
 
@@ -19,6 +22,7 @@ namespace TestAutomation.Applications.ClearVoiceSurveys
         {
             Open(GetEnvironmentUrl());
             Maximize();
+            ResetZoomLevel();
 
             return new FrontPage(BaseObject);
         }

@@ -13,6 +13,11 @@ namespace TestAutomation.CodedUI
             _baseObject = baseObject;
         }
 
+        public void Clear()
+        {
+            throw new NotImplementedException();
+        }
+
         public void Type(string text)
         {
             Keyboard.SendKeys(_baseObject, text);
@@ -31,6 +36,16 @@ namespace TestAutomation.CodedUI
         public void Click(ITestableWebElement element)
         {
             element.Click();
+        }
+
+        public string InnerHtml()
+        {
+            throw new NotImplementedException();
+        }
+
+        public ITestableWebElement Parent(int? levels = null)
+        {
+            throw new NotImplementedException();
         }
     }
 }

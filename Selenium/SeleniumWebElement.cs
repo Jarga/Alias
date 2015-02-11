@@ -1,4 +1,4 @@
-﻿using OpenQA.Selenium;
+using OpenQA.Selenium;
 using TestAutomation.Shared;
 
 namespace TestAutomation.Selenium
@@ -10,6 +10,12 @@ namespace TestAutomation.Selenium
         public SeleniumWebElement(IWebElement baseObject)
         {
             this._baseObject = baseObject;
+            this._searchContext = baseObject;
+        }
+
+        public void Clear()
+        {
+            _baseObject.Clear();
         }
 
         public void Type(string text)
@@ -32,5 +38,24 @@ namespace TestAutomation.Selenium
             element.Click();
         }
 
+        public string InnerHtml()
+        {
+            return _baseObject.GetAttribute("innerHTML");
+        }
+
+        public ITestableWebElement Parent(int? levels = null)
+        {
+            var xpath = "..";
+
+            if (levels.HasValue)
+            {
+                for (int i = 1; i < levels.Value; i++)
+                {
+                    xpath += "/..";
+                }
+            }
+
+            return new SeleniumWebElement(_baseObject.FindElement(By.XPath(xpath)));
+        }
     }
 }

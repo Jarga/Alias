@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UITesting;
 using TestAutomation.Shared;
 
@@ -13,7 +14,18 @@ namespace TestAutomation.CodedUI
             get { return _browser; }
             set { _browser = value; }
         }
-        
+
+        public IDictionary<string, IDictionary<string, string>> SubElements
+        {
+            get { throw new NotImplementedException(); }
+            set { throw new NotImplementedException(); }
+        }
+
+        public IDictionary<string, string> GetElementProperties(string targetElement)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Open(Uri uri)
         {
             this._browser = BrowserWindow.Launch(uri.AbsoluteUri, "-noframemerging");
@@ -37,9 +49,19 @@ namespace TestAutomation.CodedUI
             this._browser.Maximized = true;
         }
 
+        public void ResetZoomLevel()
+        {
+            throw new NotImplementedException();
+        }
+
         public string GetCurrentUrl()
         {
             return _browser.Uri.AbsoluteUri;
+        }
+
+        public void Clear()
+        {
+            throw new NotImplementedException();
         }
 
         public void Type(string text)
@@ -61,6 +83,15 @@ namespace TestAutomation.CodedUI
         {
             element.Click();
         }
-        
+
+        public string InnerHtml()
+        {
+            throw new NotImplementedException();
+        }
+
+        public ITestableWebElement Parent(int? levels = null)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

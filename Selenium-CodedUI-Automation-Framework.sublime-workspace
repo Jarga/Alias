@@ -1,0 +1,317 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+		]
+	},
+	"buffers":
+	[
+		{
+			"contents": "using OpenQA.Selenium;\nusing TestAutomation.Shared;\n\nnamespace TestAutomation.Selenium\n{\n    public class SeleniumWebElement : SeleniumWebObject, ITestableWebElement\n    {\n        public IWebElement _baseObject;\n\n        public SeleniumWebElement(IWebElement baseObject)\n        {\n            this._baseObject = baseObject;\n        }\n\n        public void Type(string text)\n        {\n            _baseObject.SendKeys(text);\n        }\n\n        public void Type(ITestableWebElement element, string text)\n        {\n            element.Type(text);\n        }\n\n        public void Click()\n        {\n            _baseObject.Click();\n        }\n\n        public void Click(ITestableWebElement element)\n        {\n            element.Click();\n        }\n\n    }\n}\n",
+			"file": "Selenium/SeleniumWebElement.cs",
+			"file_size": 785,
+			"file_write_time": 130620094667912418,
+			"settings":
+			{
+				"buffer_size": 749,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "FunctionalTests/ClearVoiceSurveys/AutomationTests.cs",
+			"settings":
+			{
+				"buffer_size": 1554,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "Selenium/SeleniumWebPage.cs",
+			"settings":
+			{
+				"buffer_size": 1639,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 104.0,
+		"selected_items":
+		[
+			[
+				"upd",
+				"Package Control: Upgrade Package"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"pack",
+				"Package Control: Install Package"
+			],
+			[
+				"packag",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 400.0
+	},
+	"console":
+	{
+		"height": 338.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by) "
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/GIT/Selenium-CodedUI-Automation-Framework",
+		"/C/GIT/Selenium-CodedUI-Automation-Framework/Applications",
+		"/C/GIT/Selenium-CodedUI-Automation-Framework/bin",
+		"/C/GIT/Selenium-CodedUI-Automation-Framework/CodedUI",
+		"/C/GIT/Selenium-CodedUI-Automation-Framework/FunctionalTests",
+		"/C/GIT/Selenium-CodedUI-Automation-Framework/FunctionalTests/ClearVoiceSurveys",
+		"/C/GIT/Selenium-CodedUI-Automation-Framework/Initialization",
+		"/C/GIT/Selenium-CodedUI-Automation-Framework/obj",
+		"/C/GIT/Selenium-CodedUI-Automation-Framework/Properties",
+		"/C/GIT/Selenium-CodedUI-Automation-Framework/Selenium"
+	],
+	"file_history":
+	[
+		"/C/Users/sean.mcadams/AppData/Roaming/Sublime Text 3/Packages/OmniSharp/launchers/omni_sharp_launcher.py",
+		"/C/Users/sean.mcadams/AppData/Roaming/Sublime Text 3/Packages/OmniSharp/lib/omnisharp.py",
+		"/C/Users/sean.mcadams/AppData/Roaming/Sublime Text 3/Packages/User/C#.sublime-settings",
+		"/C/GIT/Selenium-CodedUI-Automation-Framework/Selenium-CodedUI-Automation-Framework.sublime-project",
+		"/C/GIT/Selenium-CodedUI-Automation-Framework/TestAutomation.csproj",
+		"/C/GIT/Selenium-CodedUI-Automation-Framework/Selenium/SeleniumWebObject.cs"
+	],
+	"find":
+	{
+		"height": 0.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "Selenium/SeleniumWebElement.cs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 749,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								422,
+								422
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C#/C#.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "FunctionalTests/ClearVoiceSurveys/AutomationTests.cs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1554,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								491,
+								491
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C#/C#.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "Selenium/SeleniumWebPage.cs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1639,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								102,
+								102
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C#/C#.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 207.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.variable_get":
+	{
+		"height": 100.0
+	},
+	"project": "Selenium-CodedUI-Automation-Framework.sublime-project",
+	"replace":
+	{
+		"height": 0.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 388.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

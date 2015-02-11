@@ -45,14 +45,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Microsoft.VisualStudio.QualityTools.CodedUITestFramework, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Extension, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.VisualStudio.TestTools.UITesting, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
     <Reference Include="WebDriver">
       <HintPath>..\packages\Selenium.WebDriver.2.39.0\lib\net40\WebDriver.dll</HintPath>
     </Reference>
@@ -67,6 +65,13 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Applications\MarketOnce\Controls\Ext\ExtGridControl.cs" />
+    <Compile Include="Applications\MarketOnce\MarketOnceSession.cs" />
+    <Compile Include="Applications\MarketOnce\Pages\Admin\Welcome.cs" />
+    <Compile Include="Applications\MarketOnce\Pages\Home\EmailDashboard.cs" />
+    <Compile Include="Applications\MarketOnce\Pages\List\EditTarget.cs" />
+    <Compile Include="Applications\MarketOnce\Pages\Login.cs" />
+    <Compile Include="Applications\MarketOnce\Pages\MarketOnceBasePage.cs" />
     <Compile Include="FunctionalTests\ClearVoiceSurveys\AutomationTests.cs" />
     <Compile Include="CodedUI\CodedUIWebElement.cs" />
     <Compile Include="CodedUI\CodedUIWebObject.cs" />
@@ -76,6 +81,7 @@
     <Compile Include="Applications\ClearVoiceSurveys\Pages\Dashboard.cs" />
     <Compile Include="Applications\ClearVoiceSurveys\Pages\FrontPage.cs" />
     <Compile Include="Applications\WebPage.cs" />
+    <Compile Include="FunctionalTests\MarketOnce\EditTargetTests.cs" />
     <Compile Include="Initialization\AssemblyInitializer.cs" />
     <Compile Include="Initialization\GlobalTestSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -86,6 +92,7 @@
     <Compile Include="Shared\Enumerations\Environments.cs" />
     <Compile Include="Shared\Enumerations\Sites.cs" />
     <Compile Include="Shared\Exceptions\ElementNotRegisteredException.cs" />
+    <Compile Include="Shared\Exceptions\InvalidSearchPropertyException.cs" />
     <Compile Include="Shared\Exceptions\ObjectNotFoundException.cs" />
     <Compile Include="Shared\Exceptions\PageNotDisplayedException.cs" />
     <Compile Include="Shared\Extensions\DictionaryExtensions.cs" />
@@ -94,6 +101,7 @@
     <Compile Include="Shared\ITestableWebPage.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Choose>

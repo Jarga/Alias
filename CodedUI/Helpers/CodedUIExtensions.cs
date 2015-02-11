@@ -73,19 +73,18 @@ namespace TestAutomation.CodedUI.Helpers
             ICollection<string> propNames = searchProperties.Keys;
             string tagKey = propNames.FirstOrDefault(name => TagIdentifierProperties.Contains(name));
             string typeKey = propNames.FirstOrDefault(name => TypeIdentifierProperties.Contains(name));
-            string tag, type;
+
             //If no identifiers found then just return the default type
             if (string.IsNullOrEmpty(tagKey))
             {
                 return new HtmlControl(parent);
             }
-            else
-            {
-                //consume tag property so it is not used to search
-                tag = searchProperties[tagKey];
-                searchProperties.Remove(tagKey);
-            }
 
+            //consume tag property so it is not used to search
+            var tag = searchProperties[tagKey];
+            searchProperties.Remove(tagKey);
+
+            //Using the specific types improves performance for elements
             switch (tag.ToLower() + (string.IsNullOrEmpty(typeKey) ? "" : "." + searchProperties[typeKey].ToLower()))
             {
                 case "input.text":

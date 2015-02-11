@@ -4,25 +4,17 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using TestAutomation.Shared;
-using TestAutomation.Shared.Exceptions;
 using TestAutomation.Shared.Extensions;
 
 namespace TestAutomation.Applications
 {
+    /// <summary>
+    /// This object acts as a proxy for the actual implementation object, it is intended to hide the specific framework implementation
+    /// </summary>
     public class WebPage : ITestableWebPage
     {
-        private IDictionary<string, IDictionary<string, string>> _subElements = new Dictionary<string, IDictionary<string, string>>();
-        
         private ITestableWebPage _baseObject;
-
-        private int _defaultActionTimeout = 60;
-
-        public int DefaultActionTimeout
-        {
-            get { return _defaultActionTimeout; }
-            set { _defaultActionTimeout = value; }
-        }
-
+        
         public ITestableWebPage BaseObject
         {
             get { return _baseObject; }
@@ -32,6 +24,23 @@ namespace TestAutomation.Applications
         public WebPage(ITestableWebPage baseObject)
         {
             _baseObject = baseObject;
+        }
+
+        public T New<T>() where T : class, ITestableWebPage
+        {
+            var ctor = typeof(T).GetConstructor(new[] { typeof(ITestableWebPage) });
+
+            if (ctor == null)
+            {
+                throw new Exception(string.Format("Unable to construct page for type {0}, no constructor exists.", typeof(T)));
+            }
+
+            return ctor.Invoke(new object[] { BaseObject }) as T;
+        }
+
+        public void Clear()
+        {
+            _baseObject.Clear();
         }
 
         public void Type(string text)
@@ -59,6 +68,16 @@ namespace TestAutomation.Applications
             _baseObject.Click(element);
         }
 
+        public string InnerHtml()
+        {
+            return _baseObject.InnerHtml();
+        }
+
+        public ITestableWebElement Parent(int? levels = null)
+        {
+            return _baseObject.Parent(levels);
+        }
+        
         public void Click(string targetSubElement)
         {
             Click(FindSubElement(targetSubElement));
@@ -66,7 +85,7 @@ namespace TestAutomation.Applications
 
         public bool Exists(string targetSubElement)
         {
-            return Exists(targetSubElement, this._defaultActionTimeout);
+            return Exists(targetSubElement, this.DefaultActionTimeout);
         }
 
         public bool Exists(string targetSubElement, int timeToLook)
@@ -87,10 +106,37 @@ namespace TestAutomation.Applications
             watch.Stop();
             return false;
         }
+        
+        public int DefaultActionTimeout
+        {
+            get { return _baseObject.DefaultActionTimeout; }
+            set { _baseObject.DefaultActionTimeout = value; }
+        }
+
+        public IDictionary<string, IDictionary<string, string>> SubElements
+        {
+            get { return _baseObject.SubElements; }
+            set { _baseObject.SubElements = value; }
+        }
+
+        public IDictionary<string, string> GetElementProperties(string targetElement)
+        {
+            return _baseObject.GetElementProperties(targetElement);
+        }
+
+        public ITestableWebElement FindSubElement(string targetSubElement)
+        {
+            return _baseObject.FindSubElement(targetSubElement);
+        }
+
+        public ITestableWebElement FindSubElement(string targetSubElement, int timeout)
+        {
+            return _baseObject.FindSubElement(targetSubElement, timeout);
+        }
 
         public ITestableWebElement FindSubElement(IDictionary<string, string> subElementProperties)
         {
-            return FindSubElement(subElementProperties, this._defaultActionTimeout);
+            return _baseObject.FindSubElement(subElementProperties);
         }
 
         public ITestableWebElement FindSubElement(IDictionary<string, string> subElementProperties, int timeout)
@@ -98,47 +144,26 @@ namespace TestAutomation.Applications
             return _baseObject.FindSubElement(subElementProperties, timeout);
         }
 
+        public IList<ITestableWebElement> FindSubElements(string targetSubElement)
+        {
+            return _baseObject.FindSubElements(targetSubElement);
+        }
+
+        public IList<ITestableWebElement> FindSubElements(string targetSubElement, int timeout)
+        {
+            return _baseObject.FindSubElements(targetSubElement, timeout);
+        }
+
         public IList<ITestableWebElement> FindSubElements(IDictionary<string, string> subElementProperties)
         {
             return _baseObject.FindSubElements(subElementProperties);
         }
 
-        public ITestableWebElement FindSubElement(string targetSubElement)
+        public IList<ITestableWebElement> FindSubElements(IDictionary<string, string> subElementProperties, int timeout)
         {
-
-            if (!_subElements.ContainsKey(targetSubElement))
-            {
-                throw new ElementNotRegisteredException("Invalid Element Name");
-            }
-            var properties = _subElements[targetSubElement];
-
-            return FindSubElement(properties, this._defaultActionTimeout);
+            return _baseObject.FindSubElements(subElementProperties, timeout);
         }
 
-        public ITestableWebElement FindSubElement(string targetSubElement, int timeout)
-        {
-
-            if (!_subElements.ContainsKey(targetSubElement))
-            {
-                throw new ElementNotRegisteredException("Invalid Element Name");
-            }
-            var properties = _subElements[targetSubElement];
-
-            return FindSubElement(properties, timeout);
-        }
-
-        public IList<ITestableWebElement> FindSubElements(string targetSubElement)
-        {
-
-            if (!_subElements.ContainsKey(targetSubElement))
-            {
-                throw new ElementNotRegisteredException("Invalid Element Name");
-            }
-            var properties = _subElements[targetSubElement];
-
-            return FindSubElements(properties);
-        }
-        
         public void Open(Uri uri)
         {
             _baseObject.Open(uri);
@@ -157,6 +182,11 @@ namespace TestAutomation.Applications
         public void Maximize()
         {
             _baseObject.Maximize();
+        }
+
+        public void ResetZoomLevel()
+        {
+            _baseObject.ResetZoomLevel();
         }
 
         public string GetCurrentUrl()
@@ -178,12 +208,12 @@ namespace TestAutomation.Applications
                     properties.Add(val);
                 }
             }
-            _subElements.AddDictionaryItems(name, properties.ToArray());
+            SubElements.AddDictionaryItems(name, properties.ToArray());
         }
 
         public void RegisterSubElement(string name, params string[] elementProperties)
         {
-            _subElements.AddDictionaryItems(name, elementProperties);
+            SubElements.AddDictionaryItems(name, elementProperties);
         }
     }
 }

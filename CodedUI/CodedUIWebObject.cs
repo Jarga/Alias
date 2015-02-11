@@ -14,6 +14,33 @@ namespace TestAutomation.CodedUI
     {
         protected UITestControl _baseObject;
 
+        public int DefaultActionTimeout
+        {
+            get { throw new NotImplementedException(); }
+            set { throw new NotImplementedException(); }
+        }
+
+        public IDictionary<string, IDictionary<string, string>> SubElements
+        {
+            get { throw new NotImplementedException(); }
+            set { throw new NotImplementedException(); }
+        }
+
+        public IDictionary<string, string> GetElementProperties(string targetElement)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ITestableWebElement FindSubElement(string targetSubElement)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ITestableWebElement FindSubElement(string targetSubElement, int timeout)
+        {
+            throw new NotImplementedException();
+        }
+
         public ITestableWebElement FindSubElement(IDictionary<string, string> subElementProperties)
         {
             return new CodedUIWebElement(_baseObject.Find(subElementProperties));
@@ -39,10 +66,25 @@ namespace TestAutomation.CodedUI
             return new CodedUIWebElement(element);
         }
 
+        public IList<ITestableWebElement> FindSubElements(string targetSubElement)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IList<ITestableWebElement> FindSubElements(string targetSubElement, int timeout)
+        {
+            throw new NotImplementedException();
+        }
+
         public IList<ITestableWebElement> FindSubElements(IDictionary<string, string> subElementProperties)
         {
             List<UITestControl> foundElements = _baseObject.FindAll(subElementProperties).ToList();
             return foundElements.Any() ? foundElements.Select(element => (ITestableWebElement) new CodedUIWebElement(element)).ToList() : new List<ITestableWebElement>();
+        }
+
+        public IList<ITestableWebElement> FindSubElements(IDictionary<string, string> subElementProperties, int timeout)
+        {
+            throw new NotImplementedException();
         }
     }
 }

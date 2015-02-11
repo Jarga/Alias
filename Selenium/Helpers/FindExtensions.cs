@@ -2,14 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Reflection;
-using System.Reflection.Emit;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Internal;
-using OpenQA.Selenium.Remote;
-using OpenQA.Selenium.Support.PageObjects;
-using OpenQA.Selenium.Support.UI;
-using TestAutomation.Initialization;
 using TestAutomation.Shared;
 using TestAutomation.Shared.Exceptions;
 
@@ -31,13 +24,14 @@ namespace TestAutomation.Selenium.Helpers
                 case "classname":
                     return By.ClassName(value);
                 case "cssselector":
+                case "css":
                     return By.CssSelector(value);
                 case "id":
                     return By.Id(value);
                 case "linktext":
                     return isContains 
-                                ? By.LinkText(value) 
-                                : By.PartialLinkText(value);
+                                ? By.PartialLinkText(value) 
+                                : By.LinkText(value);
                 case "name":
                     return By.Name(value);
                 case "partiallinktext":
@@ -55,7 +49,7 @@ namespace TestAutomation.Selenium.Helpers
                 case "type":
                     return By.XPath(string.Format("//*[@type='{0}']", value));
                 default:
-                    throw new Exception("Invalid By Clause for Selenium Element!");
+                    throw new InvalidSearchPropertyException(string.Format("Invalid By Clause property {0} for Selenium Element!", key.ToLower()));
             }
         }
 
@@ -69,7 +63,10 @@ namespace TestAutomation.Selenium.Helpers
 
             string xpathExpression = string.Format(".//{0}", tagKey != null ? keyValueDictionary[tagKey] : "*");
 
-            keyValueDictionary.Remove(tagKey);
+            if (tagKey != null)
+            {
+                keyValueDictionary.Remove(tagKey);
+            }
 
             foreach (string key in keyValueDictionary.Keys)
             {
@@ -105,7 +102,7 @@ namespace TestAutomation.Selenium.Helpers
                         xpathExpression += GetAttributeXPath("type", value, isContains);
                         continue;
                     default:
-                        throw new Exception("Invalid Composite By Clause for Selenium Element!");
+                        throw new InvalidSearchPropertyException(string.Format("Invalid Composite By Clause property {0} for Selenium Element!", key.ToLower()));
                 }
             }
             return By.XPath(xpathExpression);

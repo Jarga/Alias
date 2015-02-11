@@ -18,7 +18,15 @@ namespace TestAutomation.Shared.Extensions
             {
                 elementProps.Add(elementProperties.ElementAt(i), elementProperties.ElementAt(i + 1));
             }
-            rootDictionary.Add(elementName, elementProps);
+
+            if (rootDictionary.ContainsKey(elementName))
+            {
+                rootDictionary[elementName] = elementProps;
+            }
+            else
+            {
+                rootDictionary.Add(elementName, elementProps);
+            }
         }
     }
 }

@@ -17,7 +17,7 @@ namespace TestAutomation.FunctionalTests.ClearVoiceSurveys
         [TestMethod]
         public void Automation_Example_Real()
         {
-            Tuple<string, string> login = new Tuple<string, string>("", "");
+            Tuple<string, string> login = new Tuple<string, string>("ddddd", "ddddd");
             List<string> tabsList = new List<string>() { "My Rewards Tab", "My Messages Tab", "My Achievements Tab", "My Account Tab", "My Sweepstakes Tab", "My Polls Tab" };
 
 
@@ -27,10 +27,10 @@ namespace TestAutomation.FunctionalTests.ClearVoiceSurveys
             {
                 Dashboard dashboard = frontpage.LogIn(login.Item1, login.Item2);
 
-                Assert.IsTrue(dashboard.GetCurrentUrl().Contains("/Dashboard.aspx"), "Expecting URL to contain 'Dashboard.aspx'!");
+                Assert.IsTrue(dashboard.GetCurrentUrl().Contains("/EmailDashboard.aspx"), "Expecting URL to contain 'EmailDashboard.aspx'!");
 
                 dashboard.Click(tab);
-                Assert.IsTrue(dashboard.Exists("Your Dashboard Title"), "Unable to see Dashboard!");
+                Assert.IsTrue(dashboard.Exists("Your EmailDashboard Title"), "Unable to see EmailDashboard!");
 
                 frontpage = dashboard.SignOut();
 

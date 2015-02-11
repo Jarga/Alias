@@ -8,7 +8,7 @@ namespace TestAutomation.Applications.ClearVoiceSurveys.Pages
         public Dashboard(ITestableWebPage baseObject): base(baseObject)
         {
             RegisterSubElement("Sign Out", new { Id = "ctl01_ucHeader_ucLogin_lbSignOut"});
-            RegisterSubElement("Your Dashboard Title", new { TagName = "span", InnerText = "Your Dashboard" });
+            RegisterSubElement("Your EmailDashboard Title", new { TagName = "span", InnerText = "Your EmailDashboard" });
             RegisterSubElement("Active Tab", new { TagName = "input", Class = "tabbutton_active" });
             RegisterSubElement("My Rewards Tab", new { Id = "ctl01_cpBody_ucAccountInfo_cpAccountInfo_btnRewards"});
             RegisterSubElement("My Messages Tab", new { Id = "ctl01_cpBody_ucAccountInfo_cpAccountInfo_btnInbox"});

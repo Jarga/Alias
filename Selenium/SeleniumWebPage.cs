@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
 using TestAutomation.Shared;
+using TestAutomation.Shared.Exceptions;
 
 namespace TestAutomation.Selenium
 {
@@ -42,9 +44,19 @@ namespace TestAutomation.Selenium
             this._driver.Manage().Window.Maximize();
         }
 
+        public void ResetZoomLevel()
+        {
+            Type(Keys.Control + "0");
+        }
+
         public string GetCurrentUrl()
         {
             return _driver.Url;
+        }
+
+        public void Clear()
+        {
+            //Can't clear the browser
         }
 
         public void Type(string text)
@@ -69,6 +81,16 @@ namespace TestAutomation.Selenium
         public void Click(ITestableWebElement element)
         {
             element.Click();
+        }
+
+        public string InnerHtml()
+        {
+            return _driver.FindElement(By.TagName("html")).GetAttribute("outerHTML");
+        }
+
+        public ITestableWebElement Parent(int? levels = null)
+        {
+            return null; // There is no parent to the browser
         }
 
     }
