@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using TestAutomation.Applications.MarketOnce.Pages.Home;
 using TestAutomation.Applications.MarketOnce.Pages.List;
 using TestAutomation.Shared;
+using TestAutomation.Shared.Exceptions;
 
 namespace TestAutomation.Applications.MarketOnce.Pages
 {
@@ -44,8 +45,9 @@ namespace TestAutomation.Applications.MarketOnce.Pages
                 if (targetLink != null && navigationPath.Length == 2)
                 {
                     var container = targetLink.Parent(2);
-                    var expandMenu = container.FindSubElement("Menu Link SubMenu Expand", 120);
-                    var navigationTargets = container.FindSubElements("Menu Link SubMenu Link", 120);
+
+                    var expandMenu = container.FindSubElement(GetElementProperties("Menu Link SubMenu Expand"), 120);
+                    var navigationTargets = container.FindSubElements(GetElementProperties("Menu Link SubMenu Link"), 120);
 
                     expandMenu.Click();
 
@@ -61,6 +63,18 @@ namespace TestAutomation.Applications.MarketOnce.Pages
             }
 
             throw new Exception(string.Format("Invalid Navigation Path {0}", string.Join(", ", navigationPath ?? new string[0])));
+        }
+
+        public void CompleteTextInput(string field, string value)
+        {
+            var element = FindSubElement(field);
+
+            Type(element, value);
+
+            if (!element.GetAttribute("value").Equals(value))
+            {
+                throw new ActionFailedException(string.Format("Field {0} should have the value {1} but it does not!", field, value));
+            }
         }
     }
 }

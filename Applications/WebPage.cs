@@ -68,12 +68,37 @@ namespace TestAutomation.Applications
             _baseObject.Click(element);
         }
 
+        public bool WaitForAppear(string targetSubElement, int timeout)
+        {
+            return _baseObject.WaitForAppear(targetSubElement, timeout);
+        }
+
+        public bool WaitForDisappear(string targetSubElement, int timeout)
+        {
+            return _baseObject.WaitForDisappear(targetSubElement, timeout);
+        }
+
+        public bool IsDisplayed()
+        {
+            return _baseObject.IsDisplayed();
+        }
+
+        public void WaitForAttributeState(string targetSubElement, string attributeName, Func<string, bool> condition, int timeout)
+        {
+            _baseObject.WaitForAttributeState(targetSubElement, attributeName, condition, timeout);
+        }
+
+        public string GetAttribute(string attributeName)
+        {
+            return _baseObject.GetAttribute(attributeName);
+        }
+
         public string InnerHtml()
         {
             return _baseObject.InnerHtml();
         }
 
-        public ITestableWebElement Parent(int? levels = null)
+        public ITestableWebElement Parent(int levels = 1)
         {
             return _baseObject.Parent(levels);
         }
@@ -88,6 +113,17 @@ namespace TestAutomation.Applications
             return Exists(targetSubElement, this.DefaultActionTimeout);
         }
 
+        public bool WaitFor(string targetSubElement, int timeToLook = 60)
+        {
+            return Exists(targetSubElement, timeToLook);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="targetSubElement">Element to look for</param>
+        /// <param name="timeToLook">Seconds to wait for it to appear</param>
+        /// <returns></returns>
         public bool Exists(string targetSubElement, int timeToLook)
         {
 
@@ -196,24 +232,17 @@ namespace TestAutomation.Applications
 
         public void RegisterSubElement(string name, dynamic elementProperties)
         {
-            PropertyDescriptorCollection props = TypeDescriptor.GetProperties(elementProperties);
-            List<string> properties = new List<string>();
-            foreach (PropertyDescriptor prop in props)
-            {
-                var value = prop.GetValue(elementProperties);
-                if (value != null)
-                {
-                    string val = value.ToString();
-                    properties.Add(prop.Name);
-                    properties.Add(val);
-                }
-            }
-            SubElements.AddDictionaryItems(name, properties.ToArray());
+            _baseObject.RegisterSubElement(name, elementProperties as object);
         }
 
         public void RegisterSubElement(string name, params string[] elementProperties)
         {
-            SubElements.AddDictionaryItems(name, elementProperties);
+            _baseObject.RegisterSubElement(name, elementProperties);
+        }
+
+        public void RegisterSubElement(string name, IDictionary<string, string> elementProperties)
+        {
+            _baseObject.RegisterSubElement(name, elementProperties);
         }
     }
 }

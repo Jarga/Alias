@@ -13,7 +13,14 @@ namespace TestAutomation.Shared
         void Type(ITestableWebElement element, string text);
         void Click();
         void Click(ITestableWebElement element);
+
+        bool WaitForAppear(string targetSubElement, int timeout);
+        bool WaitForDisappear(string targetSubElement, int timeout);
+        bool IsDisplayed();
+        void WaitForAttributeState(string targetSubElement, string attributeName, Func<string, bool> condition, int timeout);
+
+        string GetAttribute(string attributeName);
         string InnerHtml();
-        ITestableWebElement Parent(int? levels = null);
+        ITestableWebElement Parent(int levels = 1);
     }
 }

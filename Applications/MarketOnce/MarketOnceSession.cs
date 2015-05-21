@@ -13,7 +13,7 @@ namespace TestAutomation.Applications.MarketOnce
 
         public MarketOnceSession() : base(GlobalTestSettings.BaseTestPageType)
         {
-            Environment = GlobalTestSettings.Environment;
+            Environment = GlobalTestSettings.TestEnvironment;
         }
 
         public MarketOnceSession(ITestableWebPage baseObject) : base(baseObject) { }

@@ -13,7 +13,7 @@ namespace TestAutomation.Applications.ClearVoiceSurveys
 
         public ClearVoiceSurveysSession() : base(GlobalTestSettings.BaseTestPageType)
         {
-            Environment = GlobalTestSettings.Environment;
+            Environment = GlobalTestSettings.TestEnvironment;
         }
 
         public ClearVoiceSurveysSession(ITestableWebPage baseObject) : base(baseObject){}

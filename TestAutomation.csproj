@@ -52,12 +52,21 @@
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="WebDriver">
-      <HintPath>..\packages\Selenium.WebDriver.2.39.0\lib\net40\WebDriver.dll</HintPath>
+      <HintPath>packages\Selenium.WebDriver.2.45.0\lib\net40\WebDriver.dll</HintPath>
     </Reference>
     <Reference Include="WebDriver.Support">
-      <HintPath>..\packages\Selenium.Support.2.39.0\lib\net40\WebDriver.Support.dll</HintPath>
+      <HintPath>packages\Selenium.Support.2.45.0\lib\net40\WebDriver.Support.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
+    <Reference Include="xunit.abstractions">
+      <HintPath>packages\xunit.abstractions.2.0.0\lib\net35\xunit.abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="xunit.assert">
+      <HintPath>packages\xunit.assert.2.0.0\lib\portable-net45+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS\xunit.assert.dll</HintPath>
+    </Reference>
+    <Reference Include="xunit.core">
+      <HintPath>packages\xunit.extensibility.core.2.0.0\lib\portable-net45+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS\xunit.core.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <CodeAnalysisDependentAssemblyPaths Condition=" '$(VS100COMNTOOLS)' != '' " Include="$(VS100COMNTOOLS)..\IDE\PrivateAssemblies">
@@ -66,7 +75,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Applications\MarketOnce\Controls\Ext\ExtGridControl.cs" />
+    <Compile Include="Applications\MarketOnce\Controls\Ext\ExtTreePicker.cs" />
     <Compile Include="Applications\MarketOnce\MarketOnceSession.cs" />
+    <Compile Include="Applications\MarketOnce\Pages\Admin\EditUser.cs" />
+    <Compile Include="Applications\MarketOnce\Pages\Admin\Users.cs" />
     <Compile Include="Applications\MarketOnce\Pages\Admin\Welcome.cs" />
     <Compile Include="Applications\MarketOnce\Pages\Home\EmailDashboard.cs" />
     <Compile Include="Applications\MarketOnce\Pages\List\EditTarget.cs" />
@@ -81,7 +93,8 @@
     <Compile Include="Applications\ClearVoiceSurveys\Pages\Dashboard.cs" />
     <Compile Include="Applications\ClearVoiceSurveys\Pages\FrontPage.cs" />
     <Compile Include="Applications\WebPage.cs" />
-    <Compile Include="FunctionalTests\MarketOnce\EditTargetTests.cs" />
+    <Compile Include="FunctionalTests\MarketOnce\Admin\Users\CreateUserTests.cs" />
+    <Compile Include="FunctionalTests\MarketOnce\Lists\CreateTarget\CreateTargetTests.cs" />
     <Compile Include="Initialization\AssemblyInitializer.cs" />
     <Compile Include="Initialization\GlobalTestSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -89,8 +102,11 @@
     <Compile Include="Selenium\SeleniumWebElement.cs" />
     <Compile Include="Selenium\SeleniumWebObject.cs" />
     <Compile Include="Selenium\SeleniumWebPage.cs" />
+    <Compile Include="Shared\Enumerations\Browsers.cs" />
     <Compile Include="Shared\Enumerations\Environments.cs" />
     <Compile Include="Shared\Enumerations\Sites.cs" />
+    <Compile Include="Shared\Exceptions\ActionFailedException.cs" />
+    <Compile Include="Shared\Exceptions\ActionTimeoutException.cs" />
     <Compile Include="Shared\Exceptions\ElementNotRegisteredException.cs" />
     <Compile Include="Shared\Exceptions\InvalidSearchPropertyException.cs" />
     <Compile Include="Shared\Exceptions\ObjectNotFoundException.cs" />

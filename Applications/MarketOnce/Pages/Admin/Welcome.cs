@@ -13,6 +13,7 @@ namespace TestAutomation.Applications.MarketOnce.Pages.Admin
         public Welcome(ITestableWebPage baseObject) : base(baseObject)
         {
             RegisterSubElement("Email Dashboard", new { Text = "Email", Id = "contains=ctl00_cphMain_dlModules" });
+            RegisterSubElement("Users Link", new { Text = "Users", Id = "contains=marketOnceSiteMenu_ssmAdmin_childItems" });
             
             FindSubElement("Logout", 120);
         }
@@ -22,6 +23,13 @@ namespace TestAutomation.Applications.MarketOnce.Pages.Admin
             Click("Email Dashboard");
             
             return new EmailDashboard(BaseObject);
+        }
+
+        public Users NavigateToUserAdmin()
+        {
+            Click("Users Link");
+
+            return new Users(BaseObject);
         }
     }
 }

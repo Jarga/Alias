@@ -16,5 +16,9 @@ namespace TestAutomation.Shared
         IList<ITestableWebElement> FindSubElements(string targetSubElement, int timeout);
         IList<ITestableWebElement> FindSubElements(IDictionary<string, string> subElementProperties);
         IList<ITestableWebElement> FindSubElements(IDictionary<string, string> subElementProperties, int timeout);
+        
+        void RegisterSubElement(string name, dynamic elementProperties);
+        void RegisterSubElement(string name, params string[] elementProperties);
+        void RegisterSubElement(string name, IDictionary<string, string> elementProperties);
     }
 }

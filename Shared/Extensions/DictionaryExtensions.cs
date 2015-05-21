@@ -6,7 +6,7 @@ namespace TestAutomation.Shared.Extensions
 {
     public static class DictionaryExtensions
     {
-        public static void AddDictionaryItems(this  IDictionary<string, IDictionary<string, string>> rootDictionary, string elementName, params string[] elementProperties)
+        public static void AddElementDefinition(this  IDictionary<string, IDictionary<string, string>> rootDictionary, string elementName, params string[] elementProperties)
         {
             IDictionary<string, string> elementProps = new Dictionary<string, string>();
             if (elementProperties.Length < 2 || elementProperties.Length % 2 != 0)

@@ -21,10 +21,16 @@ namespace TestAutomation.Applications.MarketOnce.Pages
         public Welcome LogIn(string email, string password)
         {
             var emailElement = FindSubElement("Email");
+
+            //For some reason chrome does not want to type the first time you hit the site...
+            emailElement.Clear();
+            emailElement.Type("Empty");
+
             emailElement.Clear();
             emailElement.Type(email);
 
             Type("Password", password);
+
             Click("Log In");
             
             return new Welcome(BaseObject);;
