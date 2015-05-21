@@ -1,16 +1,19 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using OpenQA.Selenium;
 using TestAutomation.Selenium.Helpers;
 using TestAutomation.Shared;
 using TestAutomation.Shared.Exceptions;
+using TestAutomation.Shared.Extensions;
 
 namespace TestAutomation.Selenium
 {
-    public abstract class SeleniumWebObject : ISearchableWebObject
+    public class SeleniumWebObject : ISearchableWebObject
     {
-        private IDictionary<string, IDictionary<string, string>> _subElements = new Dictionary<string, IDictionary<string, string>>();
+        private IDictionary<string, IDictionary<string, string>> _subElements = new Dictionary<string, IDictionary<string, string>>(StringComparer.OrdinalIgnoreCase);
 
         protected ISearchContext _searchContext;
         private int _defaultActionTimeout = 60;
@@ -25,6 +28,13 @@ namespace TestAutomation.Selenium
         {
             get { return _defaultActionTimeout; }
             set { _defaultActionTimeout = value; }
+        }
+
+        public SeleniumWebObject(){}
+
+        public SeleniumWebObject(ISearchContext searchContext)
+        {
+            _searchContext = searchContext;
         }
 
         public IDictionary<string, string> GetElementProperties(string targetElement)
@@ -51,9 +61,11 @@ namespace TestAutomation.Selenium
             //If this element uses another element as a base then find the other element and search from there
             if (subElementProperties.ContainsKey("ParentElement"))
             {
-                var parentName = subElementProperties["ParentElement"];
-                subElementProperties.Remove("ParentElement");
-                return FindSubElement(GetElementProperties(parentName)).FindSubElement(subElementProperties);
+                var elementProperties = new Dictionary<string, string>(subElementProperties);
+                var parentName = elementProperties["ParentElement"];
+                elementProperties.Remove("ParentElement");
+
+                return FindSubElement(GetElementProperties(parentName)).FindSubElement(elementProperties);
             }
 
             return _searchContext.FindSubElement(subElementProperties);
@@ -64,9 +76,11 @@ namespace TestAutomation.Selenium
             //If this element uses another element as a base then find the other element and search from there
             if (subElementProperties.ContainsKey("ParentElement"))
             {
-                var parentName = subElementProperties["ParentElement"];
-                subElementProperties.Remove("ParentElement");
-                return FindSubElement(GetElementProperties(parentName), timeout).FindSubElement(subElementProperties, timeout);
+                var elementProperties = new Dictionary<string, string>(subElementProperties);
+                var parentName = elementProperties["ParentElement"];
+                elementProperties.Remove("ParentElement");
+
+                return FindSubElement(GetElementProperties(parentName), timeout).FindSubElement(elementProperties, timeout);
             }
 
             Stopwatch watch = new Stopwatch();
@@ -149,6 +163,33 @@ namespace TestAutomation.Selenium
             watch.Stop();
 
             return elements;
+        }
+
+        public void RegisterSubElement(string name, dynamic elementProperties)
+        {
+            PropertyDescriptorCollection props = TypeDescriptor.GetProperties(elementProperties);
+            List<string> properties = new List<string>();
+            foreach (PropertyDescriptor prop in props)
+            {
+                var value = prop.GetValue(elementProperties);
+                if (value != null)
+                {
+                    string val = value.ToString();
+                    properties.Add(prop.Name);
+                    properties.Add(val);
+                }
+            }
+            RegisterSubElement(name, properties.ToArray());
+        }
+
+        public void RegisterSubElement(string name, params string[] elementProperties)
+        {
+            SubElements.AddElementDefinition(name, elementProperties);
+        }
+
+        public void RegisterSubElement(string name, IDictionary<string, string> elementProperties)
+        {
+            SubElements.Add(name, elementProperties);
         }
     }
 }

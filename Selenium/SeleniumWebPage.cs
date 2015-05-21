@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
 using TestAutomation.Shared;
-using TestAutomation.Shared.Exceptions;
 
 namespace TestAutomation.Selenium
 {
@@ -83,14 +81,48 @@ namespace TestAutomation.Selenium
             element.Click();
         }
 
-        public string InnerHtml()
+        public bool WaitForAppear(string targetSubElement, int timeout)
         {
-            return _driver.FindElement(By.TagName("html")).GetAttribute("outerHTML");
+            return GetRootElement().WaitForAppear(targetSubElement, timeout);
         }
 
-        public ITestableWebElement Parent(int? levels = null)
+        public bool WaitForDisappear(string targetSubElement, int timeout)
+        {
+            return GetRootElement().WaitForDisappear(targetSubElement, timeout);
+        }
+
+        public void WaitForAttributeState(string targetSubElement, string attributeName, Func<string, bool> condition, int timeout)
+        {
+            GetRootElement().WaitForAttributeState(targetSubElement, attributeName, condition, timeout);
+        }
+
+        public bool IsDisplayed()
+        {
+            return GetRootElement().IsDisplayed();
+        }
+
+        public string GetAttribute(string attributeName)
+        {
+            return GetRootElement().GetAttribute(attributeName);
+        }
+
+        public string InnerHtml()
+        {
+            return GetAttribute("outerHTML");
+        }
+
+        public ITestableWebElement Parent(int levels = 1)
         {
             return null; // There is no parent to the browser
+        }
+
+        public SeleniumWebElement GetRootElement()
+        {
+            //Set subelements to this browser's sub elements to prevent need to re-register
+            return new SeleniumWebElement(_driver.FindElement(By.TagName("html")))
+            {
+                SubElements = SubElements
+            };
         }
 
     }

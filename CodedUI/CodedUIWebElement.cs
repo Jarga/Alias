@@ -38,12 +38,37 @@ namespace TestAutomation.CodedUI
             element.Click();
         }
 
+        public bool WaitForAppear(string targetSubElement, int timeout)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool WaitForDisappear(string targetSubElement, int timeout)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void WaitForAttributeState(string targetSubElement, string attributeName, Func<string, bool> condition, int timeout)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool IsDisplayed()
+        {
+            throw new NotImplementedException();
+        }
+
+        public string GetAttribute(string attributeName)
+        {
+            throw new NotImplementedException();
+        }
+
         public string InnerHtml()
         {
             throw new NotImplementedException();
         }
 
-        public ITestableWebElement Parent(int? levels = null)
+        public ITestableWebElement Parent(int levels = 1)
         {
             throw new NotImplementedException();
         }

@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UITesting;
 using TestAutomation.Shared;
 
 namespace TestAutomation.CodedUI
 {
-    class CodedUIWebPage : CodedUIWebObject, ITestableWebPage
+    class CodedUIWebPage : CodedUIWebElement, ITestableWebPage
     {
         private BrowserWindow _browser;
         
@@ -15,15 +14,10 @@ namespace TestAutomation.CodedUI
             set { _browser = value; }
         }
 
-        public IDictionary<string, IDictionary<string, string>> SubElements
+        public CodedUIWebPage(BrowserWindow browser)
+            : base(browser.CurrentDocumentWindow)
         {
-            get { throw new NotImplementedException(); }
-            set { throw new NotImplementedException(); }
-        }
-
-        public IDictionary<string, string> GetElementProperties(string targetElement)
-        {
-            throw new NotImplementedException();
+            _browser = browser;
         }
 
         public void Open(Uri uri)
@@ -57,41 +51,6 @@ namespace TestAutomation.CodedUI
         public string GetCurrentUrl()
         {
             return _browser.Uri.AbsoluteUri;
-        }
-
-        public void Clear()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Type(string text)
-        {
-            Keyboard.SendKeys(_browser, text);
-        }
-
-        public void Type(ITestableWebElement element, string text)
-        {
-            element.Type(text);
-        }
-
-        public void Click()
-        {
-            Mouse.Click(_browser);
-        }
-
-        public void Click(ITestableWebElement element)
-        {
-            element.Click();
-        }
-
-        public string InnerHtml()
-        {
-            throw new NotImplementedException();
-        }
-
-        public ITestableWebElement Parent(int? levels = null)
-        {
-            throw new NotImplementedException();
         }
     }
 }

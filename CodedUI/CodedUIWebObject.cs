@@ -86,5 +86,20 @@ namespace TestAutomation.CodedUI
         {
             throw new NotImplementedException();
         }
+
+        public void RegisterSubElement(string name, dynamic elementProperties)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void RegisterSubElement(string name, params string[] elementProperties)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void RegisterSubElement(string name, IDictionary<string, string> elementProperties)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

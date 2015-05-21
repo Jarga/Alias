@@ -27,7 +27,9 @@ namespace TestAutomation.Selenium.Helpers
                 case "css":
                     return By.CssSelector(value);
                 case "id":
-                    return By.Id(value);
+                    return isContains 
+                        ? By.CssSelector(string.Format("[id*={0}]", value))
+                        : By.Id(value);
                 case "linktext":
                     return isContains 
                                 ? By.PartialLinkText(value) 
