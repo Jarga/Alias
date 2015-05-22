@@ -40,7 +40,7 @@ namespace TestAutomation.Applications.MarketOnce.Controls.Ext
 
                 //Used for relative lookups
                 _baseObject.RegisterSubElement(MenuBaseName + " Node Expand", new { css = ".x-tree-expander" });
-                _baseObject.RegisterSubElement(MenuBaseName + " Text Node", new { @class = "x-tree-node-text" });
+                _baseObject.RegisterSubElement(MenuBaseName + " Text Node", new { @class = "contains=x-tree-node-text" });
             }
         }
 
@@ -56,14 +56,22 @@ namespace TestAutomation.Applications.MarketOnce.Controls.Ext
 
             for (int i = 0; i < orgPath.Length; i++)
             {
-                var orgNodeProperties = _baseObject.GetElementProperties(MenuBaseName + " Text Node");
-                orgNodeProperties.Add("text", orgPath[i]);
+                var orgNodeProperties =
+                    new Dictionary<string, string>(_baseObject.GetElementProperties(MenuBaseName + " Text Node"))
+                    {
+                        {"text", orgPath[i]}
+                    };
 
                 var orgNode = menuRoot.FindSubElement(orgNodeProperties);
 
+                for (int j = 0; !orgNode.IsDisplayed() && j < 10; j++)
+                {
+                    Thread.Sleep(1000);
+                }
+
                 if (i == orgPath.Length - 1)
                 {
-                    orgNode.Click();
+                    orgNode.Parent().Click();
 
                     _baseObject.WaitForDisappear(MenuBaseName, 30);
                 }
@@ -77,7 +85,7 @@ namespace TestAutomation.Applications.MarketOnce.Controls.Ext
 
                     expand.Click();
 
-                    Thread.Sleep(2);
+                    Thread.Sleep(1000);
 
                     Stopwatch watch = new Stopwatch();
                     watch.Start();
@@ -89,7 +97,7 @@ namespace TestAutomation.Applications.MarketOnce.Controls.Ext
                         newRecordsExist = recordsAfterExpand.Count > recordsBeforeExpand.Count;
                         if (!newRecordsExist)
                         {
-                            Thread.Sleep(2);
+                            Thread.Sleep(1000);
                         }
                     }
                     watch.Stop();

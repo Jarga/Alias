@@ -10,10 +10,10 @@ namespace TestAutomationRunner
     {
         static void Main(string[] args)
         {
-            Environment.SetEnvironmentVariable("TestAutomationEnvironment", "Dev");
-            Environment.SetEnvironmentVariable("TestAutomationBrowser", "InternetExplorer");
+            Environment.SetEnvironmentVariable("TestAutomationEnvironment", "dev");
+            Environment.SetEnvironmentVariable("TestAutomationBrowser", "firefox");
 
-            Xunit.ConsoleClient.Program.Main(new[] { "TestAutomation.dll", "-trait", "Suite=EditTarget", "-html", "output.html", "-debug", "-wait" });
+            Xunit.ConsoleClient.Program.Main(new[] { "TestAutomation.dll", "-trait", "Suite=CreateUser", "-html", "C:\\output.html" });
         }
     }
 }

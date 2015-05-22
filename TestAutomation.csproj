@@ -79,8 +79,10 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Applications\ClearVoiceManage\ClearVoiceManageSession.cs" />
     <Compile Include="Applications\MarketOnce\Controls\Ext\ExtGridControl.cs" />
     <Compile Include="Applications\MarketOnce\Controls\Ext\ExtTreePicker.cs" />
+    <Compile Include="Applications\MarketOnce\Controls\Smart\SmartGrid.cs" />
     <Compile Include="Applications\MarketOnce\MarketOnceSession.cs" />
     <Compile Include="Applications\MarketOnce\Pages\Admin\EditUser.cs" />
     <Compile Include="Applications\MarketOnce\Pages\Admin\Users.cs" />
@@ -117,6 +119,7 @@
     <Compile Include="Shared\Exceptions\ObjectNotFoundException.cs" />
     <Compile Include="Shared\Exceptions\PageNotDisplayedException.cs" />
     <Compile Include="Shared\Extensions\DictionaryExtensions.cs" />
+    <Compile Include="Shared\Extensions\ThreadExtensions.cs" />
     <Compile Include="Shared\ISearchableWebObject.cs" />
     <Compile Include="Shared\ITestableWebElement.cs" />
     <Compile Include="Shared\ITestableWebPage.cs" />
@@ -159,6 +162,32 @@
     </PropertyGroup>
     <Error Condition="!Exists('packages\xunit.core.2.0.0\build\portable-net45+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS\xunit.core.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\xunit.core.2.0.0\build\portable-net45+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS\xunit.core.props'))" />
     <Error Condition="!Exists('packages\xunit.runner.visualstudio.2.0.0\build\net20\xunit.runner.visualstudio.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\xunit.runner.visualstudio.2.0.0\build\net20\xunit.runner.visualstudio.props'))" />
+  </Target>
+  <ItemGroup>
+    <Content Include="packages\Selenium.WebDriver.ChromeDriver.2.15.0.0\driver\chromedriver.exe">
+      <Link>chromedriver.exe</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages\Selenium.WebDriver.IEDriver.2.45.0.1\content\IEDriverServer.exe">
+      <Link>IEDriverServer.exe</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Applications\ClearVoiceManage\Pages\" />
+  </ItemGroup>
+  <PropertyGroup Label="DownloadIEDriverBuildTask">
+    <CoreBuildDependsOn>DownloadIEDriver;$(CoreBuildDependsOn)</CoreBuildDependsOn>
+    <IEDriverInstallPath>$(SolutionDir)packages\Selenium.WebDriver.IEDriver.2.45.0.1\</IEDriverInstallPath>
+    <IEDriverToolsPath>$(IEDriverInstallPath)tools\</IEDriverToolsPath>
+    <IEDriverInitScriptPath>$(IEDriverToolsPath)Init.ps1</IEDriverInitScriptPath>
+    <IEDriverPath>$(IEDriverInstallPath)content\IEDriverServer.exe</IEDriverPath>
+    <PowerShellExe Condition="'$(PowerShellExe)'==''">%WINDIR%\System32\WindowsPowerShell\v1.0\powershell.exe</PowerShellExe>
+  </PropertyGroup>
+  <Target Name="DownloadIEDriver" Label="DownloadIEDriverBuildTask">
+    <Exec Condition="!Exists('$(IEDriverPath)')" Command="$(PowerShellExe) -NonInteractive -executionpolicy Unrestricted -command &quot;&amp; { &amp;'$(IEDriverInitScriptPath)' '$(IEDriverInstallPath)' '$(IEDriverToolsPath)'} &quot;" />
   </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

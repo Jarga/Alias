@@ -41,12 +41,7 @@ namespace TestAutomation.Selenium
         {
             this._driver.Manage().Window.Maximize();
         }
-
-        public void ResetZoomLevel()
-        {
-            Type(Keys.Control + "0");
-        }
-
+        
         public string GetCurrentUrl()
         {
             return _driver.Url;
@@ -91,6 +86,11 @@ namespace TestAutomation.Selenium
             return GetRootElement().WaitForDisappear(targetSubElement, timeout);
         }
 
+        public void SetChecked(ITestableWebElement element, bool value)
+        {
+            throw new NotImplementedException();
+        }
+
         public void WaitForAttributeState(string targetSubElement, string attributeName, Func<string, bool> condition, int timeout)
         {
             GetRootElement().WaitForAttributeState(targetSubElement, attributeName, condition, timeout);
@@ -101,9 +101,24 @@ namespace TestAutomation.Selenium
             return GetRootElement().IsDisplayed();
         }
 
+        public bool IsSelected()
+        {
+            return false;
+        }
+
+        public void SetChecked(bool value)
+        {
+            return;
+        }
+
         public string GetAttribute(string attributeName)
         {
             return GetRootElement().GetAttribute(attributeName);
+        }
+
+        public string GetTagName()
+        {
+            return "html";
         }
 
         public string InnerHtml()

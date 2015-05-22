@@ -48,6 +48,21 @@ namespace TestAutomation.CodedUI
             throw new NotImplementedException();
         }
 
+        public bool IsSelected()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SetChecked(bool value)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SetChecked(ITestableWebElement element, bool value)
+        {
+            throw new NotImplementedException();
+        }
+
         public void WaitForAttributeState(string targetSubElement, string attributeName, Func<string, bool> condition, int timeout)
         {
             throw new NotImplementedException();
@@ -59,6 +74,11 @@ namespace TestAutomation.CodedUI
         }
 
         public string GetAttribute(string attributeName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string GetTagName()
         {
             throw new NotImplementedException();
         }

@@ -21,15 +21,15 @@ namespace TestAutomation.Applications.MarketOnce.Pages.Admin
         public EmailDashboard NavigateToEmailModule()
         {
             Click("Email Dashboard");
-            
-            return new EmailDashboard(BaseObject);
+
+            return New<EmailDashboard>();
         }
 
         public Users NavigateToUserAdmin()
         {
             Click("Users Link");
 
-            return new Users(BaseObject);
+            return New<Users>();
         }
     }
 }

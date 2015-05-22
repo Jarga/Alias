@@ -99,6 +99,34 @@ namespace TestAutomation.Selenium
             return false;
         }
 
+        public bool IsSelected()
+        {
+            return _baseObject.Selected;
+        }
+
+        public void SetChecked(bool value)
+        {
+            if (_baseObject.Selected != value)
+            {
+                _baseObject.Click();
+            }
+
+            if (_baseObject.Selected != value)
+            {
+                _baseObject.SendKeys(Keys.Space);
+            }
+
+            if (_baseObject.Selected != value)
+            {
+               throw new ActionFailedException(string.Format("Failed to set checked value to {0} for element!", value));
+            }
+        }
+
+        public void SetChecked(ITestableWebElement element, bool value)
+        {
+            element.SetChecked(value);
+        }
+
         public void WaitForAttributeState(string targetSubElement, string attributeName, Func<string, bool> condition, int timeout)
         {
             Stopwatch watch = new Stopwatch();
@@ -139,6 +167,11 @@ namespace TestAutomation.Selenium
         public string GetAttribute(string attributeName)
         {
             return _baseObject.GetAttribute(attributeName);
+        }
+
+        public string GetTagName()
+        {
+            return _baseObject.TagName;
         }
 
         public string InnerHtml()

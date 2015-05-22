@@ -22,7 +22,6 @@ namespace TestAutomation.Applications.MarketOnce
         {
             Open(GetEnvironmentUrl());
             Maximize();
-            ResetZoomLevel();
 
             return new Login(BaseObject);
         }

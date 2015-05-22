@@ -3,20 +3,20 @@ using TestAutomation.Initialization;
 using TestAutomation.Shared;
 using TestAutomation.Shared.Enumerations;
 
-namespace TestAutomation.Applications.ClearVoiceSurveys
+namespace TestAutomation.Applications.ClearVoiceManage
 {
-    public class ClearVoiceSurveysSession : WebPage
+    public class ClearVoiceManageSession : WebPage
     {
         public static Environments Environment { get; set; }
 
         public static Sites Site { get { return Sites.ClearVoiceSurveys; } }
 
-        public ClearVoiceSurveysSession() : base(GlobalTestSettings.BaseTestPageType)
+        public ClearVoiceManageSession() : base(GlobalTestSettings.BaseTestPageType)
         {
             Environment = GlobalTestSettings.TestEnvironment;
         }
 
-        public ClearVoiceSurveysSession(ITestableWebPage baseObject) : base(baseObject){}
+        public ClearVoiceManageSession(ITestableWebPage baseObject) : base(baseObject){}
 
         public FrontPage Open()
         {

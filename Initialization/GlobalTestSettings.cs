@@ -1,5 +1,6 @@
 ﻿using System;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
 using TestAutomation.Selenium;
 using TestAutomation.Shared;
@@ -12,22 +13,26 @@ namespace TestAutomation.Initialization
         public static Environments TestEnvironment { get; set; }
 
         public static ITestableWebPage BaseTestPageType { get; set; }
-
-        static GlobalTestSettings()
+        
+        public static void Initialize()
         {
             string environment = Environment.GetEnvironmentVariable("TestAutomationEnvironment");
             string browser = Environment.GetEnvironmentVariable("TestAutomationBrowser");
 
             if (environment != null)
             {
-                switch (environment)
+                switch (environment.ToLower())
                 {
-                    case "Dev":
+                    case "dev":
                         TestEnvironment = Environments.DEV;
                         break;
 
-                    case "QA":
+                    case "qa":
                         TestEnvironment = Environments.QA;
+                        break;
+
+                    case "prod":
+                        TestEnvironment = Environments.PRODUCTION;
                         break;
                 }
             }
@@ -38,10 +43,19 @@ namespace TestAutomation.Initialization
 
             if (browser != null)
             {
-                switch (browser)
+                switch (browser.ToLower())
                 {
-                    case "InternetExplorer":
-                        BaseTestPageType = new SeleniumWebPage(new InternetExplorerDriver(new InternetExplorerOptions() {IgnoreZoomLevel = true}));
+                    case "ie":
+                    case "internetexplorer":
+                        BaseTestPageType = new SeleniumWebPage(new InternetExplorerDriver(new InternetExplorerOptions(){ IgnoreZoomLevel = true }));
+                        break;
+                    case "chrome":
+                    case "googlechrome":
+                        BaseTestPageType = new SeleniumWebPage(new ChromeDriver());
+                        break;
+                    case "firefox":
+                    case "mozillafirefox":
+                        BaseTestPageType = new SeleniumWebPage(new FirefoxDriver());
                         break;
                 }
             }

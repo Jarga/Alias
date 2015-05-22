@@ -2,9 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using TestAutomation.Applications.MarketOnce.Controls.Ext;
+using TestAutomation.Applications.MarketOnce.Controls.Smart;
 using TestAutomation.Shared;
+using TestAutomation.Shared.Exceptions;
+using TestAutomation.Shared.Extensions;
 
 namespace TestAutomation.Applications.MarketOnce.Pages.Admin
 {
@@ -18,13 +22,18 @@ namespace TestAutomation.Applications.MarketOnce.Pages.Admin
             RegisterSubElement("Last Name", new { id = "contains=txtLastName" });
             RegisterSubElement("Password", new { id = "contains=txtPassword" });
 
+            RegisterSubElement("Org Grid", new { id = "contains=spOrgs_orgView" });
+            RegisterSubElement("Org Grid Names", new { parentelement = "Org Grid", css = "tr td:first-child" });
 
-            RegisterSubElement("Role Checkbox Label", new { css = "input[id*=spRoles_cblRoles]" });
+
+            RegisterSubElement("Role Checkbox Label", new { css = "input[id*=spRoles_cblRoles] + label" });
+
+            RegisterSubElement("Create Button", new { id = "contains=btnSaveOrCreate" });
 
             FindSubElement("Create User Header", 120);
         }
 
-        public bool CreateUser(string emailAddress, string firstName, string lastName, string password, string[][] orgPaths, string[] roles)
+        public Users CreateUser(string emailAddress, string firstName, string lastName, string password, string[][] orgPaths, string[] roles)
         {
             CompleteFields(emailAddress, firstName, lastName, password);
 
@@ -38,7 +47,9 @@ namespace TestAutomation.Applications.MarketOnce.Pages.Admin
                 AddRole(role);
             }
 
-            return true;
+            Click("Create Button");
+
+            return New<Users>();
         }
 
         public void CompleteFields(string emailAddress, string firstName, string lastName, string password)
@@ -54,9 +65,32 @@ namespace TestAutomation.Applications.MarketOnce.Pages.Admin
         
         public void AddOrganization(string[] organizationPath)
         {
+            var orgGrid = new SmartGrid(BaseObject, "spOrgs_orgView");
+
+            var startingOrgs = orgGrid.GetColumnContents("Name");
+
+            //No need to add it if it is already added
+            if (startingOrgs.Contains(organizationPath.Last()))
+            {
+                return;
+            }
+
             var orgPicker = new ExtTreePicker(BaseObject, "User Org Picker", "spOrgs_ucOrgPicker");
 
             orgPicker.SelectOrganization(organizationPath);
+
+            //Wait for new elements to show up in grid
+            bool orgAppeared = Wait.For(() =>
+            {
+                var newOrgs = orgGrid.GetColumnContents("Name");
+                return newOrgs.Count > startingOrgs.Count && newOrgs.Contains(organizationPath.Last());
+            }, 5, 1);
+
+
+            if (!orgAppeared)
+            {
+                throw new ActionFailedException(string.Format("Failed to select org in path {0}", string.Join(" -> ", organizationPath)));
+            }
         }
 
         public void AddRole(string role)
@@ -69,7 +103,7 @@ namespace TestAutomation.Applications.MarketOnce.Pages.Admin
             {
                 var checkbox = FindSubElement(new Dictionary<string, string>(){ { "id", targetRole.GetAttribute("for") }});
 
-                checkbox.Click();
+                checkbox.SetChecked(true);
             }
         }
     }

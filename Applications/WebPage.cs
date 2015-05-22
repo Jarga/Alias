@@ -83,6 +83,21 @@ namespace TestAutomation.Applications
             return _baseObject.IsDisplayed();
         }
 
+        public bool IsSelected()
+        {
+            return _baseObject.IsSelected();
+        }
+
+        public void SetChecked(bool value)
+        {
+            _baseObject.SetChecked(value);
+        }
+
+        public void SetChecked(ITestableWebElement element, bool value)
+        {
+            _baseObject.SetChecked(element, value);
+        }
+
         public void WaitForAttributeState(string targetSubElement, string attributeName, Func<string, bool> condition, int timeout)
         {
             _baseObject.WaitForAttributeState(targetSubElement, attributeName, condition, timeout);
@@ -91,6 +106,11 @@ namespace TestAutomation.Applications
         public string GetAttribute(string attributeName)
         {
             return _baseObject.GetAttribute(attributeName);
+        }
+
+        public string GetTagName()
+        {
+            return _baseObject.GetTagName();
         }
 
         public string InnerHtml()
@@ -113,7 +133,7 @@ namespace TestAutomation.Applications
             return Exists(targetSubElement, this.DefaultActionTimeout);
         }
 
-        public bool WaitFor(string targetSubElement, int timeToLook = 60)
+        public bool WaitForExists(string targetSubElement, int timeToLook = 60)
         {
             return Exists(targetSubElement, timeToLook);
         }
@@ -219,12 +239,7 @@ namespace TestAutomation.Applications
         {
             _baseObject.Maximize();
         }
-
-        public void ResetZoomLevel()
-        {
-            _baseObject.ResetZoomLevel();
-        }
-
+        
         public string GetCurrentUrl()
         {
             return _baseObject.GetCurrentUrl();
@@ -244,5 +259,6 @@ namespace TestAutomation.Applications
         {
             _baseObject.RegisterSubElement(name, elementProperties);
         }
+
     }
 }

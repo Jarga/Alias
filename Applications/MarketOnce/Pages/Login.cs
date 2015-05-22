@@ -32,8 +32,8 @@ namespace TestAutomation.Applications.MarketOnce.Pages
             Type("Password", password);
 
             Click("Log In");
-            
-            return new Welcome(BaseObject);;
+
+            return New<Welcome>();
         }
     }
 }

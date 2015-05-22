@@ -8,7 +8,7 @@ namespace TestAutomation.Shared.Extensions
     {
         public static void AddElementDefinition(this  IDictionary<string, IDictionary<string, string>> rootDictionary, string elementName, params string[] elementProperties)
         {
-            IDictionary<string, string> elementProps = new Dictionary<string, string>();
+            IDictionary<string, string> elementProps = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
             if (elementProperties.Length < 2 || elementProperties.Length % 2 != 0)
             {
                 throw new ArgumentException("elementProperties must contain only pairs of Field Property and Field Value strings");

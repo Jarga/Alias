@@ -61,7 +61,7 @@ namespace TestAutomation.Selenium
             //If this element uses another element as a base then find the other element and search from there
             if (subElementProperties.ContainsKey("ParentElement"))
             {
-                var elementProperties = new Dictionary<string, string>(subElementProperties);
+                var elementProperties = new Dictionary<string, string>(subElementProperties, StringComparer.OrdinalIgnoreCase);
                 var parentName = elementProperties["ParentElement"];
                 elementProperties.Remove("ParentElement");
 
@@ -76,7 +76,7 @@ namespace TestAutomation.Selenium
             //If this element uses another element as a base then find the other element and search from there
             if (subElementProperties.ContainsKey("ParentElement"))
             {
-                var elementProperties = new Dictionary<string, string>(subElementProperties);
+                var elementProperties = new Dictionary<string, string>(subElementProperties, StringComparer.OrdinalIgnoreCase);
                 var parentName = elementProperties["ParentElement"];
                 elementProperties.Remove("ParentElement");
 
@@ -133,9 +133,10 @@ namespace TestAutomation.Selenium
             //If this element uses another element as a base then find the other element and search from there
             if (subElementProperties.ContainsKey("ParentElement"))
             {
-                var parentName = subElementProperties["ParentElement"];
-                subElementProperties.Remove("ParentElement");
-                return FindSubElement(GetElementProperties(parentName)).FindSubElements(subElementProperties);
+                var elementProperties = new Dictionary<string, string>(subElementProperties, StringComparer.OrdinalIgnoreCase);
+                var parentName = elementProperties["ParentElement"];
+                elementProperties.Remove("ParentElement");
+                return FindSubElement(GetElementProperties(parentName)).FindSubElements(elementProperties);
             }
             return _searchContext.FindSubElements(subElementProperties);
         }
@@ -145,9 +146,10 @@ namespace TestAutomation.Selenium
             //If this element uses another element as a base then find the other element and search from there
             if (subElementProperties.ContainsKey("ParentElement"))
             {
-                var parentName = subElementProperties["ParentElement"];
-                subElementProperties.Remove("ParentElement");
-                return FindSubElement(GetElementProperties(parentName)).FindSubElements(subElementProperties);
+                var elementProperties = new Dictionary<string, string>(subElementProperties, StringComparer.OrdinalIgnoreCase);
+                var parentName = elementProperties["ParentElement"];
+                elementProperties.Remove("ParentElement");
+                return FindSubElement(GetElementProperties(parentName)).FindSubElements(elementProperties);
             }
 
             Stopwatch watch = new Stopwatch();
@@ -189,6 +191,7 @@ namespace TestAutomation.Selenium
 
         public void RegisterSubElement(string name, IDictionary<string, string> elementProperties)
         {
+            elementProperties = new Dictionary<string, string>(elementProperties, StringComparer.OrdinalIgnoreCase);
             SubElements.Add(name, elementProperties);
         }
     }

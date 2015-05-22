@@ -9,7 +9,6 @@ namespace TestAutomation.Shared
         void Open(string url);
         void Close();
         void Maximize();
-        void ResetZoomLevel();
         string GetCurrentUrl();
     }
 }

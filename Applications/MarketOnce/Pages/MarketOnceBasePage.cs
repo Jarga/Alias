@@ -76,5 +76,6 @@ namespace TestAutomation.Applications.MarketOnce.Pages
                 throw new ActionFailedException(string.Format("Field {0} should have the value {1} but it does not!", field, value));
             }
         }
+
     }
 }

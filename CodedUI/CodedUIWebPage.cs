@@ -42,12 +42,7 @@ namespace TestAutomation.CodedUI
         {
             this._browser.Maximized = true;
         }
-
-        public void ResetZoomLevel()
-        {
-            throw new NotImplementedException();
-        }
-
+        
         public string GetCurrentUrl()
         {
             return _browser.Uri.AbsoluteUri;

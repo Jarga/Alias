@@ -35,7 +35,7 @@ namespace TestAutomation.Applications.MarketOnce.Pages.List
 
             Click("Next Button");
 
-            return WaitFor("Target Expression Container");
+            return WaitForExists("Target Expression Container");
         }
 
         //TODO: Deal with paging?
