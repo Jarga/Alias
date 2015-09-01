@@ -12,6 +12,8 @@ namespace TestAutomation.Applications.MarketOnce.Pages
             RegisterSubElement("Email", new { TagName = "input", Type = "text", Id = "UserName" });
             RegisterSubElement("Password", new { TagName = "input", Type = "password", Id = "Password"});
             RegisterSubElement("Log In", new { TagName = "input", Type = "image", Id = "ucLogin_Login1_LoginButton" });
+
+            FindSubElement("Email", 120);
         }
 
         public Welcome LogIn(string email, string password)

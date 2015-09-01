@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 namespace TestAutomationRunner
 {
@@ -6,10 +7,10 @@ namespace TestAutomationRunner
     {
         static void Main(string[] args)
         {
-            Environment.SetEnvironmentVariable("TestAutomationEnvironment", "dev");
-            Environment.SetEnvironmentVariable("TestAutomationBrowser", "firefox");
+            Environment.SetEnvironmentVariable("TestAutomationEnvironment", "qa");
+            Environment.SetEnvironmentVariable("TestAutomationBrowser", "chrome");
 
-            Xunit.ConsoleClient.Program.Main(new[] { "TestAutomation.dll", "-trait", "Suite=CreateUser", "-html", "C:\\output.html" });
+            Xunit.ConsoleClient.Program.Main(new[] { "TestAutomation.dll", "-namespace", "FunctionalTests.MarketOnce", "-html", "output.html", "-parallel", "none" });
         }
     }
 }
