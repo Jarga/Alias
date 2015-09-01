@@ -1,27 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using AutomationCore.TestClasses;
 using TestAutomation.Applications.MarketOnce;
-using TestAutomation.Applications.MarketOnce.Pages.Admin;
-using TestAutomation.Applications.MarketOnce.Pages.List;
-using TestAutomation.Initialization;
-using TestAutomation.Shared.Enumerations;
 using Xunit;
 using Xunit.Abstractions;
 
 namespace TestAutomation.FunctionalTests.MarketOnce.Admin.Users
 {
-    public class CreateUserTests : IDisposable
+    public class CreateUserTests : BasicTests
     {
-        private readonly ITestOutputHelper output;
-
-        public CreateUserTests(ITestOutputHelper output)
-        {
-            this.output = output;
-            GlobalTestSettings.Initialize();
-        }
+        public CreateUserTests(ITestOutputHelper output) : base(output){}
 
         public static IEnumerable<object[]> GetCreateUserArgs()
         {
@@ -30,7 +18,7 @@ namespace TestAutomation.FunctionalTests.MarketOnce.Admin.Users
                 new object[]
                 {
                     "sean.mcadams@oceansideten.com", 
-                    "", 
+                    "",
                     "", 
                     new[]
                     {
@@ -40,8 +28,8 @@ namespace TestAutomation.FunctionalTests.MarketOnce.Admin.Users
                 },
                 new object[]
                 {
-                    "sean.mcadams@oceansideten.com", 
-                    "", 
+                    "sean.mcadams@oceansideten.com",
+                    "",
                     "", 
                     new[]
                     {
@@ -69,11 +57,6 @@ namespace TestAutomation.FunctionalTests.MarketOnce.Admin.Users
                             .CreateUser(email, newUserName, "AutomationScript", newUserPassword, newUserOrgs, newUserRoles);
             
             Assert.True(userPage.UserExists(email), "Field to create user!");
-        }
-
-        public void Dispose()
-        {
-            GlobalTestSettings.BaseTestPageType.Close();
         }
     }
 }

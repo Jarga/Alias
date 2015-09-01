@@ -1,18 +1,14 @@
-﻿using TestAutomation.Applications.MarketOnce;
+﻿using AutomationCore.TestClasses;
+using TestAutomation.Applications.MarketOnce;
 using TestAutomation.Applications.MarketOnce.Pages.List;
 using Xunit;
 using Xunit.Abstractions;
 
 namespace TestAutomation.FunctionalTests.MarketOnce.Lists.CreateTarget
 {
-    public class CreateTargetTests
+    public class CreateTargetTests : BasicTests
     {
-        private readonly ITestOutputHelper output;
-
-        public CreateTargetTests(ITestOutputHelper output)
-        {
-            this.output = output;
-        }
+        public CreateTargetTests(ITestOutputHelper output) : base(output){}
 
         [Fact]
         [Trait("Suite", "EditTarget")]

@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using AutomationCore.Shared;
+using AutomationCore.Shared.Exceptions;
+using AutomationCore.Shared.Extensions;
 using TestAutomation.Applications.MarketOnce.Controls.Smart;
-using TestAutomation.Shared;
-using TestAutomation.Shared.Exceptions;
-using TestAutomation.Shared.Extensions;
 
 namespace TestAutomation.Applications.MarketOnce.Pages.Admin
 {

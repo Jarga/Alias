@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TestAutomation.Shared;
-using TestAutomation.Shared.Exceptions;
+﻿using System.Linq;
+using AutomationCore;
+using AutomationCore.Shared;
+using AutomationCore.Shared.Exceptions;
 
 namespace TestAutomation.Applications.MarketOnce.Controls.Ext
 {
-    public class ExtGridControl
+    public class ExtGridControl : WebElement
     {
-        private ITestableWebPage _baseObject;
-
         private string BaseCss { get; set; }
         private string BaseName { get; set; }
         /// <summary>
@@ -20,34 +14,32 @@ namespace TestAutomation.Applications.MarketOnce.Controls.Ext
         /// </summary>
         /// <param name="baseObject"> The current running web page</param>
         /// <param name="gridId">Grid ID if available</param>
-        public ExtGridControl(ITestableWebPage baseObject, string gridId = null)
+        public ExtGridControl(ITestableWebPage baseObject, string gridId = null) : base(baseObject)
         {
-            _baseObject = baseObject;
-
-            if (!_baseObject.SubElements.ContainsKey("Mask"))
+            if (!SubElements.ContainsKey("Mask"))
             {
-                _baseObject.RegisterSubElement("Mask", new { css = ".x-mask" });
+                RegisterSubElement("Mask", new { css = ".x-mask" });
             }
 
             BaseCss = string.Format("div{0}.x-grid", "#" + gridId);
             BaseName = string.Format("Ext Grid - {0}", gridId);
 
-            if (!_baseObject.SubElements.ContainsKey(BaseName))
+            if (!SubElements.ContainsKey(BaseName))
             {
-                _baseObject.RegisterSubElement(BaseName, new { css = BaseCss });
-                _baseObject.RegisterSubElement(BaseName + " Table", new { css = BaseCss + " table.x-grid-table" });
-                _baseObject.RegisterSubElement(BaseName + " Table Header", new { css = BaseCss + " div.x-grid-header" });
-                _baseObject.RegisterSubElement(BaseName + " Table Header Text", new { css = BaseCss + " span.x-column-header-text" });
-                _baseObject.RegisterSubElement(BaseName + " Table Rows", new { css = BaseCss + " tr.x-grid-row" });
-                _baseObject.RegisterSubElement(BaseName + " Table Cell", new { css = BaseCss + " td.x-grid-cell" });
-                _baseObject.RegisterSubElement(BaseName + " Table Cell Content", new { css = BaseCss + " div.x-grid-cell-inner" });
+                RegisterSubElement(BaseName, new { css = BaseCss });
+                RegisterSubElement(BaseName + " Table", new { css = BaseCss + " table.x-grid-table" });
+                RegisterSubElement(BaseName + " Table Header", new { css = BaseCss + " div.x-grid-header" });
+                RegisterSubElement(BaseName + " Table Header Text", new { css = BaseCss + " span.x-column-header-text" });
+                RegisterSubElement(BaseName + " Table Rows", new { css = BaseCss + " tr.x-grid-row" });
+                RegisterSubElement(BaseName + " Table Cell", new { css = BaseCss + " td.x-grid-cell" });
+                RegisterSubElement(BaseName + " Table Cell Content", new { css = BaseCss + " div.x-grid-cell-inner" });
             }
 
         }
         
         public string GetColumnId(string columnName)
         {
-            var columns = _baseObject.FindSubElements(BaseName + " Table Header Text");
+            var columns = FindSubElements(BaseName + " Table Header Text");
 
             var column = columns.FirstOrDefault(c => c.InnerHtml().ToUpperInvariant().Equals(columnName.ToUpperInvariant()));
 
@@ -63,12 +55,12 @@ namespace TestAutomation.Applications.MarketOnce.Controls.Ext
         {
 
             //Wait for the mask to appear in case it hasn't yet then wait for it to go away
-            _baseObject.WaitForAppear("Mask", 3);
-            _baseObject.WaitForDisappear("Mask", 60);
+            WaitForAppear("Mask", 3);
+            WaitForDisappear("Mask", 60);
 
             string columnCellContents = string.Format(BaseName + " Column-{0}-Contents", columnName);
 
-            if (!_baseObject.SubElements.ContainsKey(columnCellContents))
+            if (!SubElements.ContainsKey(columnCellContents))
             {
                 string columnId = GetColumnId(columnName);
 
@@ -77,10 +69,10 @@ namespace TestAutomation.Applications.MarketOnce.Controls.Ext
                     return null;
                 }
 
-                _baseObject.RegisterSubElement(columnCellContents, new { css = BaseCss + string.Format(" td.x-grid-cell-{0} div.x-grid-cell-inner", columnId)});
+                RegisterSubElement(columnCellContents, new { css = BaseCss + string.Format(" td.x-grid-cell-{0} div.x-grid-cell-inner", columnId)});
             }
 
-            var cellContents = _baseObject.FindSubElements(columnCellContents);
+            var cellContents = FindSubElements(columnCellContents);
 
             return cellContents.FirstOrDefault(c => c.InnerHtml().ToUpperInvariant().Equals(value.ToUpperInvariant()));
         }

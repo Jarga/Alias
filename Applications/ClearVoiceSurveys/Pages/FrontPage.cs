@@ -1,4 +1,5 @@
-﻿using TestAutomation.Shared;
+﻿using AutomationCore;
+using AutomationCore.Shared;
 
 namespace TestAutomation.Applications.ClearVoiceSurveys.Pages
 {

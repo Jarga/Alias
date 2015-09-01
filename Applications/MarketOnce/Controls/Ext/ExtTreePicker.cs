@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
-using TestAutomation.Shared;
+using AutomationCore;
+using AutomationCore.Shared;
 
 namespace TestAutomation.Applications.MarketOnce.Controls.Ext
 {
-    public class ExtTreePicker
+    public class ExtTreePicker : WebElement
     {
-        private ITestableWebPage _baseObject;
 
         private string BtnBaseCss { get; set; }
         private string BtnBaseName { get; set; }
@@ -24,40 +20,38 @@ namespace TestAutomation.Applications.MarketOnce.Controls.Ext
         /// <param name="baseObject"></param>
         /// <param name="pickerFriendlyName"></param>
         /// <param name="idPrefix">prefix for the root elements, so the {0} for: {0}_extMenu or {0}_btnMenu_Container</param>
-        public ExtTreePicker(ITestableWebPage baseObject, string pickerFriendlyName, string idPrefix)
+        public ExtTreePicker(ITestableWebPage baseObject, string pickerFriendlyName, string idPrefix) : base(baseObject)
         {
-            _baseObject = baseObject;
-
             BtnBaseCss = string.Format("div[id$={0}_btnMenu_Container]", idPrefix);
             BtnBaseName = string.Format("Ext Tree Picker - {0}", pickerFriendlyName + " Btn");
             MenuBaseCss = string.Format("div[id$={0}_extMenu]", idPrefix);
             MenuBaseName = string.Format("Ext Tree Picker - {0}", pickerFriendlyName + " Menu");
 
-            if (!_baseObject.SubElements.ContainsKey(BtnBaseName))
+            if (!SubElements.ContainsKey(BtnBaseName))
             {
-                _baseObject.RegisterSubElement(BtnBaseName, new { css = BtnBaseCss });
-                _baseObject.RegisterSubElement(MenuBaseName, new { css = MenuBaseCss });
+                RegisterSubElement(BtnBaseName, new { css = BtnBaseCss });
+                RegisterSubElement(MenuBaseName, new { css = MenuBaseCss });
 
                 //Used for relative lookups
-                _baseObject.RegisterSubElement(MenuBaseName + " Node Expand", new { css = ".x-tree-expander" });
-                _baseObject.RegisterSubElement(MenuBaseName + " Text Node", new { @class = "contains=x-tree-node-text" });
+                RegisterSubElement(MenuBaseName + " Node Expand", new { css = ".x-tree-expander" });
+                RegisterSubElement(MenuBaseName + " Text Node", new { @class = "contains=x-tree-node-text" });
             }
         }
 
         public void SelectOrganization(string [] orgPath)
         {
-            var btn = _baseObject.FindSubElement(BtnBaseName);
+            var btn = FindSubElement(BtnBaseName);
 
             btn.Click();
 
-            _baseObject.WaitForAppear(MenuBaseName, 30);
+            WaitForAppear(MenuBaseName, 30);
 
-            var menuRoot = _baseObject.FindSubElement(MenuBaseName);
+            var menuRoot = FindSubElement(MenuBaseName);
 
             for (int i = 0; i < orgPath.Length; i++)
             {
                 var orgNodeProperties =
-                    new Dictionary<string, string>(_baseObject.GetElementProperties(MenuBaseName + " Text Node"))
+                    new Dictionary<string, string>(GetElementProperties(MenuBaseName + " Text Node"))
                     {
                         {"text", orgPath[i]}
                     };
@@ -73,15 +67,15 @@ namespace TestAutomation.Applications.MarketOnce.Controls.Ext
                 {
                     orgNode.Parent().Click();
 
-                    _baseObject.WaitForDisappear(MenuBaseName, 30);
+                    WaitForDisappear(MenuBaseName, 30);
                 }
                 else
                 {
                     var parent = orgNode.Parent();
 
-                    var expand = parent.FindSubElement(_baseObject.GetElementProperties(MenuBaseName + " Node Expand"));
+                    var expand = parent.FindSubElement(GetElementProperties(MenuBaseName + " Node Expand"));
 
-                    var recordsBeforeExpand = menuRoot.FindSubElements(_baseObject.GetElementProperties(MenuBaseName + " Text Node"));
+                    var recordsBeforeExpand = menuRoot.FindSubElements(GetElementProperties(MenuBaseName + " Text Node"));
 
                     expand.Click();
 
@@ -93,7 +87,7 @@ namespace TestAutomation.Applications.MarketOnce.Controls.Ext
                     bool newRecordsExist = false;
                     while (!newRecordsExist && watch.ElapsedMilliseconds < (20 * 1000))
                     {
-                        var recordsAfterExpand = menuRoot.FindSubElements(_baseObject.GetElementProperties(MenuBaseName + " Text Node"));
+                        var recordsAfterExpand = menuRoot.FindSubElements(GetElementProperties(MenuBaseName + " Text Node"));
                         newRecordsExist = recordsAfterExpand.Count > recordsBeforeExpand.Count;
                         if (!newRecordsExist)
                         {

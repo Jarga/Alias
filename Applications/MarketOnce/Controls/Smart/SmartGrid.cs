@@ -1,35 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TestAutomation.Shared;
+using AutomationCore;
+using AutomationCore.Shared;
 
 namespace TestAutomation.Applications.MarketOnce.Controls.Smart
 {
-    public class SmartGrid
+    public class SmartGrid : WebElement
     {
-        private ITestableWebPage _baseObject;
-
         private string BaseName { get; set; }
         private Dictionary<string, int> ColumnIndexs = new Dictionary<string, int>();
 
-        public SmartGrid(ITestableWebPage baseObject, string gridId)
+        public SmartGrid(ITestableWebPage baseObject, string gridId) : base(baseObject)
         {
-            _baseObject = baseObject;
-
             BaseName = string.Format("SmartGrid - {0}", gridId);
 
-            if (!_baseObject.SubElements.ContainsKey(BaseName))
+            if (!SubElements.ContainsKey(BaseName))
             {
-                _baseObject.RegisterSubElement(BaseName, new { id = "contains=" + gridId });
-                _baseObject.RegisterSubElement(BaseName + " Rows", new { parentelement = BaseName, css = "tr.SmartView_Row, tr.SmartView_AltRow" });
+                RegisterSubElement(BaseName, new { id = "contains=" + gridId });
+                RegisterSubElement(BaseName + " Rows", new { parentelement = BaseName, css = "tr.SmartView_Row, tr.SmartView_AltRow" });
 
-                _baseObject.RegisterSubElement(BaseName + " Records Count", new { parentelement = BaseName, css = ".SmartView_Pager tr[name=PagerRow] td:first-child" });
+                RegisterSubElement(BaseName + " Records Count", new { parentelement = BaseName, css = ".SmartView_Pager tr[name=PagerRow] td:first-child" });
 
-                _baseObject.RegisterSubElement(BaseName + " Headers", new { parentelement = BaseName, css = "th.SmartView_HeaderRow_Center, th a" });
+                RegisterSubElement(BaseName + " Headers", new { parentelement = BaseName, css = "th.SmartView_HeaderRow_Center, th a" });
 
-                var columns = _baseObject.FindSubElements(BaseName + " Headers");
+                var columns = FindSubElements(BaseName + " Headers");
 
                 for (int i = 1; i <= columns.Count; i++)
                 {
@@ -38,7 +32,7 @@ namespace TestAutomation.Applications.MarketOnce.Controls.Smart
                     var isLinkColumn = !columnHeader.GetTagName().Equals("a"); //columns are links when the headers are not clickable
                     ColumnIndexs.Add(columnName, i);
 
-                    _baseObject.RegisterSubElement(BaseName + columnName + " Column Data", new { parentelement = BaseName, css = string.Format("tr td:nth-child({0}){1}", i, isLinkColumn ? " a" : string.Empty) });
+                    RegisterSubElement(BaseName + columnName + " Column Data", new { parentelement = BaseName, css = string.Format("tr td:nth-child({0}){1}", i, isLinkColumn ? " a" : string.Empty) });
                 }
 
             }
@@ -86,7 +80,7 @@ namespace TestAutomation.Applications.MarketOnce.Controls.Smart
                 else
                 {
                     var expectedValue = columnValuePairs[key];
-                    var matchingColumns = _baseObject.FindSubElements(BaseName + key + " Column Data").Where(e => e.InnerHtml().Equals(expectedValue)).ToList();
+                    var matchingColumns = FindSubElements(BaseName + key + " Column Data").Where(e => e.InnerHtml().Equals(expectedValue)).ToList();
 
                     if (matchingColumns.Any())
                     {
@@ -100,7 +94,7 @@ namespace TestAutomation.Applications.MarketOnce.Controls.Smart
 
         public List<string> GetColumnContents(string columnName)
         {
-            return _baseObject.FindSubElements(BaseName + columnName + " Column Data").Select(e => e.InnerHtml()).ToList();
+            return FindSubElements(BaseName + columnName + " Column Data").Select(e => e.InnerHtml()).ToList();
         } 
     }
 }

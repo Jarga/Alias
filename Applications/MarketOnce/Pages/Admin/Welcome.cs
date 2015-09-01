@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AutomationCore.Shared;
 using TestAutomation.Applications.MarketOnce.Pages.Home;
-using TestAutomation.Shared;
 
 namespace TestAutomation.Applications.MarketOnce.Pages.Admin
 {

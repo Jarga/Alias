@@ -1,5 +1,6 @@
-﻿using TestAutomation.Shared;
-using TestAutomation.Shared.Exceptions;
+﻿using AutomationCore;
+using AutomationCore.Shared;
+using AutomationCore.Shared.Exceptions;
 
 namespace TestAutomation.Applications.ClearVoiceSurveys.Pages
 {

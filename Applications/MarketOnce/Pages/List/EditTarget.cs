@@ -1,7 +1,8 @@
 ﻿using System.Threading;
+using AutomationCore;
+using AutomationCore.Shared;
+using AutomationCore.Shared.Exceptions;
 using TestAutomation.Applications.MarketOnce.Controls.Ext;
-using TestAutomation.Shared;
-using TestAutomation.Shared.Exceptions;
 
 namespace TestAutomation.Applications.MarketOnce.Pages.List
 {

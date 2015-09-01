@@ -1,7 +1,8 @@
-﻿using TestAutomation.Applications.MarketOnce.Pages;
-using TestAutomation.Initialization;
-using TestAutomation.Shared;
-using TestAutomation.Shared.Enumerations;
+﻿using AutomationCore;
+using AutomationCore.Initialization;
+using AutomationCore.Shared;
+using AutomationCore.Shared.Enumerations;
+using TestAutomation.Applications.MarketOnce.Pages;
 
 namespace TestAutomation.Applications.MarketOnce
 {

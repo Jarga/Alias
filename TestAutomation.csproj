@@ -13,7 +13,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TestAutomation</RootNamespace>
     <AssemblyName>TestAutomation</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -28,6 +28,7 @@
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
     <NuGetPackageImportStamp>891babae</NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -53,12 +54,6 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="WebDriver">
-      <HintPath>packages\Selenium.WebDriver.2.45.0\lib\net40\WebDriver.dll</HintPath>
-    </Reference>
-    <Reference Include="WebDriver.Support">
-      <HintPath>packages\Selenium.Support.2.45.0\lib\net40\WebDriver.Support.dll</HintPath>
-    </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="xunit.abstractions, Version=2.0.0.0, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
       <HintPath>packages\xunit.abstractions.2.0.0\lib\net35\xunit.abstractions.dll</HintPath>
@@ -92,37 +87,12 @@
     <Compile Include="Applications\MarketOnce\Pages\Login.cs" />
     <Compile Include="Applications\MarketOnce\Pages\MarketOnceBasePage.cs" />
     <Compile Include="FunctionalTests\ClearVoiceSurveys\AutomationTests.cs" />
-    <Compile Include="CodedUI\CodedUIWebElement.cs" />
-    <Compile Include="CodedUI\CodedUIWebObject.cs" />
-    <Compile Include="CodedUI\CodedUIWebPage.cs" />
-    <Compile Include="CodedUI\Helpers\CodedUIExtensions.cs" />
     <Compile Include="Applications\ClearVoiceSurveys\ClearVoiceSurveysSession.cs" />
     <Compile Include="Applications\ClearVoiceSurveys\Pages\Dashboard.cs" />
     <Compile Include="Applications\ClearVoiceSurveys\Pages\FrontPage.cs" />
-    <Compile Include="Applications\WebPage.cs" />
     <Compile Include="FunctionalTests\MarketOnce\Admin\Users\CreateUserTests.cs" />
     <Compile Include="FunctionalTests\MarketOnce\Lists\CreateTarget\CreateTargetTests.cs" />
-    <Compile Include="Initialization\AssemblyInitializer.cs" />
-    <Compile Include="Initialization\GlobalTestSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Selenium\Helpers\FindExtensions.cs" />
-    <Compile Include="Selenium\SeleniumWebElement.cs" />
-    <Compile Include="Selenium\SeleniumWebObject.cs" />
-    <Compile Include="Selenium\SeleniumWebPage.cs" />
-    <Compile Include="Shared\Enumerations\Browsers.cs" />
-    <Compile Include="Shared\Enumerations\Environments.cs" />
-    <Compile Include="Shared\Enumerations\Sites.cs" />
-    <Compile Include="Shared\Exceptions\ActionFailedException.cs" />
-    <Compile Include="Shared\Exceptions\ActionTimeoutException.cs" />
-    <Compile Include="Shared\Exceptions\ElementNotRegisteredException.cs" />
-    <Compile Include="Shared\Exceptions\InvalidSearchPropertyException.cs" />
-    <Compile Include="Shared\Exceptions\ObjectNotFoundException.cs" />
-    <Compile Include="Shared\Exceptions\PageNotDisplayedException.cs" />
-    <Compile Include="Shared\Extensions\DictionaryExtensions.cs" />
-    <Compile Include="Shared\Extensions\ThreadExtensions.cs" />
-    <Compile Include="Shared\ISearchableWebObject.cs" />
-    <Compile Include="Shared\ITestableWebElement.cs" />
-    <Compile Include="Shared\ITestableWebPage.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -177,6 +147,15 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Applications\ClearVoiceManage\Pages\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AutomationCore\AutomationCore.csproj">
+      <Project>{12ae41de-5ae2-45ff-95b6-27e5bdcbc67f}</Project>
+      <Name>AutomationCore</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Label="DownloadIEDriverBuildTask">
     <CoreBuildDependsOn>DownloadIEDriver;$(CoreBuildDependsOn)</CoreBuildDependsOn>

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UITesting;
 using TestAutomation.Applications.ClearVoiceSurveys;
 using TestAutomation.Applications.ClearVoiceSurveys.Pages;
-using TestAutomation.Shared;
 using Xunit;
 
 namespace TestAutomation.FunctionalTests.ClearVoiceSurveys

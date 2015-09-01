@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TestAutomation.Applications.MarketOnce.Pages.Home;
-using TestAutomation.Applications.MarketOnce.Pages.List;
-using TestAutomation.Shared;
-using TestAutomation.Shared.Exceptions;
+using AutomationCore;
+using AutomationCore.Shared;
+using AutomationCore.Shared.Exceptions;
 
 namespace TestAutomation.Applications.MarketOnce.Pages
 {
