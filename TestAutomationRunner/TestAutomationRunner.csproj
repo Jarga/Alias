@@ -50,9 +50,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TestAutomation.csproj">
+    <ProjectReference Include="..\TestAutomation\TestAutomation.csproj">
       <Project>{e7642b8c-d2ac-4a6c-9643-561f9d9d9089}</Project>
       <Name>TestAutomation</Name>
     </ProjectReference>

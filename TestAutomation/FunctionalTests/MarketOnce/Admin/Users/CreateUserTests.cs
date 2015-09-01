@@ -17,7 +17,7 @@ namespace TestAutomation.FunctionalTests.MarketOnce.Admin.Users
             {
                 new object[]
                 {
-                    "sean.mcadams@oceansideten.com", 
+                    "sean.mcadams@oceansideten.com",
                     "",
                     "", 
                     new[]
