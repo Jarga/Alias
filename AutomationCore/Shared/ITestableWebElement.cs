@@ -9,6 +9,8 @@ namespace AutomationCore.Shared
         void Type(ITestableWebElement element, string text);
         void Click();
         void Click(ITestableWebElement element);
+        void Select(string item, bool isValue = false);
+        void Select(ITestableWebElement element, string item, bool isValue = false);
 
         bool WaitForAppear(string targetSubElement, int timeout);
         bool WaitForDisappear(string targetSubElement, int timeout);

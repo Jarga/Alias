@@ -2,9 +2,14 @@
 using AutomationCore.Shared;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
+using OpenQA.Selenium.Support.UI;
 
 namespace AutomationCore.Selenium
 {
+    /// <summary>
+    /// This does not extent Selenium web element because according to Selenium the browser is not really an element, 
+    /// actions agains this element need to get the root element first
+    /// </summary>
     public class SeleniumWebPage : SeleniumWebObject, ITestableWebPage
     {
         private IWebDriver _driver;
@@ -47,6 +52,12 @@ namespace AutomationCore.Selenium
             return _driver.Url;
         }
 
+        public string GetScreenshot()
+        {
+            Screenshot ss = ((ITakesScreenshot)_driver).GetScreenshot();
+            return ss.AsBase64EncodedString;
+        }
+
         public void Clear()
         {
             //Can't clear the browser
@@ -74,6 +85,16 @@ namespace AutomationCore.Selenium
         public void Click(ITestableWebElement element)
         {
             element.Click();
+        }
+
+        public void Select(string item, bool isValue = false)
+        {
+            //Cannot Perform Selection on Browser
+        }
+
+        public void Select(ITestableWebElement element, string item, bool isValue = false)
+        {
+            element.Select(item, isValue);
         }
 
         public bool WaitForAppear(string targetSubElement, int timeout)

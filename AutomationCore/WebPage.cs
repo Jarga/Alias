@@ -1,4 +1,5 @@
 ﻿using System;
+using AutomationCore.Output;
 using AutomationCore.Shared;
 
 namespace AutomationCore
@@ -8,6 +9,7 @@ namespace AutomationCore
     /// </summary>
     public class WebPage : WebElement, ITestableWebPage
     {
+        private static ITestOutput _output;
         private ITestableWebPage _baseObject;
         
         public new ITestableWebPage BaseObject
@@ -58,5 +60,9 @@ namespace AutomationCore
             return _baseObject.GetCurrentUrl();
         }
 
+        public string GetScreenshot()
+        {
+            return _baseObject.GetScreenshot();
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using AutomationCore;
 using AutomationCore.Initialization;
+using AutomationCore.Output;
 using AutomationCore.Shared;
 using AutomationCore.Shared.Enumerations;
 using TestAutomation.Applications.MarketOnce.Pages;
@@ -8,16 +9,14 @@ namespace TestAutomation.Applications.MarketOnce
 {
     public class MarketOnceSession : WebPage
     {
-        public static Environments Environment { get; set; }
 
         public static Sites Site { get { return Sites.MarketOnce; } }
 
-        public MarketOnceSession() : base(GlobalTestSettings.BaseTestPageType)
+        public MarketOnceSession() : base(Global.BaseTestPageType)
         {
-            Environment = GlobalTestSettings.TestEnvironment;
         }
 
-        public MarketOnceSession(ITestableWebPage baseObject) : base(baseObject) { }
+        public MarketOnceSession(ITestableWebPage baseObject): base(baseObject){}
 
         public Login Open()
         {
@@ -29,7 +28,7 @@ namespace TestAutomation.Applications.MarketOnce
 
         private static string GetEnvironmentUrl()
         {
-            switch (Environment)
+            switch (Global.TestEnvironment)
             {
                 case Environments.DEV:
                     return "http://dev.marketonce.com/";

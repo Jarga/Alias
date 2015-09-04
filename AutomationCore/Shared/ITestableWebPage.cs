@@ -9,5 +9,6 @@ namespace AutomationCore.Shared
         void Close();
         void Maximize();
         string GetCurrentUrl();
+        string GetScreenshot();
     }
 }

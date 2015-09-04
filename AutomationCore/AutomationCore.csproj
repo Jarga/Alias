@@ -74,7 +74,9 @@
     <Compile Include="CodedUI\CodedUIWebObject.cs" />
     <Compile Include="CodedUI\CodedUIWebPage.cs" />
     <Compile Include="CodedUI\Helpers\CodedUIExtensions.cs" />
-    <Compile Include="Initialization\GlobalTestSettings.cs" />
+    <Compile Include="Initialization\Global.cs" />
+    <Compile Include="Output\ITestOutput.cs" />
+    <Compile Include="Output\XUnit\XUnitTestOutput.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Selenium\Helpers\FindExtensions.cs" />
     <Compile Include="Selenium\SeleniumWebElement.cs" />
@@ -94,7 +96,7 @@
     <Compile Include="Shared\ISearchableWebObject.cs" />
     <Compile Include="Shared\ITestableWebElement.cs" />
     <Compile Include="Shared\ITestableWebPage.cs" />
-    <Compile Include="TestClasses\BasicTests.cs" />
+    <Compile Include="TestClasses\BasicXUnitTests.cs" />
     <Compile Include="WebElement.cs" />
     <Compile Include="WebPage.cs" />
   </ItemGroup>

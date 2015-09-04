@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UITesting;
 
 namespace AutomationCore.CodedUI
 {
-    class CodedUIWebElement : CodedUIWebObject, ITestableWebElement
+    public class CodedUIWebElement : CodedUIWebObject, ITestableWebElement
     {
 
         public CodedUIWebElement(UITestControl baseObject)
@@ -35,6 +35,16 @@ namespace AutomationCore.CodedUI
         public void Click(ITestableWebElement element)
         {
             element.Click();
+        }
+
+        public void Select(string item, bool isValue = false)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Select(ITestableWebElement element, string item, bool isValue = false)
+        {
+            throw new NotImplementedException();
         }
 
         public bool WaitForAppear(string targetSubElement, int timeout)

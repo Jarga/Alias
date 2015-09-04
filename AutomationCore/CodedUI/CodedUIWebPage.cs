@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UITesting;
 
 namespace AutomationCore.CodedUI
 {
-    class CodedUIWebPage : CodedUIWebElement, ITestableWebPage
+    public class CodedUIWebPage : CodedUIWebElement, ITestableWebPage
     {
         private BrowserWindow _browser;
         
@@ -46,6 +46,11 @@ namespace AutomationCore.CodedUI
         public string GetCurrentUrl()
         {
             return _browser.Uri.AbsoluteUri;
+        }
+
+        public string GetScreenshot()
+        {
+            throw new NotImplementedException();
         }
     }
 }

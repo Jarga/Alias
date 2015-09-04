@@ -7,10 +7,10 @@ namespace TestAutomationRunner
     {
         static void Main(string[] args)
         {
-            Environment.SetEnvironmentVariable("TestAutomationEnvironment", "qa");
+            Environment.SetEnvironmentVariable("TestAutomationEnvironment", "dev");
             Environment.SetEnvironmentVariable("TestAutomationBrowser", "chrome");
 
-            Xunit.ConsoleClient.Program.Main(new[] { "TestAutomation.dll", "-namespace", "FunctionalTests.MarketOnce", "-html", "output.html", "-parallel", "none" });
+            Xunit.ConsoleClient.Program.Main(new[] { "TestAutomation.dll", "-partialname", "TestAutomation.FunctionalTests.MarketOnce.Admin.Users", "-xml", "output.xml", "-html", "output.html", "-parallel", "none" });
         }
     }
 }

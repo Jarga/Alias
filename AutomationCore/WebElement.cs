@@ -51,6 +51,16 @@ namespace AutomationCore
             _baseObject.Click(element);
         }
 
+        public void Select(string item, bool isValue = false)
+        {
+            _baseObject.Select(item, isValue);
+        }
+
+        public void Select(ITestableWebElement element, string item, bool isValue = false)
+        {
+            _baseObject.Select(element, item, isValue);
+        }
+
         public bool WaitForAppear(string targetSubElement, int timeout)
         {
             return _baseObject.WaitForAppear(targetSubElement, timeout);

@@ -1,4 +1,5 @@
 ﻿using AutomationCore;
+using AutomationCore.Initialization;
 using AutomationCore.Shared;
 using TestAutomation.Applications.MarketOnce.Pages.Admin;
 
@@ -14,6 +15,7 @@ namespace TestAutomation.Applications.MarketOnce.Pages
             RegisterSubElement("Log In", new { TagName = "input", Type = "image", Id = "ucLogin_Login1_LoginButton" });
 
             FindSubElement("Email", 120);
+            Global.TestOutput.WriteLineWithScreenshot("Opened Login Page", GetScreenshot());
         }
 
         public Welcome LogIn(string email, string password)

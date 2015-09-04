@@ -8,14 +8,9 @@ namespace TestAutomation.Applications.ClearVoiceManage
 {
     public class ClearVoiceManageSession : WebPage
     {
-        public static Environments Environment { get; set; }
-
         public static Sites Site { get { return Sites.ClearVoiceSurveys; } }
 
-        public ClearVoiceManageSession() : base(GlobalTestSettings.BaseTestPageType)
-        {
-            Environment = GlobalTestSettings.TestEnvironment;
-        }
+        public ClearVoiceManageSession() : base(Global.BaseTestPageType){}
 
         public ClearVoiceManageSession(ITestableWebPage baseObject) : base(baseObject){}
 
@@ -29,7 +24,7 @@ namespace TestAutomation.Applications.ClearVoiceManage
 
         private static string GetEnvironmentUrl()
         {
-            switch (Environment)
+            switch (Global.TestEnvironment)
             {
                 case Environments.DEV:
                     return "http://dev.clearvoicesurveys.com/";

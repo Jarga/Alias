@@ -5,6 +5,7 @@ using System.Linq;
 using AutomationCore.Shared;
 using AutomationCore.Shared.Exceptions;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 
 namespace AutomationCore.Selenium
 {
@@ -41,6 +42,23 @@ namespace AutomationCore.Selenium
         public void Click(ITestableWebElement element)
         {
             element.Click();
+        }
+
+        public void Select(string item, bool isValue = false)
+        {
+            if (isValue)
+            {
+                new SelectElement(_baseObject).SelectByValue(item);
+            }
+            else
+            {
+                new SelectElement(_baseObject).SelectByText(item);
+            }
+        }
+
+        public void Select(ITestableWebElement element, string item, bool isValue = false)
+        {
+            element.Select(item, isValue);
         }
 
         public bool WaitForAppear(string targetSubElement, int timeout)

@@ -1,4 +1,5 @@
 ﻿using System;
+using AutomationCore.Output;
 using AutomationCore.Selenium;
 using AutomationCore.Shared;
 using AutomationCore.Shared.Enumerations;
@@ -8,14 +9,18 @@ using OpenQA.Selenium.IE;
 
 namespace AutomationCore.Initialization
 {
-    public static class GlobalTestSettings
+    public static class Global
     {
         public static Environments TestEnvironment { get; set; }
 
         public static ITestableWebPage BaseTestPageType { get; set; }
-        
-        public static void Initialize()
+
+        public static ITestOutput TestOutput { get; set; }
+
+        public static void Initialize(ITestOutput testOutput)
         {
+            TestOutput = testOutput;
+
             string environment = Environment.GetEnvironmentVariable("TestAutomationEnvironment");
             string browser = Environment.GetEnvironmentVariable("TestAutomationBrowser");
 
