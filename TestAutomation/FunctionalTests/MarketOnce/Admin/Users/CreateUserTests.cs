@@ -7,7 +7,7 @@ using Xunit.Abstractions;
 
 namespace TestAutomation.FunctionalTests.MarketOnce.Admin.Users
 {
-    public class CreateUserTests : BasicTests
+    public class CreateUserTests : BasicXUnitTests
     {
         public CreateUserTests(ITestOutputHelper output) : base(output){}
 

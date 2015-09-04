@@ -6,7 +6,7 @@ using Xunit.Abstractions;
 
 namespace TestAutomation.FunctionalTests.MarketOnce.Lists.CreateTarget
 {
-    public class CreateTargetTests : BasicTests
+    public class CreateTargetTests : BasicXUnitTests
     {
         public CreateTargetTests(ITestOutputHelper output) : base(output){}
 
