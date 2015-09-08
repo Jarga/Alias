@@ -31,7 +31,22 @@
           .clickable { cursor: pointer; }
           .testcount { font-size: 85%; }
         </style>
-		<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.2.min.js"></script>
+		<script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.2.min.js"></script>
+		<script type="text/javascript">
+				  
+				$(document).ready(function () {
+						
+					$('pre').each(function(item){ 
+						var content = $('<span>' + $(this).text() + '</span>');
+						var imgTag = content.find('img');
+						if(imgTag && imgTag.length > 0){
+							$(this).text(content.text()) 
+							$(this).after(imgTag);
+						}
+						
+					});
+				});
+		</script>
         <script language="javascript">
           function ToggleClass(id) {
             var elem = document.getElementById(id);
@@ -42,14 +57,6 @@
               elem.style.display = "none";
             }
           }
-		  $(document).ready(function(){
-			  $('pre').each(function(item){ 
-					var content = $('<span>' + $(this).text() + '</span>');
-					var imgTag = content.find('img');
-					$(this).text(content.text()) 
-					$(this).after(imgTag);
-				})
-		  })
         </script>
       </head>
       <body>

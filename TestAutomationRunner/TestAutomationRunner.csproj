@@ -42,7 +42,7 @@
     <Reference Include="System.Xml" />
     <Reference Include="xunit.console, Version=99.99.99.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>XUnitConsoleRunner\xunit.console.exe</HintPath>
+      <HintPath>..\packages\xunit.runner.console.2.1.0-rc1-build3168\tools\xunit.console.exe</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -51,9 +51,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="packages.config" />
-    <None Include="XUnitConsoleRunner\xunit.console.exe.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -69,33 +68,7 @@
     <Content Include="XUnitConsoleRunner\NUnitXml.xslt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="XUnitConsoleRunner\xunit.abstractions.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="XUnitConsoleRunner\xunit.abstractions.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="XUnitConsoleRunner\xunit.console.exe">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="XUnitConsoleRunner\xunit.console.pdb">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="XUnitConsoleRunner\xunit.runner.reporters.desktop.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="XUnitConsoleRunner\xunit.runner.reporters.desktop.pdb">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="XUnitConsoleRunner\xunit.runner.utility.desktop.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="XUnitConsoleRunner\xunit.runner.utility.desktop.pdb">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="XUnitConsoleRunner\xunit.runner.utility.desktop.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="XUnitConsoleRunner\xUnit1.xslt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
