@@ -54,6 +54,7 @@
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="start-automation.ps1" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TestAutomation\TestAutomation.csproj">
@@ -68,7 +69,9 @@
     <Content Include="XUnitConsoleRunner\NUnitXml.xslt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="XUnitConsoleRunner\xUnit1.xslt" />
+    <Content Include="XUnitConsoleRunner\xUnit1.xslt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

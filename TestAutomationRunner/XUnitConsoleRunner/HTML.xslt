@@ -7,6 +7,7 @@
     <html>
       <head>
         <title>xUnit.net Test Results</title>
+        <xsl:text disable-output-escaping="yes"><![CDATA[
         <style type="text/css">
           body { font-family: Calibri, Verdana, Arial, sans-serif; background-color: White; color: Black; }
           h2,h3,h4,h5 { margin: 0; padding: 0; }
@@ -58,6 +59,7 @@
             }
           }
         </script>
+		    ]]></xsl:text>
       </head>
       <body>
         <h3 class="divided">

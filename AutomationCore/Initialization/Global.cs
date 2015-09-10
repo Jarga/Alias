@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.IO;
 using AutomationCore.Output;
 using AutomationCore.Selenium;
 using AutomationCore.Shared;
@@ -21,8 +23,13 @@ namespace AutomationCore.Initialization
         {
             TestOutput = testOutput;
 
-            string environment = Environment.GetEnvironmentVariable("TestAutomationEnvironment");
-            string browser = Environment.GetEnvironmentVariable("TestAutomationBrowser");
+//            string envMachine = DictionaryToString(Environment.GetEnvironmentVariables(EnvironmentVariableTarget.Machine));
+//            string envUser = DictionaryToString(Environment.GetEnvironmentVariables(EnvironmentVariableTarget.User));
+//            string envProcess = DictionaryToString(Environment.GetEnvironmentVariables(EnvironmentVariableTarget.Process));
+//            File.WriteAllText(@"C:\env_output.txt", $"Machine:{envMachine}\r\nUser:{envUser}\r\nProcess:{envProcess}");
+
+            string environment = Environment.GetEnvironmentVariable("TestAutomationEnvironment", EnvironmentVariableTarget.Process);
+            string browser = Environment.GetEnvironmentVariable("TestAutomationBrowser", EnvironmentVariableTarget.Process);
 
             if (environment != null)
             {
@@ -68,6 +75,18 @@ namespace AutomationCore.Initialization
             {
                 BaseTestPageType = new SeleniumWebPage(new ChromeDriver());
             }
+        }
+        
+        public static string DictionaryToString(IDictionary dictionary)
+        {
+            string result = string.Empty;
+
+            foreach (var key in dictionary.Keys)
+            {
+                result += $"{key}={dictionary[key]}";
+            }
+
+            return result; ;
         }
     }
 }
