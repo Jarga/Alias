@@ -9,7 +9,6 @@ namespace AutomationCore
     /// </summary>
     public class WebPage : WebElement, ITestableWebPage
     {
-        private static ITestOutput _output;
         private ITestableWebPage _baseObject;
         
         public new ITestableWebPage BaseObject
@@ -32,7 +31,12 @@ namespace AutomationCore
                 throw new Exception(string.Format("Unable to construct page for type {0}, no constructor exists.", typeof(T)));
             }
 
-            return ctor.Invoke(new object[] { BaseObject }) as T;
+            return ctor.Invoke(new object[] { AsNew() }) as T;
+        }
+
+        public ITestableWebPage AsNew()
+        {
+            return _baseObject.AsNew();
         }
 
         public void Open(Uri uri)

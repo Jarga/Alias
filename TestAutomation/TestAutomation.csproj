@@ -86,7 +86,8 @@
     <Compile Include="Applications\MarketOnce\Pages\Home\EmailDashboard.cs" />
     <Compile Include="Applications\MarketOnce\Pages\List\EditTarget.cs" />
     <Compile Include="Applications\MarketOnce\Pages\Login.cs" />
-    <Compile Include="Applications\MarketOnce\Pages\MarketOnceBasePage.cs" />
+    <Compile Include="Applications\MarketOnce\Pages\BasePage.cs" />
+    <Compile Include="Applications\MarketOnce\Pages\LandingPage.cs" />
     <Compile Include="FunctionalTests\ClearVoiceSurveys\AutomationTests.cs" />
     <Compile Include="Applications\ClearVoiceSurveys\ClearVoiceSurveysSession.cs" />
     <Compile Include="Applications\ClearVoiceSurveys\Pages\Dashboard.cs" />
@@ -135,7 +136,7 @@
     <Error Condition="!Exists('..\packages\xunit.runner.visualstudio.2.0.1\build\net20\xunit.runner.visualstudio.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\xunit.runner.visualstudio.2.0.1\build\net20\xunit.runner.visualstudio.props'))" />
   </Target>
   <ItemGroup>
-    <Content Include="..\packages\Selenium.WebDriver.ChromeDriver.2.18.0.0\driver\chromedriver.exe">
+    <Content Include="..\packages\Selenium.WebDriver.ChromeDriver.2.19.0.0\driver\chromedriver.exe">
       <Link>chromedriver.exe</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -151,6 +152,10 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Automation.DataAccess\Automation.DataAccess.csproj">
+      <Project>{6894A0ED-370A-4F4A-8B38-302657F0F82F}</Project>
+      <Name>Automation.DataAccess</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AutomationCore\AutomationCore.csproj">
       <Project>{12ae41de-5ae2-45ff-95b6-27e5bdcbc67f}</Project>
       <Name>AutomationCore</Name>

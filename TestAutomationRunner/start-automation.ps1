@@ -8,6 +8,12 @@ $serverNameOrIp = ""
 
 $session = New-PSSession -ComputerName $serverNameOrIp -Credential $cred
 
+# TODO: Cleanup Old Build Folders as well
+Invoke-Command -Session $session -ScriptBlock { 
+		New-PSDrive -Name DropDrive -Credential $cred -Root \\SERVER\Share
+		xcopy DropDrive:\Automation\$BUILD\* "C:\Automation\$BUILD\" /i /d /q /y /c
+	}
+
 Invoke-Command -Session $session {[Environment]::SetEnvironmentVariable("TestAutomationEnvironment", "dev", "Process")}
 Invoke-Command -Session $session {[Environment]::SetEnvironmentVariable("TestAutomationBrowser", "chrome", "Process")}
 Invoke-Command -Session $session -ScriptBlock { 

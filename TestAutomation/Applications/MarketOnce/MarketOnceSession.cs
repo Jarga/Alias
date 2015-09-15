@@ -23,7 +23,7 @@ namespace TestAutomation.Applications.MarketOnce
             Open(GetEnvironmentUrl());
             Maximize();
 
-            return new Login(BaseObject);
+            return New<Login>();
         }
 
         private static string GetEnvironmentUrl()

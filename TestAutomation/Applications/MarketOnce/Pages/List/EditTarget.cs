@@ -1,5 +1,6 @@
 ﻿using System.Threading;
 using AutomationCore;
+using AutomationCore.Initialization;
 using AutomationCore.Shared;
 using AutomationCore.Shared.Exceptions;
 using TestAutomation.Applications.MarketOnce.Controls.Ext;
@@ -19,6 +20,7 @@ namespace TestAutomation.Applications.MarketOnce.Pages.List
             RegisterSubElement("Target Expression Container", new { Id = "target_expression_container" });
 
             FindSubElement("Target Container", 120);
+            Global.TestOutput.WriteLineWithScreenshot("Opened Edit Target Page", GetScreenshot());
         }
 
         public bool NewTarget(string name, string listName)

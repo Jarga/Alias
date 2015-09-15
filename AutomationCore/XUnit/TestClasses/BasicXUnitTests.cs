@@ -3,7 +3,7 @@ using AutomationCore.Initialization;
 using AutomationCore.Output.XUnit;
 using Xunit.Abstractions;
 
-namespace AutomationCore.TestClasses
+namespace AutomationCore.XUnit.TestClasses
 {
     public class BasicXUnitTests : IDisposable
     {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using AutomationCore.Initialization;
 using AutomationCore.Shared;
 using AutomationCore.Shared.Exceptions;
 using AutomationCore.Shared.Extensions;
@@ -9,7 +10,7 @@ using TestAutomation.Applications.MarketOnce.Controls.Smart;
 
 namespace TestAutomation.Applications.MarketOnce.Pages.Admin
 {
-    public class EditUser : MarketOnceBasePage
+    public class EditUser : BasePage
     {
         public EditUser(ITestableWebPage baseObject) : base(baseObject)
         {
@@ -28,6 +29,7 @@ namespace TestAutomation.Applications.MarketOnce.Pages.Admin
             RegisterSubElement("Create Button", new { id = "contains=btnSaveOrCreate" });
 
             FindSubElement("Create User Header", 120);
+            Global.TestOutput.WriteLineWithScreenshot("Opened Create Users Page", GetScreenshot());
         }
 
         public Users CreateUser(string emailAddress, string firstName, string lastName, string password, string[][] orgPaths, string[] roles)

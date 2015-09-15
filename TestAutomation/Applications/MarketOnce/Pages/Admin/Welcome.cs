@@ -1,9 +1,10 @@
-﻿using AutomationCore.Shared;
+﻿using AutomationCore.Initialization;
+using AutomationCore.Shared;
 using TestAutomation.Applications.MarketOnce.Pages.Home;
 
 namespace TestAutomation.Applications.MarketOnce.Pages.Admin
 {
-    public class Welcome : MarketOnceBasePage
+    public class Welcome : BasePage
     {
         public Welcome(ITestableWebPage baseObject) : base(baseObject)
         {
@@ -11,6 +12,7 @@ namespace TestAutomation.Applications.MarketOnce.Pages.Admin
             RegisterSubElement("Users Link", new { Text = "Users", Id = "contains=marketOnceSiteMenu_ssmAdmin_childItems" });
             
             FindSubElement("Logout", 120);
+            Global.TestOutput.WriteLineWithScreenshot("Opened Welcome Page", GetScreenshot());
         }
 
         public EmailDashboard NavigateToEmailModule()

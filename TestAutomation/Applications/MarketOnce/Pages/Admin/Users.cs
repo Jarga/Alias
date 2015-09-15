@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using AutomationCore.Initialization;
 using AutomationCore.Shared;
 using AutomationCore.Shared.Exceptions;
 using AutomationCore.Shared.Extensions;
@@ -8,7 +9,7 @@ using TestAutomation.Applications.MarketOnce.Controls.Smart;
 
 namespace TestAutomation.Applications.MarketOnce.Pages.Admin
 {
-    public class Users : MarketOnceBasePage
+    public class Users : BasePage
     {
         public Users(ITestableWebPage baseObject) : base(baseObject)
         {
@@ -22,6 +23,7 @@ namespace TestAutomation.Applications.MarketOnce.Pages.Admin
             RegisterSubElement("Records Count", new { parentelement = "Users Grid", css = "tr[name=PagerRow] td:first-child" });
 
             FindSubElement("Create User", 120);
+            Global.TestOutput.WriteLineWithScreenshot("Opened Users Page", GetScreenshot());
         }
 
         public EditUser NavigateToCreateUser()

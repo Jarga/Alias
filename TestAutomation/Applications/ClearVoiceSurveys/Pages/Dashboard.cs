@@ -23,7 +23,7 @@ namespace TestAutomation.Applications.ClearVoiceSurveys.Pages
         {
             Click("Sign Out");
 
-            FrontPage frontpage = new FrontPage(BaseObject);
+            FrontPage frontpage = New<FrontPage>();
 
             if (!frontpage.Exists("Log In", 120))
             {

@@ -19,7 +19,7 @@ namespace TestAutomation.Applications.ClearVoiceSurveys
             Open(GetEnvironmentUrl());
             Maximize();
 
-            return new FrontPage(BaseObject);
+            return New<FrontPage>();
         }
 
         private static string GetEnvironmentUrl()

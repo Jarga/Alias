@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using AutomationCore.TestClasses;
+using Automation.DataAccess;
+using Automation.DataAccess.Repositories.Interfaces.Admin;
+using Automation.DataAccess.Repositories.Models.Admin;
+using AutomationCore.XUnit.TestClasses;
+using AutomationCore.XUnit.TraitAttributes;
 using TestAutomation.Applications.MarketOnce;
 using Xunit;
 using Xunit.Abstractions;
@@ -9,54 +13,39 @@ namespace TestAutomation.FunctionalTests.MarketOnce.Admin.Users
 {
     public class CreateUserTests : BasicXUnitTests
     {
-        public CreateUserTests(ITestOutputHelper output) : base(output){}
-
-        public static IEnumerable<object[]> GetCreateUserArgs()
+        public CreateUserTests(ITestOutputHelper output) : base(output) { }
+        
+        [Fact]
+        [CustomTrait("Suite", "Smoke;CreateUser;Nothing")] //Just an example, will need work
+        public void Create_User()
         {
-            return new List<object[]>()
-            {
-                new object[]
-                {
-                    "sean.mcadams@oceansideten.com",
-                    "",
-                    "", 
-                    new[]
-                    {
-                        new[] { "MarketOnce", "Jacksonville Test" }
-                    }, 
-                    new[] { "MarketOnce Administrator" }
-                },
-                new object[]
-                {
-                    "sean.mcadams@oceansideten.com",
-                    "",
-                    "", 
-                    new[]
-                    {
-                        new[] { "MarketOnce", "Jacksonville Test" }, 
-                        new[] { "MarketOnce", "Daniel Enterprise Org" }
-                    }, 
-                    new[] { "MarketOnce Administrator" }
-                }
-            };
-        }
+            User user = RepositoryProvider.Get<IUserRepository>().Get("sean.mcadams@oceansideten.com");
 
-        [Theory]
-        [MemberData("GetCreateUserArgs")]
-        [Trait("Suite", "CreateUser")]
-        public void Create_User(string userName, string password, string newUserPassword, string [][] newUserOrgs, string [] newUserRoles)
-        {
             var newUserName = "Test_User_" + DateTime.Now.Ticks;
             var email = newUserName + "@oceansideten.com";
+            var password =  "P" + Guid.NewGuid().ToString("N") + "W";
+            var newUserOrgs = new[]
+            {
+                new[] {"MarketOnce", "Jacksonville Test"},
+                new[] {"MarketOnce", "Daniel Enterprise Org"}
+            };
+            var newUserRoles = new[] {"MarketOnce Administrator"};
+
 
             var userPage = new MarketOnceSession()
                             .Open()
-                            .LogIn(userName, password)
+                            .LogIn(user.UserName, user.Password)
                             .NavigateToUserAdmin()
                             .NavigateToCreateUser()
-                            .CreateUser(email, newUserName, "AutomationScript", newUserPassword, newUserOrgs, newUserRoles);
-            
-            Assert.True(userPage.UserExists(email), "Field to create user!");
+                            .CreateUser(email, newUserName, "AutomationScript", password, newUserOrgs, newUserRoles);
+
+            Assert.True(userPage.UserExists(email), "Failed to create user!");
+
+            var welcomePage = userPage.SwitchUser(email, password);
+
+            //TODO: verify user has assigned orgs in org picker
+            Assert.True(welcomePage.Exists("Logout"), "Unable to login as new user!");
         }
     }
+    
 }

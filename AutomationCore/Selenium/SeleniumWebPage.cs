@@ -26,6 +26,15 @@ namespace AutomationCore.Selenium
             this._searchContext = driver;
         }
 
+        /// <summary>
+        /// Returns a new page with the SubElements empty, used when creating new pages while reusing the same driver
+        /// </summary>
+        /// <returns></returns>
+        public ITestableWebPage AsNew()
+        {
+            return new SeleniumWebPage(_driver);
+        }
+
         public void Open(Uri uri)
         {
             this._driver.Navigate().GoToUrl(uri);
@@ -109,7 +118,7 @@ namespace AutomationCore.Selenium
 
         public void SetChecked(ITestableWebElement element, bool value)
         {
-            throw new NotImplementedException();
+            element.SetChecked(value);
         }
 
         public void WaitForAttributeState(string targetSubElement, string attributeName, Func<string, bool> condition, int timeout)

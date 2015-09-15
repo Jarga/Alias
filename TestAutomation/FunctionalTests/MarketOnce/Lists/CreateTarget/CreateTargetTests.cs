@@ -1,4 +1,4 @@
-﻿using AutomationCore.TestClasses;
+﻿using AutomationCore.XUnit.TestClasses;
 using TestAutomation.Applications.MarketOnce;
 using TestAutomation.Applications.MarketOnce.Pages.List;
 using Xunit;

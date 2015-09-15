@@ -1,23 +1,21 @@
 ﻿using System;
 using System.Linq;
 using AutomationCore;
+using AutomationCore.Initialization;
 using AutomationCore.Shared;
 using AutomationCore.Shared.Exceptions;
+using TestAutomation.Applications.MarketOnce.Pages.Admin;
 
 namespace TestAutomation.Applications.MarketOnce.Pages
 {
-    public class MarketOnceBasePage : WebPage
+    public class BasePage : WebPage
     {
-        public MarketOnceBasePage(ITestableWebPage baseObject) : base(baseObject)
+        public BasePage(ITestableWebPage baseObject) : base(baseObject)
         {
-            //since the base object is re-used through many pages only add these once
-            if (!SubElements.ContainsKey("Logout"))
-            {
-                RegisterSubElement("Logout", new { Id = "ctl00_ucHeader_lnkLogout" });
-                RegisterSubElement("Menu Link", new { css = "[id^=ctl00_marketOnceSiteMenu_ssmSiteMenu__mnu][id$=_lnk]" });
-                RegisterSubElement("Menu Link SubMenu Expand", new { css = "[id^=ctl00_marketOnceSiteMenu_ssmSiteMenu__mnu][id$=_openmenu]" });
-                RegisterSubElement("Menu Link SubMenu Link", new { css = "[id^=ctl00_marketOnceSiteMenu_ssmSiteMenu__mnu][id$=_lnkChild]" });
-            }
+            RegisterSubElement("Logout", new { Id = "ctl00_ucHeader_lnkLogout" });
+            RegisterSubElement("Menu Link", new { css = "[id^=ctl00_marketOnceSiteMenu_ssmSiteMenu__mnu][id$=_lnk]" });
+            RegisterSubElement("Menu Link SubMenu Expand", new { css = "[id^=ctl00_marketOnceSiteMenu_ssmSiteMenu__mnu][id$=_openmenu]" });
+            RegisterSubElement("Menu Link SubMenu Link", new { css = "[id^=ctl00_marketOnceSiteMenu_ssmSiteMenu__mnu][id$=_lnkChild]" });
         }
 
         /// <summary>
@@ -71,6 +69,18 @@ namespace TestAutomation.Applications.MarketOnce.Pages
             {
                 throw new ActionFailedException(string.Format("Field {0} should have the value {1} but it does not!", field, value));
             }
+        }
+
+        public Welcome SwitchUser(string email, string password)
+        {
+            Click("Logout");
+
+            //Verify we hit the langing page after logout
+            New<LandingPage>();
+
+            Global.TestOutput.WriteLineWithScreenshot("Logged Out", GetScreenshot());
+
+            return New<MarketOnceSession>().Open().LogIn(email, password);
         }
 
     }
