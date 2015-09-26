@@ -1,6 +1,7 @@
 ﻿using System.Threading;
 using Automation.Common;
 using Automation.Common.Initialization;
+using Automation.Common.Initialization.Interfaces;
 using Automation.Common.Shared;
 using Automation.Common.Shared.Exceptions;
 using Automation.MarketOnce.Web.Application.Controls.Ext;
@@ -9,7 +10,7 @@ namespace Automation.MarketOnce.Web.Application.Pages.List
 {
     public class EditTarget : WebPage
     {
-        public EditTarget(ITestableWebPage baseObject) : base(baseObject)
+        public EditTarget(ITestConfiguration baseObject) : base(baseObject)
         {
             RegisterSubElement("Target Container", new { Id = "target_container" });
             RegisterSubElement("Target Name", new { Id = "target_name_input" });
@@ -20,7 +21,7 @@ namespace Automation.MarketOnce.Web.Application.Pages.List
             RegisterSubElement("Target Expression Container", new { Id = "target_expression_container" });
 
             FindSubElement("Target Container", 120);
-            Global.TestOutput.WriteLineWithScreenshot("Opened Edit Target Page", GetScreenshot());
+            TestConfiguration.TestOutput.WriteLineWithScreenshot("Opened Edit Target Page", GetScreenshot());
         }
 
         public bool NewTarget(string name, string listName)

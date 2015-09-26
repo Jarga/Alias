@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Automation.Common.Initialization;
+using Automation.Common.Initialization.Interfaces;
 using Automation.Common.Shared;
 using Automation.Common.Shared.Exceptions;
 using Automation.Common.Shared.Extensions;
@@ -12,7 +13,7 @@ namespace Automation.MarketOnce.Web.Application.Pages.Admin
 {
     public class EditUser : BasePage
     {
-        public EditUser(ITestableWebPage baseObject) : base(baseObject)
+        public EditUser(ITestConfiguration baseObject) : base(baseObject)
         {
             RegisterSubElement("Create User Header", new { Text = "Create User", id = "contains=lblTitlebarHeader" });
             RegisterSubElement("Email Address", new { id = "contains=txtEmailAddress" });
@@ -29,7 +30,7 @@ namespace Automation.MarketOnce.Web.Application.Pages.Admin
             RegisterSubElement("Create Button", new { id = "contains=btnSaveOrCreate" });
 
             FindSubElement("Create User Header", 120);
-            Global.TestOutput.WriteLineWithScreenshot("Opened Create Users Page", GetScreenshot());
+            TestConfiguration.TestOutput.WriteLineWithScreenshot("Opened Create Users Page", GetScreenshot());
         }
 
         public Users CreateUser(string emailAddress, string firstName, string lastName, string password, string[][] orgPaths, string[] roles)

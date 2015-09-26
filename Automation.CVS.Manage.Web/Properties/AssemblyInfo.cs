@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Automation.CVS.Member")]
+[assembly: AssemblyTitle("Automation.CVS.Manage.Web")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Automation.CVS.Member")]
+[assembly: AssemblyProduct("Automation.CVS.Manage.Web")]
 [assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("f984778c-05c3-4ba7-8d8a-c5901e643fdf")]
+[assembly: Guid("c8f09e1f-8cfa-4a04-8f0a-a2cea8f478ef")]
 
 // Version information for an assembly consists of the following four values:
 //

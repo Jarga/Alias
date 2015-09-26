@@ -1,6 +1,5 @@
 ﻿using Automation.Common;
-using Automation.Common.Initialization;
-using Automation.Common.Shared;
+using Automation.Common.Initialization.Interfaces;
 using Automation.Common.Shared.Enumerations;
 using Automation.MarketOnce.Web.Application.Pages;
 
@@ -8,15 +7,10 @@ namespace Automation.MarketOnce.Web.Application
 {
     public class MarketOnceSession : WebPage
     {
-
-        public static Sites Site { get { return Sites.MarketOnce; } }
-
-        public MarketOnceSession() : base(Global.BaseTestPageType)
-        {
-        }
-
-        public MarketOnceSession(ITestableWebPage baseObject): base(baseObject){}
-
+        public Sites Site => Sites.MarketOnce;
+        
+        public MarketOnceSession(ITestConfiguration testConfig) : base(testConfig){}
+        
         public Login Open()
         {
             Open(GetEnvironmentUrl());
@@ -25,18 +19,18 @@ namespace Automation.MarketOnce.Web.Application
             return New<Login>();
         }
 
-        private static string GetEnvironmentUrl()
+        private string GetEnvironmentUrl()
         {
-            switch (Global.TestEnvironment)
+            switch (TestConfiguration.TestEnvironmentType)
             {
-                case Environments.DEV:
-                    return "http://dev.marketonce.com/";
-                case Environments.QA:
-                    return "http://qa.marketonce.com/";
-                case Environments.PRODUCTION:
-                    return "http://app.marketonce.com/";
+                case EnvironmentType.Dev:
+                    return "";
+                case EnvironmentType.QA:
+                    return "";
+                case EnvironmentType.Production:
+                    return "";
                 default:
-                    return "http://dev.marketonce.com/";
+                    return "";
             }
         }
     }

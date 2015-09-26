@@ -16,7 +16,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Automation.TestRunner", "Au
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Automation.MarketOnce.Web", "Automation.MarketOnce.Web\Automation.MarketOnce.Web.csproj", "{9A4B9813-F4AF-48B1-8C88-C6DBC35DA864}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Automation.CVS.Member", "Automation.CVS.Member\Automation.CVS.Member.csproj", "{F984778C-05C3-4BA7-8D8A-C5901E643FDF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Automation.CVS.Manage.Web", "Automation.CVS.Manage.Web\Automation.CVS.Manage.Web.csproj", "{C8F09E1F-8CFA-4A04-8F0A-A2CEA8F478EF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -40,10 +40,10 @@ Global
 		{9A4B9813-F4AF-48B1-8C88-C6DBC35DA864}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9A4B9813-F4AF-48B1-8C88-C6DBC35DA864}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9A4B9813-F4AF-48B1-8C88-C6DBC35DA864}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F984778C-05C3-4BA7-8D8A-C5901E643FDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F984778C-05C3-4BA7-8D8A-C5901E643FDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F984778C-05C3-4BA7-8D8A-C5901E643FDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F984778C-05C3-4BA7-8D8A-C5901E643FDF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8F09E1F-8CFA-4A04-8F0A-A2CEA8F478EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8F09E1F-8CFA-4A04-8F0A-A2CEA8F478EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8F09E1F-8CFA-4A04-8F0A-A2CEA8F478EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8F09E1F-8CFA-4A04-8F0A-A2CEA8F478EF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

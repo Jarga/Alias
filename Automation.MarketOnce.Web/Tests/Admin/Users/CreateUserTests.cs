@@ -1,8 +1,10 @@
 ﻿using System;
+using Automation.Common.Shared.Enumerations;
 using Automation.Common.XUnit.TestClasses;
 using Automation.Common.XUnit.TraitAttributes;
 using Automation.DataAccess;
 using Automation.DataAccess.Repositories.Interfaces.Admin;
+using Automation.DataAccess.Repositories.Keys.Admin;
 using Automation.DataAccess.Repositories.Models.Admin;
 using Automation.MarketOnce.Web.Application;
 using Xunit;
@@ -15,10 +17,10 @@ namespace Automation.MarketOnce.Web.Tests.Admin.Users
         public CreateUserTests(ITestOutputHelper output) : base(output) { }
         
         [Fact]
-        [CustomTrait("Suite", "Smoke;CreateUser;Nothing")] //Just an example, will need work
+        [CustomTrait("Suite", "Smoke;CreateUser")] //Just an example, will need work
         public void Create_User()
         {
-            User user = RepositoryProvider.Get<IUserRepository>().Get("sean.mcadams@oceansideten.com");
+            User user = RepositoryProvider.Get<IUserRepository>().Get(new UserKey() {Site = Sites.MarketOnce.ToString() });
 
             var newUserName = "Test_User_" + DateTime.Now.Ticks;
             var email = newUserName + "@oceansideten.com";
@@ -31,12 +33,12 @@ namespace Automation.MarketOnce.Web.Tests.Admin.Users
             var newUserRoles = new[] {"MarketOnce Administrator"};
 
 
-            var userPage = new MarketOnceSession()
-                            .Open()
-                            .LogIn(user.UserName, user.Password)
-                            .NavigateToUserAdmin()
-                            .NavigateToCreateUser()
-                            .CreateUser(email, newUserName, "AutomationScript", password, newUserOrgs, newUserRoles);
+            var userPage = new MarketOnceSession(TestConfiguration)
+                                    .Open()
+                                    .LogIn(user.UserName, user.Password)
+                                    .NavigateToUserAdmin()
+                                    .NavigateToCreateUser()
+                                    .CreateUser(email, newUserName, "AutomationScript", password, newUserOrgs, newUserRoles);
 
             Assert.True(userPage.UserExists(email), "Failed to create user!");
 

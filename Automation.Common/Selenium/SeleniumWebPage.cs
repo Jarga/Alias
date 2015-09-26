@@ -1,5 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Threading;
 using Automation.Common.Shared;
+using Automation.Common.Shared.Exceptions;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
 
@@ -11,18 +16,16 @@ namespace Automation.Common.Selenium
     /// </summary>
     public class SeleniumWebPage : SeleniumWebObject, ITestableWebPage
     {
-        private IWebDriver _driver;
-        
-        public IWebDriver Driver
-        {
-            get { return _driver; }
-            set { _driver = value; }
-        }
+        private string WindowHandle { get; set; }
+
+        public IWebDriver Driver { get; set; }
 
         public SeleniumWebPage(IWebDriver driver)
         {
-            this._driver = driver;
-            this._searchContext = driver;
+            this.Driver = driver;
+            this.SearchContext = driver;
+
+            this.WindowHandle = driver.CurrentWindowHandle;
         }
 
         /// <summary>
@@ -31,38 +34,77 @@ namespace Automation.Common.Selenium
         /// <returns></returns>
         public ITestableWebPage AsNew()
         {
-            return new SeleniumWebPage(_driver);
+            return new SeleniumWebPage(Driver);
+        }
+
+        public void EnsureFocus()
+        {
+            Driver.SwitchTo().Window(WindowHandle);
+        }
+
+        public override void EnsureElementFocus()
+        {
+            EnsureFocus();
+            base.EnsureElementFocus();
+        }
+
+        public void SetActiveWindow(string windowUrlContains, int timeout)
+        {
+            Stopwatch watch = new Stopwatch();
+            watch.Start();
+
+            while ((watch.ElapsedMilliseconds / 1000) < timeout)
+            {
+                foreach (var handle in Driver.WindowHandles)
+                {
+                    Driver.SwitchTo().Window(handle);
+                    if (Driver.Url.Contains(windowUrlContains))
+                    {
+                        WindowHandle = handle;
+                        return;
+                    }
+                }
+                Driver.SwitchTo().Window(WindowHandle);
+                Thread.Sleep(200);
+            }
+            watch.Stop();
+
+            throw new ObjectNotFoundException($"Failed to find window that contains url {windowUrlContains}");
         }
 
         public void Open(Uri uri)
         {
-            this._driver.Navigate().GoToUrl(uri);
+            EnsureFocus();
+            this.Driver.Navigate().GoToUrl(uri);
         }
 
         public void Open(string url)
         {
-            this._driver.Navigate().GoToUrl(url);
+            EnsureFocus();
+            this.Driver.Navigate().GoToUrl(url);
         }
-
         public void Close()
         {
-            this._driver.Quit();
-            this._driver.Dispose();
+            EnsureFocus();
+            this.Driver.Close();
         }
 
         public void Maximize()
         {
-            this._driver.Manage().Window.Maximize();
+            EnsureFocus();
+            this.Driver.Manage().Window.Maximize();
         }
         
         public string GetCurrentUrl()
         {
-            return _driver.Url;
+            EnsureFocus();
+            return Driver.Url;
         }
 
         public string GetScreenshot()
         {
-            Screenshot ss = ((ITakesScreenshot)_driver).GetScreenshot();
+            EnsureFocus();
+            Screenshot ss = ((ITakesScreenshot)Driver).GetScreenshot();
             return ss.AsBase64EncodedString;
         }
 
@@ -73,7 +115,8 @@ namespace Automation.Common.Selenium
 
         public void Type(string text)
         {
-            Actions action = new Actions(this._driver);
+            EnsureFocus();
+            Actions action = new Actions(this.Driver);
             action.SendKeys(text);
             action.Perform();
         }
@@ -85,7 +128,8 @@ namespace Automation.Common.Selenium
 
         public void Click()
         {
-            Actions action = new Actions(this._driver);
+            EnsureFocus();
+            Actions action = new Actions(this.Driver);
             action.Click();
             action.Perform();
         }
@@ -162,11 +206,19 @@ namespace Automation.Common.Selenium
 
         public SeleniumWebElement GetRootElement()
         {
+            EnsureFocus();
             //Set subelements to this browser's sub elements to prevent need to re-register
-            return new SeleniumWebElement(_driver.FindElement(By.TagName("html")))
+            return new SeleniumWebElement(Driver.FindElement(By.TagName("html")))
             {
                 SubElements = SubElements
             };
+        }
+
+        public void Dispose()
+        {
+            EnsureFocus();
+            this.Driver.Quit();
+            this.Driver.Dispose();
         }
 
     }

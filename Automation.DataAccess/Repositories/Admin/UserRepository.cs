@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Automation.DataAccess.Repositories.Interfaces.Admin;
+using Automation.DataAccess.Repositories.Keys.Admin;
 using Automation.DataAccess.Repositories.Models.Admin;
 
 namespace Automation.DataAccess.Repositories.Admin
@@ -16,15 +17,27 @@ namespace Automation.DataAccess.Repositories.Admin
             {
                 new User()
                 {
-                    UserName = "sean.mcadams@oceansideten.com",
-                    Password = ""
+                    UserName = "",
+                    Password = "",
+                    Site = "MarketOnce",
+                    Environment = "Dev"
+                },
+
+                new User()
+                {
+                    UserName = "",
+                    Password = "",
+                    Site = "ClearVoiceManage",
+                    Environment = "Dev"
                 }
             };
         }
-
-        public User Get(string key)
+        
+        public User Get(UserKey key)
         {
-            return GetAll().FirstOrDefault(u => u.UserName.Equals(key, StringComparison.OrdinalIgnoreCase));
+            return GetAll().FirstOrDefault(u => (key.UserName == null || u.UserName.Equals(key.UserName, StringComparison.OrdinalIgnoreCase)) 
+                                                && (key.Site == null || u.Site.Equals(key.Site, StringComparison.OrdinalIgnoreCase))
+                                                && (key.Environment == null || u.Environment.Equals(key.Environment, StringComparison.OrdinalIgnoreCase)));
         }
     }
 }

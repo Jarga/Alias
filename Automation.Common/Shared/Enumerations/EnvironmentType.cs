@@ -3,12 +3,12 @@
 namespace Automation.Common.Shared.Enumerations
 {
     [Flags]
-    public enum Environments
+    public enum EnvironmentType
     {
-        DEV = 0,
+        Dev = 0,
         QA = 1,
-        STAGE = 2,
+        Stage = 2,
         DR = 4,
-        PRODUCTION = 8
+        Production = 8
     }
 }

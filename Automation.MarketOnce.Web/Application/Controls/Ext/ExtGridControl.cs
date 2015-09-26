@@ -13,8 +13,8 @@ namespace Automation.MarketOnce.Web.Application.Controls.Ext
         /// 
         /// </summary>
         /// <param name="baseObject"> The current running web page</param>
-        /// <param name="gridId">Grid ID if available</param>
-        public ExtGridControl(ITestableWebPage baseObject, string gridId = null) : base(baseObject)
+        /// <param name="gridId">Grid ID</param>
+        public ExtGridControl(ITestableWebPage baseObject, string gridId) : base(baseObject)
         {
             if (!SubElements.ContainsKey("Mask"))
             {

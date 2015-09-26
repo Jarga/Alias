@@ -14,28 +14,25 @@ namespace Automation.Common.Selenium
 {
     public class SeleniumWebObject : ISearchableWebObject
     {
-        private IDictionary<string, IDictionary<string, string>> _subElements = new Dictionary<string, IDictionary<string, string>>(StringComparer.OrdinalIgnoreCase);
+        protected ISearchContext SearchContext;
 
-        protected ISearchContext _searchContext;
-        private int _defaultActionTimeout = 60;
+        public IDictionary<string, IDictionary<string, string>> SubElements { get; set; } = new Dictionary<string, IDictionary<string, string>>(StringComparer.OrdinalIgnoreCase);
 
-        public IDictionary<string, IDictionary<string, string>> SubElements
-        {
-            get { return _subElements; }
-            set { _subElements = value; }
-        }
-
-        public int DefaultActionTimeout
-        {
-            get { return _defaultActionTimeout; }
-            set { _defaultActionTimeout = value; }
-        }
+        public int DefaultActionTimeout { get; set; } = 60;
 
         public SeleniumWebObject(){}
 
         public SeleniumWebObject(ISearchContext searchContext)
         {
-            _searchContext = searchContext;
+            SearchContext = searchContext;
+        }
+
+        /// <summary>
+        /// Intended to be overridden so that we can enforce the selenium driver to focus on the window containing this element
+        /// </summary>
+        public virtual void EnsureElementFocus()
+        {
+            return;
         }
 
         public IDictionary<string, string> GetElementProperties(string targetElement)
@@ -59,6 +56,7 @@ namespace Automation.Common.Selenium
 
         public ITestableWebElement FindSubElement(IDictionary<string, string> subElementProperties)
         {
+            EnsureElementFocus();
             //If this element uses another element as a base then find the other element and search from there
             if (subElementProperties.ContainsKey("ParentElement"))
             {
@@ -69,7 +67,7 @@ namespace Automation.Common.Selenium
                 return FindSubElement(GetElementProperties(parentName)).FindSubElement(elementProperties);
             }
 
-            return _searchContext.FindSubElement(subElementProperties);
+            return SearchContext.FindSubElement(subElementProperties);
         }
 
         public ITestableWebElement FindSubElement(IDictionary<string, string> subElementProperties, int timeout)
@@ -88,6 +86,7 @@ namespace Automation.Common.Selenium
             watch.Start();
             ITestableWebElement element = null;
 
+            ObjectNotFoundException lastException = null;
             //While the timeout has not elapsed attempt to find element
             while ((watch.ElapsedMilliseconds / 1000) < timeout)
             {
@@ -95,8 +94,9 @@ namespace Automation.Common.Selenium
                 {
                     element = FindSubElement(subElementProperties);
                 }
-                catch (ObjectNotFoundException)
+                catch (ObjectNotFoundException e)
                 {
+                    lastException = e;
                     //If timout is not elapsed then keep looking, otherwise throw the exception back up
                     if ((watch.ElapsedMilliseconds / 1000) < timeout)
                     {
@@ -117,6 +117,10 @@ namespace Automation.Common.Selenium
                 break;
             }
             watch.Stop();
+            if (element == null)
+            {
+                throw lastException ?? new ObjectNotFoundException($"Failed to find element with properties {subElementProperties}");
+            }
             return element;
         }
 
@@ -132,6 +136,7 @@ namespace Automation.Common.Selenium
 
         public IList<ITestableWebElement> FindSubElements(IDictionary<string, string> subElementProperties)
         {
+            EnsureElementFocus();
             //If this element uses another element as a base then find the other element and search from there
             if (subElementProperties.ContainsKey("ParentElement"))
             {
@@ -140,11 +145,12 @@ namespace Automation.Common.Selenium
                 elementProperties.Remove("ParentElement");
                 return FindSubElement(GetElementProperties(parentName)).FindSubElements(elementProperties);
             }
-            return _searchContext.FindSubElements(subElementProperties);
+            return SearchContext.FindSubElements(subElementProperties);
         }
 
         public IList<ITestableWebElement> FindSubElements(IDictionary<string, string> subElementProperties, int timeout)
         {
+            EnsureElementFocus();
             //If this element uses another element as a base then find the other element and search from there
             if (subElementProperties.ContainsKey("ParentElement"))
             {
@@ -161,7 +167,7 @@ namespace Automation.Common.Selenium
             //While the timeout has not elapsed attempt to find element
             while ((watch.ElapsedMilliseconds / 1000) < timeout)
             {
-                elements = _searchContext.FindSubElements(subElementProperties);
+                elements = SearchContext.FindSubElements(subElementProperties);
                 if (elements.Any())
                 {
                     break;

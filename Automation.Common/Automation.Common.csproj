@@ -64,7 +64,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Initialization\Global.cs" />
+    <Compile Include="Initialization\Interfaces\ITestConfiguration.cs" />
+    <Compile Include="Initialization\TestConfiguration.cs" />
     <Compile Include="Output\ITestOutput.cs" />
     <Compile Include="Output\XUnit\XUnitTestOutput.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -72,8 +73,8 @@
     <Compile Include="Selenium\SeleniumWebElement.cs" />
     <Compile Include="Selenium\SeleniumWebObject.cs" />
     <Compile Include="Selenium\SeleniumWebPage.cs" />
-    <Compile Include="Shared\Enumerations\Browsers.cs" />
-    <Compile Include="Shared\Enumerations\Environments.cs" />
+    <Compile Include="Shared\Enumerations\Browser.cs" />
+    <Compile Include="Shared\Enumerations\EnvironmentType.cs" />
     <Compile Include="Shared\Enumerations\Sites.cs" />
     <Compile Include="Shared\Exceptions\ActionFailedException.cs" />
     <Compile Include="Shared\Exceptions\ActionTimeoutException.cs" />

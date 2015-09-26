@@ -10,16 +10,16 @@ namespace Automation.DataAccess
 {
     public static class RepositoryProvider
     {
-        private static DependencyResolver _container = new DependencyResolver();
+        private static readonly DependencyResolver Container = new DependencyResolver();
 
         static RepositoryProvider()
         {
-            _container.Register<IUserRepository>(resolver => new UserRepository());
+            Container.Register<IUserRepository>(resolver => new UserRepository());
         }
 
         public static T Get<T>()
         {
-            return _container.Create<T>();
+            return Container.Create<T>();
         }
     }
 }

@@ -5,11 +5,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F984778C-05C3-4BA7-8D8A-C5901E643FDF}</ProjectGuid>
+    <ProjectGuid>{C8F09E1F-8CFA-4A04-8F0A-A2CEA8F478EF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Automation.CVS.Member</RootNamespace>
-    <AssemblyName>Automation.CVS.Member</AssemblyName>
+    <RootNamespace>Automation.CVS.Manage.Web</RootNamespace>
+    <AssemblyName>Automation.CVS.Manage.Web</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -75,24 +75,51 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Application\ClearVoiceSurveysSession.cs" />
-    <Compile Include="Application\Pages\Dashboard.cs" />
-    <Compile Include="Application\Pages\FrontPage.cs" />
+    <Compile Include="Application\Controls\SelectOrganization.cs" />
+    <Compile Include="Application\ManageBasePage.cs" />
+    <Compile Include="Application\ManageSession.cs" />
+    <Compile Include="Application\Pages\Dialogs\AboutUsDialog.cs" />
+    <Compile Include="Application\Pages\Dialogs\ContactUsDialog.cs" />
+    <Compile Include="Application\Pages\Dialogs\PrivacyDialog.cs" />
+    <Compile Include="Application\Pages\Dialogs\SupportDialog.cs" />
+    <Compile Include="Application\Pages\Dialogs\TermsOfUseDialog.cs" />
+    <Compile Include="Application\Pages\Home\CustomMetrics.cs" />
+    <Compile Include="Application\Pages\Home\HomeTabBasePage.cs" />
+    <Compile Include="Application\Pages\Home\MyAccount\ChangeEmail.cs" />
+    <Compile Include="Application\Pages\Home\MyAccount\ChangePassword.cs" />
+    <Compile Include="Application\Pages\Home\MyAccount\EditAccount.cs" />
+    <Compile Include="Application\Pages\Home\MyAccount\MyAccount.cs" />
+    <Compile Include="Application\Pages\Home\PanelActivity.cs" />
+    <Compile Include="Application\Pages\Home\PanelMetrics.cs" />
+    <Compile Include="Application\Pages\Home\Start.cs" />
+    <Compile Include="Application\Pages\Home\SurveyActivity.cs" />
+    <Compile Include="Application\Pages\Login.cs" />
+    <Compile Include="Application\Pages\Projects\ClientProjects.cs" />
+    <Compile Include="Application\Pages\Projects\ProjectsDashboard.cs" />
+    <Compile Include="Application\Pages\Projects\EditProject.cs" />
+    <Compile Include="Application\Pages\Projects\InvoiceProjects.cs" />
+    <Compile Include="Application\Pages\Projects\PanelPayments.cs" />
+    <Compile Include="Application\Pages\Projects\PollCenter.cs" />
+    <Compile Include="Application\Pages\Projects\ProjectsTabBasePage.cs" />
+    <Compile Include="Application\Pages\Projects\SearchProjects.cs" />
+    <Compile Include="Application\Pages\Reports\ReportsTabBasePage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tests\Dashboard\DashboardTests.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
+    <Compile Include="Tests\Smoke\HomeTests.cs" />
+    <Compile Include="Tests\Smoke\GeneralTests.cs" />
+    <Compile Include="Tests\Smoke\ProjectTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Automation.Common\Automation.Common.csproj">
-      <Project>{82f61230-7e47-4317-841b-6f7bb3f44ef0}</Project>
+      <Project>{82F61230-7E47-4317-841B-6F7BB3F44EF0}</Project>
       <Name>Automation.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\Automation.DataAccess\Automation.DataAccess.csproj">
-      <Project>{6894a0ed-370a-4f4a-8b38-302657f0f82f}</Project>
+      <Project>{6894A0ED-370A-4F4A-8B38-302657F0F82F}</Project>
       <Name>Automation.DataAccess</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="..\packages\Selenium.WebDriver.ChromeDriver.2.19.0.0\driver\chromedriver.exe">
@@ -104,6 +131,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

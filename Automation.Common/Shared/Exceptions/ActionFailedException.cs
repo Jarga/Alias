@@ -3,6 +3,7 @@ using System.Runtime.Serialization;
 
 namespace Automation.Common.Shared.Exceptions
 {
+    [Serializable]
     public class ActionFailedException : Exception
     {
         public ActionFailedException(){}

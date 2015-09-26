@@ -17,16 +17,18 @@ namespace Automation.Common.Selenium
         public SeleniumWebElement(IWebElement baseObject)
         {
             this._baseObject = baseObject;
-            this._searchContext = baseObject;
+            this.SearchContext = baseObject;
         }
 
         public void Clear()
         {
+            EnsureElementFocus();
             _baseObject.Clear();
         }
 
         public void Type(string text)
         {
+            EnsureElementFocus();
             _baseObject.SendKeys(text);
         }
 
@@ -37,6 +39,7 @@ namespace Automation.Common.Selenium
 
         public void Click()
         {
+            EnsureElementFocus();
             _baseObject.Click();
         }
 
@@ -47,6 +50,7 @@ namespace Automation.Common.Selenium
 
         public void Select(string item, bool isValue = false)
         {
+            EnsureElementFocus();
             if (isValue)
             {
                 new SelectElement(_baseObject).SelectByValue(item);
@@ -122,11 +126,13 @@ namespace Automation.Common.Selenium
 
         public bool IsSelected()
         {
+            EnsureElementFocus();
             return _baseObject.Selected;
         }
 
         public void SetChecked(bool value)
         {
+            EnsureElementFocus();
             if (_baseObject.Selected != value)
             {
                 _baseObject.Click();
@@ -139,7 +145,7 @@ namespace Automation.Common.Selenium
 
             if (_baseObject.Selected != value)
             {
-               throw new ActionFailedException(string.Format("Failed to set checked value to {0} for element!", value));
+               throw new ActionFailedException($"Failed to set checked value to {value} for element!");
             }
         }
 
@@ -173,26 +179,29 @@ namespace Automation.Common.Selenium
                 }
                 else
                 {
-                    throw new ObjectNotFoundException(string.Format("Unable to find {0}, please check your object definitions.", targetSubElement));
+                    throw new ObjectNotFoundException($"Unable to find {targetSubElement}, please check your object definitions.");
                 }
                 Thread.Sleep(200);
             }
             watch.Stop();
-            throw new ActionTimeoutException(string.Format("Element {0} failed to get to the expected state in {1} seconds.", targetSubElement, timeout));
+            throw new ActionTimeoutException($"Element {targetSubElement} failed to get to the expected state in {timeout} seconds.");
         }
 
         public bool IsDisplayed()
         {
+            EnsureElementFocus();
             return _baseObject.Displayed;
         }
 
         public string GetAttribute(string attributeName)
         {
+            EnsureElementFocus();
             return _baseObject.GetAttribute(attributeName);
         }
 
         public string GetTagName()
         {
+            EnsureElementFocus();
             return _baseObject.TagName;
         }
 
@@ -203,6 +212,7 @@ namespace Automation.Common.Selenium
 
         public ITestableWebElement Parent(int levels = 1)
         {
+            EnsureElementFocus();
             var xpath = "..";
 
             for (int i = 1; i < levels; i++)

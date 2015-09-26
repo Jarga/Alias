@@ -14,7 +14,7 @@ namespace Automation.MarketOnce.Web.Tests.Lists.CreateTarget
         [Trait("Suite", "EditTarget")]
         public void Create_Attribute_Target()
         {
-            EditTarget targetPage = new MarketOnceSession()
+            EditTarget targetPage = new MarketOnceSession(TestConfiguration)
                                         .Open()
                                         .LogIn("", "")
                                         .NavigateToEmailModule()

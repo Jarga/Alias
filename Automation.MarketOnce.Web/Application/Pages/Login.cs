@@ -1,13 +1,12 @@
 ﻿using Automation.Common;
-using Automation.Common.Initialization;
-using Automation.Common.Shared;
+using Automation.Common.Initialization.Interfaces;
 using Automation.MarketOnce.Web.Application.Pages.Admin;
 
 namespace Automation.MarketOnce.Web.Application.Pages
 {
     public class Login : WebPage
     {
-        public Login(ITestableWebPage baseObject)
+        public Login(ITestConfiguration baseObject)
             : base(baseObject)
         {
             RegisterSubElement("Email", new { TagName = "input", Type = "text", Id = "UserName" });
@@ -15,7 +14,7 @@ namespace Automation.MarketOnce.Web.Application.Pages
             RegisterSubElement("Log In", new { TagName = "input", Type = "image", Id = "ucLogin_Login1_LoginButton" });
 
             FindSubElement("Email", 120);
-            Global.TestOutput.WriteLineWithScreenshot("Opened Login Page", GetScreenshot());
+            TestConfiguration.TestOutput.WriteLineWithScreenshot("Opened Login Page", GetScreenshot());
         }
 
         public Welcome LogIn(string email, string password)

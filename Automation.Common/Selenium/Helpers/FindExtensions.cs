@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -28,7 +29,7 @@ namespace Automation.Common.Selenium.Helpers
                     return By.CssSelector(value);
                 case "id":
                     return isContains 
-                        ? By.CssSelector(string.Format("[id*={0}]", value))
+                        ? By.CssSelector($"[id*={value}]")
                         : By.Id(value);
                 case "linktext":
                     return isContains 
@@ -40,39 +41,42 @@ namespace Automation.Common.Selenium.Helpers
                     return By.PartialLinkText(value);
                 case "tagname":
                     //return By.TagName(value); //TODO: Figure out why this by clause sucks (e.g. Does not actually work)!
-                    return By.XPath(string.Format("//{0}", value));
+                    return By.XPath($"//{value}");
                 case "xpath":
                     return By.XPath(value);
                 case "text":
                 case "innertext":
                     return isContains
-                                ? By.XPath(string.Format("//*[contains(text(), '{0}')]", value))
-                                : By.XPath(string.Format("//*[text() = '{0}')]", value));
+                                ? By.XPath($".//*[contains(normalize-space(.), \"{value}\")]")
+                                : By.XPath($".//*[normalize-space(.)=\"{value}\"]");
                 case "type":
-                    return By.XPath(string.Format("//*[@type='{0}']", value));
+                    return By.XPath($".//*[@type='{value}']");
                 default:
-                    throw new InvalidSearchPropertyException(string.Format("Invalid By Clause property {0} for Selenium Element!", key.ToLower()));
+                    throw new InvalidSearchPropertyException(
+                        $"Invalid By Clause property {key.ToLower()} for Selenium Element!");
             }
         }
 
         public static By BuildCompositeXPathBy(IDictionary<string, string> keyValueDictionary)
         {
-            if (keyValueDictionary == null || keyValueDictionary.Keys.Count == 0)
+            var localLookup = new Dictionary<string, string>(keyValueDictionary ?? new Dictionary<string, string>());
+
+            if (localLookup.Keys.Count == 0)
             {
                 throw new ArgumentException("Invalid Element Properties passed to build By Clause!");
             }
-            string tagKey = keyValueDictionary.Keys.FirstOrDefault(name => "Tag".Equals(name, StringComparison.OrdinalIgnoreCase) || "TagName".Equals(name, StringComparison.OrdinalIgnoreCase));
+            string tagKey = localLookup.Keys.FirstOrDefault(name => "Tag".Equals(name, StringComparison.OrdinalIgnoreCase) || "TagName".Equals(name, StringComparison.OrdinalIgnoreCase));
 
-            string xpathExpression = string.Format(".//{0}", tagKey != null ? keyValueDictionary[tagKey] : "*");
+            string xpathExpression = $".//{(tagKey != null ? localLookup[tagKey] : "*")}";
 
             if (tagKey != null)
             {
-                keyValueDictionary.Remove(tagKey);
+                localLookup.Remove(tagKey);
             }
 
-            foreach (string key in keyValueDictionary.Keys)
+            foreach (string key in localLookup.Keys)
             {
-                string value = keyValueDictionary[key];
+                string value = localLookup[key];
                 bool isContains = false;
                 if (value.StartsWith("contains="))
                 {
@@ -97,14 +101,14 @@ namespace Automation.Common.Selenium.Helpers
                     case "text":
                     case "innertext":
                         xpathExpression += (isContains
-                                    ? string.Format("[contains(text(), '{0}')]", value)
-                                    : string.Format("[text() = '{0}']", value));
+                                    ? $"[contains(normalize-space(.), \"{value}\")]"
+                                    : $"[normalize-space(.)=\"{value}\"]");
                         continue;
                     case "type":
                         xpathExpression += GetAttributeXPath("type", value, isContains);
                         continue;
                     default:
-                        throw new InvalidSearchPropertyException(string.Format("Invalid Composite By Clause property {0} for Selenium Element!", key.ToLower()));
+                        throw new InvalidSearchPropertyException($"Invalid Composite By Clause property {key.ToLower()} for Selenium Element!");
                 }
             }
             return By.XPath(xpathExpression);
@@ -112,7 +116,7 @@ namespace Automation.Common.Selenium.Helpers
 
         public static string GetAttributeXPath(string attribute, string value, bool isContains)
         {
-            return isContains ? string.Format("[contains(@{0}, '{1}')]", attribute, value) : string.Format("[@{0}='{1}']", attribute, value);
+            return isContains ? $"[contains(@{attribute}, '{value}')]" : $"[@{attribute}='{value}']";
         }
 
         public static ITestableWebElement FindSubElement(this ISearchContext baseObject, IDictionary<string, string> elementProperties)

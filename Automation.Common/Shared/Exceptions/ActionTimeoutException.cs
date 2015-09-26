@@ -3,6 +3,7 @@ using System.Runtime.Serialization;
 
 namespace Automation.Common.Shared.Exceptions
 {
+    [Serializable]
     public class ActionTimeoutException : Exception
     {
         public ActionTimeoutException(){}

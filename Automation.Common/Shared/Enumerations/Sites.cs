@@ -6,6 +6,7 @@ namespace Automation.Common.Shared.Enumerations
     public enum Sites
     {
         ClearVoiceSurveys = 0,
-        MarketOnce = 1
+        MarketOnce = 1,
+        ClearVoiceManage = 0
     }
 }

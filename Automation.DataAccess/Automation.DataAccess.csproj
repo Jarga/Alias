@@ -45,6 +45,7 @@
     <Compile Include="Repositories\Admin\UserRepository.cs" />
     <Compile Include="Repositories\Interfaces\Admin\IUserRepository.cs" />
     <Compile Include="Repositories\Interfaces\IRepository.cs" />
+    <Compile Include="Repositories\Keys\Admin\UserKey.cs" />
     <Compile Include="Repositories\Models\Admin\User.cs" />
     <Compile Include="RepositoryProvider.cs" />
   </ItemGroup>

@@ -3,6 +3,7 @@ using System.Runtime.Serialization;
 
 namespace Automation.Common.Shared.Exceptions
 {
+    [Serializable]
     class ElementNotRegisteredException : Exception
     {
         public ElementNotRegisteredException(){}

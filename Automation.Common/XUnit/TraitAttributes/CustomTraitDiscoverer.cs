@@ -11,9 +11,11 @@ namespace Automation.Common.XUnit.TraitAttributes
         {
             var ctorArgs = traitAttribute.GetConstructorArguments().Cast<string>().ToList();
 
-            var traits = new List<KeyValuePair<string, string>>();
+            var traits = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("Category", "All")
+            };
 
-            traits.Add(new KeyValuePair<string, string>("Category", "All"));
 
             if (!string.IsNullOrWhiteSpace(ctorArgs[1]))
             {

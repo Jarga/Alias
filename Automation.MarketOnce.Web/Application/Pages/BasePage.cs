@@ -2,6 +2,7 @@
 using System.Linq;
 using Automation.Common;
 using Automation.Common.Initialization;
+using Automation.Common.Initialization.Interfaces;
 using Automation.Common.Shared;
 using Automation.Common.Shared.Exceptions;
 using Automation.MarketOnce.Web.Application.Pages.Admin;
@@ -10,7 +11,7 @@ namespace Automation.MarketOnce.Web.Application.Pages
 {
     public class BasePage : WebPage
     {
-        public BasePage(ITestableWebPage baseObject) : base(baseObject)
+        public BasePage(ITestConfiguration baseObject) : base(baseObject)
         {
             RegisterSubElement("Logout", new { Id = "ctl00_ucHeader_lnkLogout" });
             RegisterSubElement("Menu Link", new { css = "[id^=ctl00_marketOnceSiteMenu_ssmSiteMenu__mnu][id$=_lnk]" });
@@ -78,37 +79,9 @@ namespace Automation.MarketOnce.Web.Application.Pages
             //Verify we hit the langing page after logout
             New<LandingPage>();
 
-            Global.TestOutput.WriteLineWithScreenshot("Logged Out", GetScreenshot());
+            TestConfiguration.TestOutput.WriteLineWithScreenshot("Logged Out", GetScreenshot());
 
             return New<MarketOnceSession>().Open().LogIn(email, password);
-        }
-
-        public void EnsurePageLoaded(string verificationElement, string successText, string failedText, bool takeScreenshot)
-        {
-            try
-            {
-                FindSubElement(verificationElement, 120);
-                if (takeScreenshot)
-                {
-                    Global.TestOutput.WriteLineWithScreenshot(successText, GetScreenshot());
-                }
-                else
-                {
-                    Global.TestOutput.WriteLine(successText);
-                }
-            }
-            catch (ObjectNotFoundException)
-            {
-                if (takeScreenshot)
-                {
-                    Global.TestOutput.WriteLineWithScreenshot(failedText, GetScreenshot());
-                }
-                else
-                {
-                    Global.TestOutput.WriteLine(failedText);
-                }
-                throw;
-            }
         }
     }
 }
