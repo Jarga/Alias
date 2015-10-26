@@ -3,6 +3,8 @@ using Automation.Common.Initialization.Interfaces;
 using Automation.Common.Output;
 using Automation.Common.Shared;
 using Automation.Common.Shared.Exceptions;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Automation.Common
 {
@@ -25,18 +27,30 @@ namespace Automation.Common
             TestConfiguration = testConfig;
         }
 
-        public T New<T>() where T : WebPage
+        public T New<T>(params object[] additionalParams) where T : WebPage
         {
-            var ctor = typeof(T).GetConstructor(new[] { typeof(ITestConfiguration) });
+            var ctorArgs = new List<object>();
+            
+            //Rebuild configuration with new page that will have a clean SubElements property
+            ctorArgs.Add(TestConfiguration.Build(TestConfiguration.TestOutput, TestConfiguration.TestEnvironmentType, AsNew()));
+
+            if (additionalParams != null)
+            {
+                foreach (object param in additionalParams)
+                {
+                    ctorArgs.Add(param);
+                }
+                
+            }
+
+            var ctor = typeof(T).GetConstructor(ctorArgs.Select(o => o?.GetType()).ToArray());
 
             if (ctor == null)
             {
                 throw new Exception($"Unable to construct page for type {typeof (T)}, no constructor exists.");
             }
 
-            //Rebuild configuration with new page that will have a clean SubElements property
-            ITestConfiguration newConfig = TestConfiguration.Build(TestConfiguration.TestOutput, TestConfiguration.TestEnvironmentType, AsNew());
-            return ctor.Invoke(new object[] { newConfig }) as T;
+            return ctor.Invoke(ctorArgs.ToArray()) as T;
         }
 
         public ITestableWebPage AsNew()
@@ -95,18 +109,24 @@ namespace Automation.Common
             try
             {
                 FindSubElement(verificationElement, 120);
-                if (takeScreenshotOnSuccess)
+                if (!string.IsNullOrWhiteSpace(successText))
                 {
-                    TestConfiguration.TestOutput.WriteLineWithScreenshot(successText, GetScreenshot());
-                }
-                else
-                {
-                    TestConfiguration.TestOutput.WriteLine(successText);
+                    if (takeScreenshotOnSuccess)
+                    {
+                        TestConfiguration.TestOutput.WriteLineWithScreenshot(successText, GetScreenshot());
+                    }
+                    else
+                    {
+                        TestConfiguration.TestOutput.WriteLine(successText);
+                    }
                 }
             }
             catch (ObjectNotFoundException)
             {
-                TestConfiguration.TestOutput.WriteLineWithScreenshot(failedText, GetScreenshot());
+                if (!string.IsNullOrWhiteSpace(failedText))
+                {
+                    TestConfiguration.TestOutput.WriteLineWithScreenshot(failedText, GetScreenshot());
+                }
                 throw;
             }
         }

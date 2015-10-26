@@ -13,13 +13,12 @@ $password = $passString | ConvertTo-SecureString
 #TODO: Remove after pass generated in file
 
 $machine1 = @("", "-Trait, Suite=Smoke")
-#$machine2 = @("", "'-Trait', 'Suite=Smoke'")
 
 $machinesAndFilters = New-Object String[] 1
 $machinesAndFilters[0] = $machine1
 
 $resultsShare = ""
-$targetTestDll = "Automation.MarketOnce.Web.dll"
+$targetTestDll = ""
 $environment = "dev"
 $browser = "chrome"
 

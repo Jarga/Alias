@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections;
+using Automation.Common.Drivers.Selenium;
 using Automation.Common.Initialization.Interfaces;
 using Automation.Common.Output;
-using Automation.Common.Selenium;
 using Automation.Common.Shared;
 using Automation.Common.Shared.Enumerations;
 using OpenQA.Selenium;

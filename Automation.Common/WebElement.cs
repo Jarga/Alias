@@ -55,15 +55,36 @@ namespace Automation.Common
             BaseObject.Select(element, item, isValue);
         }
 
+        public bool WaitForAppear()
+        {
+            return BaseObject.WaitForAppear(DefaultActionTimeout);
+        }
+
+        public bool WaitForAppear(int timeout)
+        {
+            return BaseObject.WaitForAppear(timeout);
+        }
+
         public bool WaitForAppear(string targetSubElement, int timeout)
         {
             return BaseObject.WaitForAppear(targetSubElement, timeout);
+        }
+
+        public bool WaitForDisappear()
+        {
+            return BaseObject.WaitForDisappear(DefaultActionTimeout);
+        }
+
+        public bool WaitForDisappear(int timeout)
+        {
+            return BaseObject.WaitForDisappear(timeout);
         }
 
         public bool WaitForDisappear(string targetSubElement, int timeout)
         {
             return BaseObject.WaitForDisappear(targetSubElement, timeout);
         }
+
 
         public bool IsDisplayed()
         {
@@ -85,6 +106,11 @@ namespace Automation.Common
             BaseObject.SetChecked(element, value);
         }
 
+        public void WaitForAttributeState(string attributeName, Func<string, bool> condition, int timeout)
+        {
+            BaseObject.WaitForAttributeState(attributeName, condition, timeout);
+        }
+
         public void WaitForAttributeState(string targetSubElement, string attributeName, Func<string, bool> condition, int timeout)
         {
             BaseObject.WaitForAttributeState(targetSubElement, attributeName, condition, timeout);
@@ -103,6 +129,11 @@ namespace Automation.Common
         public string InnerHtml()
         {
             return BaseObject.InnerHtml();
+        }
+
+        public string GetText()
+        {
+            return BaseObject.GetText();
         }
 
         public ITestableWebElement Parent(int levels = 1)
@@ -133,21 +164,7 @@ namespace Automation.Common
         /// <returns></returns>
         public bool Exists(string targetSubElement, int timeToLook)
         {
-
-            Stopwatch watch = new Stopwatch();
-            watch.Start();
-
-            while ((watch.ElapsedMilliseconds / 1000) < timeToLook)
-            {
-                var elementsFound = FindSubElements(targetSubElement);
-                if (elementsFound.Any())
-                {
-                    watch.Stop();
-                    return true;
-                }
-            }
-            watch.Stop();
-            return false;
+            return BaseObject.Exists(targetSubElement, timeToLook);
         }
 
         public int DefaultActionTimeout
