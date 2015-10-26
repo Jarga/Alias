@@ -13,12 +13,12 @@ namespace Automation.PageObject.Example.Application.Google.Pages
     {
         public GoogleSession(ITestConfiguration testConfig) : base(testConfig){}
 
-        public GoogleHomePage Open()
+        public GoogleBasePage Open()
         {
             Open(GetEnvironmentUrl());
             Maximize();
 
-            return New<GoogleHomePage>();
+            return New<GoogleBasePage>();
         }
 
         private string GetEnvironmentUrl()

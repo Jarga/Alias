@@ -18,5 +18,12 @@ namespace Automation.PageObject.Example.Application.Google.Pages
 
             EnsureElementLoaded("Query Box", null, "Google page failed to load.");
         }
+        public WebSearchResults Search(string value)
+        {
+            Type("Query Box", value);
+            Click("Submit Query");
+
+            return New<WebSearchResults>();
+        }
     }
 }

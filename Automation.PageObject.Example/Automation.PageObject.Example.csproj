@@ -72,7 +72,6 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Application\Google\Pages\GoogleBasePage.cs" />
-    <Compile Include="Application\Google\Pages\GoogleHomePage.cs" />
     <Compile Include="Application\Google\Pages\GoogleSession.cs" />
     <Compile Include="Application\Google\Pages\SearchResults\WebSearchResults.cs" />
     <Compile Include="Tests\Example.cs" />
