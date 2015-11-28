@@ -28,6 +28,7 @@ namespace Automation.Common.Shared
         string GetTagName();
         string InnerHtml();
         string GetText();
+        string GetCssValue(string propertyName);
         ITestableWebElement Parent(int levels = 1);
     }
 }

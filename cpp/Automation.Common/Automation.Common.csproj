@@ -75,6 +75,7 @@
     <Compile Include="Drivers\Selenium\SeleniumWebPage.cs" />
     <Compile Include="Shared\Enumerations\Browser.cs" />
     <Compile Include="Shared\Enumerations\EnvironmentType.cs" />
+    <Compile Include="Shared\Enumerations\Sites.cs" />
     <Compile Include="Shared\Exceptions\ActionFailedException.cs" />
     <Compile Include="Shared\Exceptions\ActionTimeoutException.cs" />
     <Compile Include="Shared\Exceptions\ElementNotRegisteredException.cs" />

@@ -222,6 +222,11 @@ namespace Automation.Common.Drivers.Selenium
             return GetRootElement().GetText();
         }
 
+        public string GetCssValue(string propertyName)
+        {
+            return GetRootElement().GetCssValue(propertyName);
+        }
+
         public ITestableWebElement Parent(int levels = 1)
         {
             return null; // There is no parent to the browser

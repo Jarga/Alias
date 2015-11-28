@@ -284,6 +284,11 @@ namespace Automation.Common.Drivers.Selenium
             return _baseObject.Text;
         }
 
+        public string GetCssValue(string propertyName)
+        {
+            return _baseObject.GetCssValue(propertyName);
+        }
+
         public ITestableWebElement Parent(int levels = 1)
         {
             EnsureElementFocus();

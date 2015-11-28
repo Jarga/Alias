@@ -3,7 +3,7 @@ using Xunit.Sdk;
 
 namespace Automation.Common.Executors.XUnit.TraitAttributes
 {
-    [TraitDiscoverer("Automation.Common.XUnit.TraitAttributes.CustomTraitDiscoverer", "Automation.Common")]
+    [TraitDiscoverer("Automation.Common.Executors.XUnit.TraitAttributes.CustomTraitDiscoverer", "Automation.Common")]
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = true)]
     public class CustomTraitAttribute : Attribute, ITraitAttribute
     {

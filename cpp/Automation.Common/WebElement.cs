@@ -136,6 +136,11 @@ namespace Automation.Common
             return BaseObject.GetText();
         }
 
+        public string GetCssValue(string propertyName)
+        {
+            return BaseObject.GetCssValue(propertyName);
+        }
+
         public ITestableWebElement Parent(int levels = 1)
         {
             return BaseObject.Parent(levels);
