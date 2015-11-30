@@ -1,0 +1,26 @@
+{
+  "name": "automation-common",
+  "version": "0.0.2",
+  "description": "Shared functionality for Selenium Framework",
+  "main": "dist/lib/index.js",
+  "typings": "dist/dts/index",
+  "dependencies": {},
+  "devDependencies": {
+    "gulp": "^3.6.2",
+    "gulp-shell": "^0.4.2",
+    "gulp-tslint": "^2.0.0",
+    "gulp-typescript": "^2.9.2",
+    "merge2": "^0.3.6",
+    "run-sequence": "^1.1.5"
+  },
+  "scripts": {
+    "main": "gulp build"
+  },
+  "keywords": [
+    "selenium",
+    "testing",
+    "javascript"
+  ],
+  "author": "Sean McAdams",
+  "license": "MIT"
+}
