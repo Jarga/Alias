@@ -8,8 +8,8 @@
     <ProjectGuid>{82F61230-7E47-4317-841B-6F7BB3F44EF0}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Automation.Common</RootNamespace>
-    <AssemblyName>Automation.Common</AssemblyName>
+    <RootNamespace>Alias.Common</RootNamespace>
+    <AssemblyName>Alias.Common</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <NuGetPackageImportStamp>

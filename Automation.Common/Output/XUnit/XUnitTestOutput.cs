@@ -1,6 +1,6 @@
 ﻿using Xunit.Abstractions;
 
-namespace Automation.Common.Output.XUnit
+namespace Alias.Common.Output.XUnit
 {
     public class XUnitTestOutput : ITestOutput
     {

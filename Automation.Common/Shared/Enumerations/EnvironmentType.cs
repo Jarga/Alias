@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Automation.Common.Shared.Enumerations
+namespace Alias.Common.Shared.Enumerations
 {
     [Flags]
     public enum EnvironmentType

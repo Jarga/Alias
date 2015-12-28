@@ -1,20 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Automation.Common.Drivers.Selenium;
-using Automation.Common.Initialization.Interfaces;
-using Automation.Common.Output;
-using Automation.Common.Shared;
-using Automation.Common.Shared.Enumerations;
+using Alias.Common.Drivers.Selenium;
+using Alias.Common.Initialization.Interfaces;
+using Alias.Common.Output;
+using Alias.Common.Shared;
+using Alias.Common.Shared.Enumerations;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
 
-namespace Automation.Common.Initialization
+namespace Alias.Common.Initialization
 {
     public class TestConfiguration : ITestConfiguration
     {

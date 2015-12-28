@@ -1,10 +1,10 @@
-﻿using Automation.Common.Executors.XUnit.TestClasses;
-using Automation.Common.Executors.XUnit.TraitAttributes;
-using Automation.PageObject.Example.Application.Google.Pages;
+﻿using Alias.Common.Executors.XUnit.TestClasses;
+using Alias.Common.Executors.XUnit.TraitAttributes;
+using Alias.Example.Application.Google.Pages;
 using Xunit;
 using Xunit.Abstractions;
 
-namespace Automation.PageObject.Example.Tests
+namespace Alias.Example.Tests
 {
     public class Example : BasicXUnitTests
     {

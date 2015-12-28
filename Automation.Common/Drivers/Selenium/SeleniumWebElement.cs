@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading;
-using Automation.Common.Shared;
-using Automation.Common.Shared.Exceptions;
+using Alias.Common.Shared;
+using Alias.Common.Shared.Exceptions;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
-using Automation.Common.Shared.Types;
 
-namespace Automation.Common.Drivers.Selenium
+namespace Alias.Common.Drivers.Selenium
 {
     public class SeleniumWebElement : SeleniumWebObject, ITestableWebElement
     {
@@ -54,7 +53,7 @@ namespace Automation.Common.Drivers.Selenium
             return Exists(GetElementProperties(targetSubElement), timeout);
         }
 
-        public bool Exists(Alias alias, int timeout)
+        public bool Exists(Shared.Types.Alias alias, int timeout)
         {
             Stopwatch watch = new Stopwatch();
             watch.Start();
@@ -113,7 +112,7 @@ namespace Automation.Common.Drivers.Selenium
         }
 
 
-        public bool WaitForAppear(Alias alias, int timeout)
+        public bool WaitForAppear(Shared.Types.Alias alias, int timeout)
         {
             Stopwatch watch = new Stopwatch();
             watch.Start();
@@ -163,7 +162,7 @@ namespace Automation.Common.Drivers.Selenium
             return WaitForDisappear(GetElementProperties(targetSubElement), timeout);
         }
 
-        public bool WaitForDisappear(Alias alias, int timeout)
+        public bool WaitForDisappear(Shared.Types.Alias alias, int timeout)
         {
             Stopwatch watch = new Stopwatch();
             watch.Start();
@@ -244,7 +243,7 @@ namespace Automation.Common.Drivers.Selenium
             WaitForAttributeState(GetElementProperties(targetSubElement), attributeName, condition, timeout);
         }
 
-        public void WaitForAttributeState(Alias alias, string attributeName, Func<string, bool> condition, int timeout)
+        public void WaitForAttributeState(Shared.Types.Alias alias, string attributeName, Func<string, bool> condition, int timeout)
         {
             Stopwatch watch = new Stopwatch();
             watch.Start();

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Automation.Common.Shared
+namespace Alias.Common.Shared
 {
     public interface ITestableWebPage : ITestableWebElement, IDisposable
     {

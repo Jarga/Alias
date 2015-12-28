@@ -7,8 +7,8 @@
     <ProjectGuid>{078EE4A3-5BAA-464C-A593-E5B7DA7C85AB}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Automation.TestRunner</RootNamespace>
-    <AssemblyName>Automation.TestRunner</AssemblyName>
+    <RootNamespace>Alias.XUnit.TestRunner</RootNamespace>
+    <AssemblyName>Alias.XUnit.TestRunner</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

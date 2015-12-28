@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Automation.Common.Shared.Types
+namespace Alias.Common.Shared.Types
 {
     public class Alias
     {

@@ -1,13 +1,11 @@
 ﻿using System;
-using Automation.Common.Initialization.Interfaces;
-using Automation.Common.Output;
-using Automation.Common.Shared;
-using Automation.Common.Shared.Exceptions;
 using System.Collections.Generic;
 using System.Linq;
-using Automation.Common.Shared.Types;
+using Alias.Common.Initialization.Interfaces;
+using Alias.Common.Output;
+using Alias.Common.Shared;
 
-namespace Automation.Common
+namespace Alias.Common
 {
     /// <summary>
     /// This object acts as a proxy for the actual implementation object, it is intended to hide the specific framework implementation
@@ -104,7 +102,7 @@ namespace Automation.Common
             return BaseObject.GetScreenshot();
         }
 
-        public void EnsureElementLoaded(Alias verificationElement, string successText, string failedText, bool takeScreenshotOnSuccess = false)
+        public void EnsureElementLoaded(Shared.Types.Alias verificationElement, string successText, string failedText, bool takeScreenshotOnSuccess = false)
         {
             try
             {

@@ -8,11 +8,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{D57182
 		.nuget\packages.config = .nuget\packages.config
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Automation.Common", "Automation.Common\Automation.Common.csproj", "{82F61230-7E47-4317-841B-6F7BB3F44EF0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alias.Common", "Automation.Common\Alias.Common.csproj", "{82F61230-7E47-4317-841B-6F7BB3F44EF0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Automation.TestRunner", "Automation.TestRunner\Automation.TestRunner.csproj", "{078EE4A3-5BAA-464C-A593-E5B7DA7C85AB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alias.XUnit.TestRunner", "Automation.TestRunner\Alias.XUnit.TestRunner.csproj", "{078EE4A3-5BAA-464C-A593-E5B7DA7C85AB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Automation.PageObject.Example", "Automation.PageObject.Example\Automation.PageObject.Example.csproj", "{A16BDF06-CD0A-4ED1-AD28-C835EBF98F7F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alias.Example", "Automation.PageObject.Example\Alias.Example.csproj", "{A16BDF06-CD0A-4ED1-AD28-C835EBF98F7F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,4 +1,4 @@
-﻿namespace Automation.Common.Output
+﻿namespace Alias.Common.Output
 {
     public interface ITestOutput
     {

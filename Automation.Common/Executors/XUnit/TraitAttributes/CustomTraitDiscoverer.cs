@@ -3,7 +3,7 @@ using System.Linq;
 using Xunit.Abstractions;
 using Xunit.Sdk;
 
-namespace Automation.Common.Executors.XUnit.TraitAttributes
+namespace Alias.Common.Executors.XUnit.TraitAttributes
 {
     public class CustomTraitDiscoverer : ITraitDiscoverer
     {

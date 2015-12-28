@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Automation.Common.Output;
-using Automation.Common.Shared;
-using Automation.Common.Shared.Enumerations;
+using Alias.Common.Output;
+using Alias.Common.Shared;
+using Alias.Common.Shared.Enumerations;
 
-namespace Automation.Common.Initialization.Interfaces
+namespace Alias.Common.Initialization.Interfaces
 {
     public interface ITestConfiguration : IDisposable
     {

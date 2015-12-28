@@ -1,19 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Automation.Common;
-using Automation.Common.Initialization.Interfaces;
-using Automation.Common.Shared.Types;
-using Automation.PageObject.Example.Application.Google.Pages.SearchResults;
+﻿using Alias.Common;
+using Alias.Common.Initialization.Interfaces;
+using Alias.Example.Application.Google.Pages.SearchResults;
 
-namespace Automation.PageObject.Example.Application.Google.Pages
+namespace Alias.Example.Application.Google.Pages
 {
     public class GoogleBasePage : WebPage
     {
-        Alias QueryBox = new Alias() { Name = "q" };
-        protected Alias SubmitQuery = new Alias() { Css = "[name=btnK], [name=btnG]" };
+        Alias.Common.Shared.Types.Alias QueryBox = new Alias.Common.Shared.Types.Alias() { Name = "q" };
+        protected Alias.Common.Shared.Types.Alias SubmitQuery = new Alias.Common.Shared.Types.Alias() { Css = "[name=btnK], [name=btnG]" };
 
         public GoogleBasePage(ITestConfiguration testConfig) : base(testConfig)
         {

@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Automation.Common.Initialization.Interfaces;
-using Automation.Common.Shared.Types;
+﻿using Alias.Common.Initialization.Interfaces;
 
-namespace Automation.PageObject.Example.Application.Google.Pages.SearchResults
+namespace Alias.Example.Application.Google.Pages.SearchResults
 {
     public class WebSearchResults : GoogleBasePage
     {
-        Alias SubmitQuery = new Alias() { Name = "btnG" };
-        Alias SelectedAllTab = new Alias() { TagName = "div", Text = "All", Class = "contains=hdtb-msel" };
+        Alias.Common.Shared.Types.Alias SubmitQuery = new Alias.Common.Shared.Types.Alias() { Name = "btnG" };
+        Alias.Common.Shared.Types.Alias SelectedAllTab = new Alias.Common.Shared.Types.Alias() { TagName = "div", Text = "All", Class = "contains=hdtb-msel" };
 
         public WebSearchResults(ITestConfiguration testConfig) : base(testConfig)
         {

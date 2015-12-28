@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Threading;
-using Automation.Common.Shared;
-using Automation.Common.Shared.Exceptions;
-using Automation.Common.Shared.Types;
+using Alias.Common.Shared;
+using Alias.Common.Shared.Exceptions;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
 
-namespace Automation.Common.Drivers.Selenium
+namespace Alias.Common.Drivers.Selenium
 {
     /// <summary>
     /// This does not extent Selenium web element because according to Selenium the browser is not really an element, 
@@ -265,22 +264,22 @@ namespace Automation.Common.Drivers.Selenium
             this.Driver.Navigate().Back();
         }
 
-        public bool Exists(Alias alias, int timeToLook)
+        public bool Exists(Shared.Types.Alias alias, int timeToLook)
         {
             return GetRootElement().Exists(alias, timeToLook);
         }
 
-        public bool WaitForAppear(Alias alias, int timeout)
+        public bool WaitForAppear(Shared.Types.Alias alias, int timeout)
         {
             return GetRootElement().WaitForAppear(alias, timeout);
         }
 
-        public bool WaitForDisappear(Alias alias, int timeout)
+        public bool WaitForDisappear(Shared.Types.Alias alias, int timeout)
         {
             return GetRootElement().WaitForDisappear(alias, timeout);
         }
 
-        public void WaitForAttributeState(Alias alias, string attributeName, Func<string, bool> condition, int timeout)
+        public void WaitForAttributeState(Shared.Types.Alias alias, string attributeName, Func<string, bool> condition, int timeout)
         {
             GetRootElement().WaitForAttributeState(alias, attributeName, condition, timeout);
         }

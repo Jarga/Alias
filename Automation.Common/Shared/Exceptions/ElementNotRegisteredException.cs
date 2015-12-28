@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace Automation.Common.Shared.Exceptions
+namespace Alias.Common.Shared.Exceptions
 {
     [Serializable]
     class ElementNotRegisteredException : Exception

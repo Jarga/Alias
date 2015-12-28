@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Automation.Common;
-using Automation.Common.Initialization.Interfaces;
-using Automation.Common.Shared.Enumerations;
+﻿using Alias.Common;
+using Alias.Common.Initialization.Interfaces;
 
-namespace Automation.PageObject.Example.Application.Google.Pages
+namespace Alias.Example.Application.Google.Pages
 {
     public class GoogleSession : WebPage
     {

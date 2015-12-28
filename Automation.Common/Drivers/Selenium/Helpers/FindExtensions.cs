@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
-using Automation.Common.Shared;
-using Automation.Common.Shared.Exceptions;
+using Alias.Common.Shared;
+using Alias.Common.Shared.Exceptions;
 using OpenQA.Selenium;
 
-namespace Automation.Common.Drivers.Selenium.Helpers
+namespace Alias.Common.Drivers.Selenium.Helpers
 {
     public static class FindExtensions
     {

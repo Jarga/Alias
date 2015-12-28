@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Automation.Common.Shared.Types;
 
-namespace Automation.Common.Shared.Extensions
+namespace Alias.Common.Shared.Extensions
 {
     public static class DictionaryExtensions
     {
-        public static void AddElementDefinition(this IDictionary<string, Alias> rootDictionary, string elementName, params string[] elementProperties)
+        public static void AddElementDefinition(this IDictionary<string, Types.Alias> rootDictionary, string elementName, params string[] elementProperties)
         {
-            var elementAlias = new Alias();
+            var elementAlias = new Types.Alias();
             if (elementProperties.Length < 2 || elementProperties.Length % 2 != 0)
             {
                 throw new ArgumentException("elementProperties must contain only pairs of Field Property and Field Value strings");

@@ -4,20 +4,19 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading;
-using Automation.Common.Drivers.Selenium.Helpers;
-using Automation.Common.Shared;
-using Automation.Common.Shared.Exceptions;
-using Automation.Common.Shared.Extensions;
-using Automation.Common.Shared.Types;
+using Alias.Common.Drivers.Selenium.Helpers;
+using Alias.Common.Shared;
+using Alias.Common.Shared.Exceptions;
+using Alias.Common.Shared.Extensions;
 using OpenQA.Selenium;
 
-namespace Automation.Common.Drivers.Selenium
+namespace Alias.Common.Drivers.Selenium
 {
     public class SeleniumWebObject : ISearchableWebObject
     {
         protected ISearchContext SearchContext;
 
-        public IDictionary<string, Alias> SubElements { get; set; } = new Dictionary<string, Alias>(StringComparer.OrdinalIgnoreCase);
+        public IDictionary<string, Shared.Types.Alias> SubElements { get; set; } = new Dictionary<string, Shared.Types.Alias>(StringComparer.OrdinalIgnoreCase);
 
         public int DefaultActionTimeout { get; set; } = 60;
 
@@ -36,7 +35,7 @@ namespace Automation.Common.Drivers.Selenium
             return;
         }
 
-        public Alias GetElementProperties(string targetElement)
+        public Shared.Types.Alias GetElementProperties(string targetElement)
         {
             if (!SubElements.ContainsKey(targetElement))
             {
@@ -55,35 +54,35 @@ namespace Automation.Common.Drivers.Selenium
             return FindSubElement(GetElementProperties(targetSubElement), timeout);
         }
 
-        public ITestableWebElement FindSubElement(Alias subElementProperties)
+        public ITestableWebElement FindSubElement(Shared.Types.Alias subElementProperties)
         {
             EnsureElementFocus();
 
             //If this element uses another element as a base then find the other element and search from there
             if (subElementProperties.RelativeTo != null)
             {
-                return FindSubElement(subElementProperties.RelativeTo).FindSubElement(new Alias() { Definition = subElementProperties.Definition });
+                return FindSubElement(subElementProperties.RelativeTo).FindSubElement(new Shared.Types.Alias() { Definition = subElementProperties.Definition });
             }
 
             if (subElementProperties.ParentElement != null)
             {
-                return FindSubElement(GetElementProperties(subElementProperties.ParentElement)).FindSubElement(new Alias() { Definition = subElementProperties.Definition });
+                return FindSubElement(GetElementProperties(subElementProperties.ParentElement)).FindSubElement(new Shared.Types.Alias() { Definition = subElementProperties.Definition });
             }
 
             return SearchContext.FindSubElement(subElementProperties.Definition);
         }
 
-        public ITestableWebElement FindSubElement(Alias subElementProperties, int timeout)
+        public ITestableWebElement FindSubElement(Shared.Types.Alias subElementProperties, int timeout)
         {
             //If this element uses another element as a base then find the other element and search from there
             if (subElementProperties.RelativeTo != null)
             {
-                return FindSubElement(subElementProperties.RelativeTo, timeout).FindSubElement(new Alias() { Definition = subElementProperties.Definition }, timeout);
+                return FindSubElement(subElementProperties.RelativeTo, timeout).FindSubElement(new Shared.Types.Alias() { Definition = subElementProperties.Definition }, timeout);
             }
 
             if (subElementProperties.ParentElement != null)
             {
-                return FindSubElement(GetElementProperties(subElementProperties.ParentElement), timeout).FindSubElement(new Alias() {Definition = subElementProperties.Definition }, timeout);
+                return FindSubElement(GetElementProperties(subElementProperties.ParentElement), timeout).FindSubElement(new Shared.Types.Alias() {Definition = subElementProperties.Definition }, timeout);
             }
 
             Stopwatch watch = new Stopwatch();
@@ -138,35 +137,35 @@ namespace Automation.Common.Drivers.Selenium
             return FindSubElements(GetElementProperties(targetSubElement), timeout);
         }
 
-        public IList<ITestableWebElement> FindSubElements(Alias subElementProperties)
+        public IList<ITestableWebElement> FindSubElements(Shared.Types.Alias subElementProperties)
         {
             EnsureElementFocus();
 
             //If this element uses another element as a base then find the other element and search from there
             if (subElementProperties.RelativeTo != null)
             {
-                return FindSubElement(subElementProperties.RelativeTo).FindSubElements(new Alias() { Definition = subElementProperties.Definition });
+                return FindSubElement(subElementProperties.RelativeTo).FindSubElements(new Shared.Types.Alias() { Definition = subElementProperties.Definition });
             }
 
             if (subElementProperties.ParentElement != null)
             {
-                return FindSubElement(GetElementProperties(subElementProperties.ParentElement)).FindSubElements(new Alias() { Definition = subElementProperties.Definition });
+                return FindSubElement(GetElementProperties(subElementProperties.ParentElement)).FindSubElements(new Shared.Types.Alias() { Definition = subElementProperties.Definition });
             }
 
             return SearchContext.FindSubElements(subElementProperties.Definition);
         }
 
-        public IList<ITestableWebElement> FindSubElements(Alias subElementProperties, int timeout)
+        public IList<ITestableWebElement> FindSubElements(Shared.Types.Alias subElementProperties, int timeout)
         {
             //If this element uses another element as a base then find the other element and search from there
             if (subElementProperties.RelativeTo != null)
             {
-                return FindSubElement(subElementProperties.RelativeTo, timeout).FindSubElements(new Alias() { Definition = subElementProperties.Definition }, timeout);
+                return FindSubElement(subElementProperties.RelativeTo, timeout).FindSubElements(new Shared.Types.Alias() { Definition = subElementProperties.Definition }, timeout);
             }
 
             if (subElementProperties.ParentElement != null)
             {
-                return FindSubElement(GetElementProperties(subElementProperties.ParentElement), timeout).FindSubElements(new Alias() { Definition = subElementProperties.Definition }, timeout);
+                return FindSubElement(GetElementProperties(subElementProperties.ParentElement), timeout).FindSubElements(new Shared.Types.Alias() { Definition = subElementProperties.Definition }, timeout);
             }
 
             Stopwatch watch = new Stopwatch();
@@ -211,7 +210,7 @@ namespace Automation.Common.Drivers.Selenium
             SubElements.AddElementDefinition(name, properties.ToArray());
         }
         
-        public void RegisterSubElement(string name, Alias elementProperties)
+        public void RegisterSubElement(string name, Shared.Types.Alias elementProperties)
         {
             if (SubElements.ContainsKey(name))
             {

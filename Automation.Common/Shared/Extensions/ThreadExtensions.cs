@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Threading;
 
-namespace Automation.Common.Shared.Extensions
+namespace Alias.Common.Shared.Extensions
 {
     public static class Wait
     {

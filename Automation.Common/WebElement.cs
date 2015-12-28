@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using Automation.Common.Shared;
-using Automation.Common.Shared.Types;
+using Alias.Common.Shared;
 
-namespace Automation.Common
+namespace Alias.Common
 {
     public class WebElement : ITestableWebElement
     {
@@ -36,7 +33,7 @@ namespace Automation.Common
             Type(FindSubElement(targetSubElement), text);
         }
 
-        public void Type(Alias alias, string text)
+        public void Type(Shared.Types.Alias alias, string text)
         {
             Type(FindSubElement(alias), text);
         }
@@ -56,7 +53,7 @@ namespace Automation.Common
             Click(FindSubElement(targetSubElement));
         }
 
-        public void Click(Alias alias)
+        public void Click(Shared.Types.Alias alias)
         {
             Click(FindSubElement(alias));
         }
@@ -76,7 +73,7 @@ namespace Automation.Common
             Select(FindSubElement(targetSubElement), item, isValue);
         }
 
-        public void Select(Alias alias, string item, bool isValue = false)
+        public void Select(Shared.Types.Alias alias, string item, bool isValue = false)
         {
             Select(FindSubElement(alias), item, isValue);
         }
@@ -96,7 +93,7 @@ namespace Automation.Common
             return BaseObject.WaitForAppear(targetSubElement, timeout);
         }
 
-        public bool WaitForAppear(Alias alias, int timeout)
+        public bool WaitForAppear(Shared.Types.Alias alias, int timeout)
         {
             return BaseObject.WaitForAppear(alias, timeout);
         }
@@ -116,7 +113,7 @@ namespace Automation.Common
             return BaseObject.WaitForDisappear(targetSubElement, timeout);
         }
 
-        public bool WaitForDisappear(Alias alias, int timeout)
+        public bool WaitForDisappear(Shared.Types.Alias alias, int timeout)
         {
             return BaseObject.WaitForDisappear(alias, timeout);
         }
@@ -135,7 +132,7 @@ namespace Automation.Common
             return FindSubElement(targetSubElement).IsSelected();
         }
 
-        public bool IsSelected(Alias alias)
+        public bool IsSelected(Shared.Types.Alias alias)
         {
             return FindSubElement(alias).IsSelected();
         }
@@ -155,7 +152,7 @@ namespace Automation.Common
             BaseObject.SetChecked(FindSubElement(targetSubElement), value);
         }
 
-        public void SetChecked(Alias alias, bool value)
+        public void SetChecked(Shared.Types.Alias alias, bool value)
         {
             BaseObject.SetChecked(FindSubElement(alias), value);
         }
@@ -170,7 +167,7 @@ namespace Automation.Common
             BaseObject.WaitForAttributeState(targetSubElement, attributeName, condition, timeout);
         }
 
-        public void WaitForAttributeState(Alias alias, string attributeName, Func<string, bool> condition, int timeout)
+        public void WaitForAttributeState(Shared.Types.Alias alias, string attributeName, Func<string, bool> condition, int timeout)
         {
             BaseObject.WaitForAttributeState(alias, attributeName, condition, timeout);
         }
@@ -215,7 +212,7 @@ namespace Automation.Common
             return Exists(targetSubElement, timeToLook);
         }
 
-        public bool WaitForExists(Alias alias, int timeToLook = 60)
+        public bool WaitForExists(Shared.Types.Alias alias, int timeToLook = 60)
         {
             return Exists(alias, timeToLook);
         }
@@ -231,7 +228,7 @@ namespace Automation.Common
             return Exists(GetElementProperties(targetSubElement), timeToLook);
         }
 
-        public bool Exists(Alias alias, int timeToLook)
+        public bool Exists(Shared.Types.Alias alias, int timeToLook)
         {
             return BaseObject.Exists(alias, timeToLook);
         }
@@ -242,13 +239,13 @@ namespace Automation.Common
             set { BaseObject.DefaultActionTimeout = value; }
         }
 
-        public IDictionary<string, Alias> SubElements
+        public IDictionary<string, Shared.Types.Alias> SubElements
         {
             get { return BaseObject.SubElements; }
             set { BaseObject.SubElements = value; }
         }
 
-        public Alias GetElementProperties(string targetElement)
+        public Shared.Types.Alias GetElementProperties(string targetElement)
         {
             return BaseObject.GetElementProperties(targetElement);
         }
@@ -263,12 +260,12 @@ namespace Automation.Common
             return BaseObject.FindSubElement(targetSubElement, timeout);
         }
 
-        public ITestableWebElement FindSubElement(Alias subElementProperties)
+        public ITestableWebElement FindSubElement(Shared.Types.Alias subElementProperties)
         {
             return BaseObject.FindSubElement(subElementProperties);
         }
 
-        public ITestableWebElement FindSubElement(Alias subElementProperties, int timeout)
+        public ITestableWebElement FindSubElement(Shared.Types.Alias subElementProperties, int timeout)
         {
             return BaseObject.FindSubElement(subElementProperties, timeout);
         }
@@ -283,12 +280,12 @@ namespace Automation.Common
             return BaseObject.FindSubElements(targetSubElement, timeout);
         }
 
-        public IList<ITestableWebElement> FindSubElements(Alias subElementProperties)
+        public IList<ITestableWebElement> FindSubElements(Shared.Types.Alias subElementProperties)
         {
             return BaseObject.FindSubElements(subElementProperties);
         }
 
-        public IList<ITestableWebElement> FindSubElements(Alias subElementProperties, int timeout)
+        public IList<ITestableWebElement> FindSubElements(Shared.Types.Alias subElementProperties, int timeout)
         {
             return BaseObject.FindSubElements(subElementProperties, timeout);
         }
@@ -298,7 +295,7 @@ namespace Automation.Common
             BaseObject.RegisterSubElement(name, elementProperties as object);
         }
 
-        public void RegisterSubElement(string name, Alias elementProperties)
+        public void RegisterSubElement(string name, Shared.Types.Alias elementProperties)
         {
             BaseObject.RegisterSubElement(name, elementProperties);
         }

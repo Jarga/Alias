@@ -1,9 +1,9 @@
 ﻿using System;
-using Automation.Common.Initialization.Interfaces;
-using Automation.Common.Output.XUnit;
+using Alias.Common.Initialization.Interfaces;
+using Alias.Common.Output.XUnit;
 using Xunit.Abstractions;
 
-namespace Automation.Common.Executors.XUnit.TestClasses
+namespace Alias.Common.Executors.XUnit.TestClasses
 {
     public class BasicXUnitTests : IDisposable
     {
