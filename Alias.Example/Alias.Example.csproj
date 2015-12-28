@@ -78,7 +78,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Automation.Common\Alias.Common.csproj">
+    <ProjectReference Include="..\Alias.Common\Alias.Common.csproj">
       <Project>{82f61230-7e47-4317-841b-6f7bb3f44ef0}</Project>
       <Name>Alias.Common</Name>
     </ProjectReference>

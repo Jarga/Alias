@@ -96,7 +96,7 @@
     <Compile Include="Executors\XUnit\TraitAttributes\CustomTraitDiscoverer.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Automation.Common.nuspec" />
+    <None Include="Alias.Common.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

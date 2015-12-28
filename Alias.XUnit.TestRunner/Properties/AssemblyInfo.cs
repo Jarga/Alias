@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Automation.PageObject.Example")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Alias.TestRunner")]
+[assembly: AssemblyDescription("Alias Test Runner")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Automation.PageObject.Example")]
-[assembly: AssemblyCopyright("Copyright ©  2015")]
+[assembly: AssemblyCompany("Sigma 8, LLC")]
+[assembly: AssemblyProduct("Alias.TestRunner")]
+[assembly: AssemblyCopyright("Copyright 2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("a16bdf06-cd0a-4ed1-ad28-c835ebf98f7f")]
+[assembly: Guid("078ee4a3-5baa-464c-a593-e5b7da7c85ab")]
 
 // Version information for an assembly consists of the following four values:
 //

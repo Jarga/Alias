@@ -4,11 +4,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Automation.Common")]
+[assembly: AssemblyTitle("Alias.Common")]
 [assembly: AssemblyDescription("Core framework for building page object ui tests")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("OceansideTen Management, LLC")]
-[assembly: AssemblyProduct("Automation.Common")]
+[assembly: AssemblyCompany("Sigma 8, LLC")]
+[assembly: AssemblyProduct("Alias.Common")]
 [assembly: AssemblyCopyright("Copyright © Sean McAdams 2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
