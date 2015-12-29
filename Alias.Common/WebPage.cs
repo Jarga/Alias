@@ -143,5 +143,10 @@ namespace Alias.Common
         {
             BaseObject.BrowserBack();
         }
+
+        public IDialog Dialog()
+        {
+            return BaseObject.Dialog();
+        }
     }
 }

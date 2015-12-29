@@ -264,6 +264,11 @@ namespace Alias.Common.Drivers.Selenium
             this.Driver.Navigate().Back();
         }
 
+        public IDialog Dialog()
+        {
+            return new SeleniumDialog(Driver);
+        }
+
         public bool Exists(Shared.Types.Alias alias, int timeToLook)
         {
             return GetRootElement().Exists(alias, timeToLook);

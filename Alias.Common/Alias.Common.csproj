@@ -65,6 +65,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Drivers\Selenium\SeleniumDialog.cs" />
     <Compile Include="Initialization\Interfaces\ITestConfiguration.cs" />
     <Compile Include="Initialization\TestConfiguration.cs" />
     <Compile Include="Output\ITestOutput.cs" />
@@ -85,6 +86,7 @@
     <Compile Include="Shared\Exceptions\PageNotDisplayedException.cs" />
     <Compile Include="Shared\Extensions\DictionaryExtensions.cs" />
     <Compile Include="Shared\Extensions\ThreadExtensions.cs" />
+    <Compile Include="Shared\IDIalog.cs" />
     <Compile Include="Shared\ISearchableWebObject.cs" />
     <Compile Include="Shared\ITestableWebElement.cs" />
     <Compile Include="Shared\ITestableWebPage.cs" />

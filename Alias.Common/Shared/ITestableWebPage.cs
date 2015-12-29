@@ -14,5 +14,6 @@ namespace Alias.Common.Shared
         string GetCurrentUrl();
         string GetScreenshot();
         void BrowserBack();
+        IDialog Dialog();
     }
 }
