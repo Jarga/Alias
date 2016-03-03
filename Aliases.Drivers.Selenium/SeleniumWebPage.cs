@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Threading;
 using Aliases.Common.Shared;
 using Aliases.Common.Shared.Exceptions;
+using Aliases.Common.Shared.Types;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
 
@@ -189,6 +190,12 @@ namespace Aliases.Drivers.Selenium
         {
             return new SeleniumDialog(Driver);
         }
-        
+
+        public void Hover(Alias alias)
+        {
+            EnsureFocus();
+            new Actions(Driver).MoveToElement((FindSubElement(alias) as SeleniumWebElement).BaseObject).Perform();
+        }
+
     }
 }
