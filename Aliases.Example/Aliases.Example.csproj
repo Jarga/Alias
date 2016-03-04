@@ -38,18 +38,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Aliases.Common, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Aliases.Common.2.0.0.0\lib\net46\Aliases.Common.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Aliases.Drivers.Selenium, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Aliases.Drivers.Selenium.2.0.0.0\lib\net46\Aliases.Drivers.Selenium.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Aliases.TestExecutors.XUnit, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Aliases.TestExecutors.XUnit.2.0.0.0\lib\net46\Aliases.TestExecutors.XUnit.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Selenium.WebDriver.PhantomJS.Xplatform.2.45.0.1\lib\net40\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
@@ -105,6 +93,20 @@
     <Content Include="phantomjs.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Aliases.Common\Aliases.Common.csproj">
+      <Project>{5cb8222c-3bce-4bde-a7a0-aec88a6756aa}</Project>
+      <Name>Aliases.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Aliases.Drivers.Selenium\Aliases.Drivers.Selenium.csproj">
+      <Project>{600b2b56-cbde-4394-aa46-37a75c266278}</Project>
+      <Name>Aliases.Drivers.Selenium</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Aliases.TestExecutors.XUnit\Aliases.TestExecutors.XUnit.csproj">
+      <Project>{1c6c2373-87cd-47fe-b64f-e4c1d8e9dc98}</Project>
+      <Name>Aliases.TestExecutors.XUnit</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
