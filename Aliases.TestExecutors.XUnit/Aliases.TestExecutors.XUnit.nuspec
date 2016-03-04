@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <licenseUrl>https://raw.githubusercontent.com/Jarga/Alias/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/Jarga/Alias</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <releaseNotes>Initial NuGet Release.</releaseNotes>
+    <copyright>Copyright 2016 - Sean McAdams</copyright>
+    <tags>XUnit Testing Automation Alias Aliases</tags>
+    <dependencies>
+      <dependency id="xunit" version="2.1.0" />
+      <dependency id="xunit.abstractions" version="2.0.0" />
+      <dependency id="xunit.assert" version="2.1.0" />
+      <dependency id="xunit.core" version="2.1.0" />
+      <dependency id="xunit.extensibility.core" version="2.1.0" />
+      <dependency id="xunit.extensibility.execution" version="2.1.0" />
+      <dependency id="Aliases.Common" version="2.0.0.0" />
+    </dependencies>
+  </metadata>
+</package>

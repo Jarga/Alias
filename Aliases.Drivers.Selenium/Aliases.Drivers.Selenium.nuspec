@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <licenseUrl>https://raw.githubusercontent.com/Jarga/Alias/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/Jarga/Alias</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <releaseNotes>Initial NuGet Release.</releaseNotes>
+    <copyright>Copyright 2016 - Sean McAdams</copyright>
+    <tags>Selenium Testing Automation Alias Aliases</tags>
+    <dependencies>
+      <dependency id="Selenium.Support" version="2.52.0" />
+      <dependency id="Selenium.WebDriver" version="2.52.0" />
+      <dependency id="Aliases.Common" version="2.0.0.0" />
+    </dependencies>
+  </metadata>
+</package>

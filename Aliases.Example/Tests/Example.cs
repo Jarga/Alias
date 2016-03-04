@@ -15,6 +15,7 @@ namespace Aliases.Example.Tests
         [CustomTrait("Suite", "Example")]
         public void Search_Google()
         {
+            TestConfiguration.BaseTestPageType.DefaultActionTimeout = 10;
             var webSearch = new GoogleSession(TestConfiguration)
                             .Open()
                             .Search("Testing");

@@ -1,0 +1,16 @@
+Large Scale:
+ Test Suite.
+	Options: Custom html file, http://toolsqa.com/
+ Mobile/Responsive Support
+ Selenium Grid Support
+ NUnit Support
+ MSTest Support
+ CodedUI Support?
+ XUnit/NUnit/MSTest Command line runner - custom for images - or create custom output process
+
+
+
+Small Scale
+ XPath building concept for 'or'
+ Drag and Drop support
+ 

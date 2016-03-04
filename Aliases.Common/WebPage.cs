@@ -133,7 +133,7 @@ namespace Aliases.Common
         {
             try
             {
-                FindSubElement(verificationElement, 120);
+                FindSubElement(verificationElement, DefaultActionTimeout);
                 if (!string.IsNullOrWhiteSpace(successText))
                 {
                     if (takeScreenshotOnSuccess)

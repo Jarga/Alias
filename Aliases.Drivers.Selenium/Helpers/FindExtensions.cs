@@ -21,7 +21,9 @@ namespace Aliases.Drivers.Selenium.Helpers
             {
                 case "class":
                 case "classname":
-                    return By.ClassName(value);
+                    return isContains 
+                        ? By.XPath(".//*" + GetAttributeXPath("class", value, true))
+                        : By.ClassName(value);
                 case "cssselector":
                 case "css":
                     return By.CssSelector(value);

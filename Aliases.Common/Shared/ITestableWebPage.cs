@@ -1,4 +1,5 @@
 ﻿using System;
+using Aliases.Common.Shared.Types;
 
 namespace Aliases.Common.Shared
 {
@@ -26,5 +27,7 @@ namespace Aliases.Common.Shared
         string Attribute(string attributeName);
         string TagName();
         string InnerHtml();
+
+        void Hover(Alias alias);
     }
 }

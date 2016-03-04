@@ -6,7 +6,7 @@ namespace Aliases.Example.Application.Google.Pages.SearchResults
     public class WebSearchResults : GoogleBasePage
     {
         public Alias SubmitQuery = new Alias() { Name = "btnG" };
-        public Alias SelectedAllTab = new Alias() { TagName = "div", Text = "All", Class = "contains=hdtb-msel" };
+        public Alias SelectedAllTab = new Alias() { TagName = "div", Text = "All" };
 
         public WebSearchResults(ITestConfiguration testConfig) : base(testConfig)
         {

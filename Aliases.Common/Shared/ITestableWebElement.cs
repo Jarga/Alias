@@ -1,5 +1,4 @@
 ﻿using System;
-using Aliases.Common.Shared.Types;
 
 namespace Aliases.Common.Shared
 {
