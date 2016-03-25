@@ -13,10 +13,5 @@
     <releaseNotes>Initial NuGet Release.</releaseNotes>
     <copyright>Copyright 2016 - Sean McAdams</copyright>
     <tags>Selenium Testing Automation Alias Aliases</tags>
-    <dependencies>
-      <dependency id="Selenium.Support" version="2.52.0" />
-      <dependency id="Selenium.WebDriver" version="2.52.0" />
-      <dependency id="Aliases.Common" version="2.0.0.0" />
-    </dependencies>
   </metadata>
 </package>

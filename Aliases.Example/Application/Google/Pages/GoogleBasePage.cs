@@ -14,6 +14,7 @@ namespace Aliases.Example.Application.Google.Pages
         {
             EnsureElementLoaded(QueryBox, null, "Google page failed to load.");
         }
+
         public WebSearchResults Search(string value)
         {
             Type(QueryBox, value);
