@@ -31,8 +31,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Aliases.Common, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Aliases.Common.2.0.1.0\lib\net451\Aliases.Common.dll</HintPath>
+    <Reference Include="Aliases.Common, Version=2.0.1.2, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Aliases.Common.2.0.1.2\lib\net451\Aliases.Common.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />

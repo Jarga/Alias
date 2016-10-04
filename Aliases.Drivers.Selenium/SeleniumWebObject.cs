@@ -232,6 +232,11 @@ namespace Aliases.Drivers.Selenium
             return FindSubElement(alias).IsSelected();
         }
 
+        public bool IsEnabled(Alias alias)
+        {
+            return FindSubElement(alias).IsEnabled();
+        }
+
         public void SetChecked(Alias alias, bool value)
         {
             FindSubElement(alias).SetChecked(value);

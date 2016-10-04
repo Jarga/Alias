@@ -81,6 +81,11 @@ namespace Aliases.Common
             return BaseObject.IsSelected(alias);
         }
 
+        public virtual bool IsEnabled(Alias alias)
+        {
+            return BaseObject.IsEnabled(alias);
+        }
+
         public virtual void SetChecked(Alias alias, bool value)
         {
             BaseObject.SetChecked(alias, value);

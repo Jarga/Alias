@@ -22,6 +22,7 @@ namespace Aliases.Common.Shared
         bool WaitForDisappear(Alias alias, int timeout);
         bool IsDisplayed(Alias alias);
         bool IsSelected(Alias alias);
+        bool IsEnabled(Alias alias);
         void WaitForAttributeState(Alias alias, string attributeName, Func<string, bool> condition, int timeout);
         string Attribute(Alias alias, string attributeName);
         string TagName(Alias alias);

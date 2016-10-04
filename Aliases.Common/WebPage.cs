@@ -281,6 +281,11 @@ namespace Aliases.Common
             return TryWithScreenshot(() => base.IsSelected(alias));
         }
 
+        public override bool IsEnabled(Alias alias)
+        {
+            return TryWithScreenshot(() => base.IsEnabled(alias));
+        }
+
         public override void WaitForAttributeState(Alias alias, string attributeName, Func<string, bool> condition, int timeout)
         {
             TryWithScreenshot(() => base.WaitForAttributeState(alias, attributeName, condition, timeout));
