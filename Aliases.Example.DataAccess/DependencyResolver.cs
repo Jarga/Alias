@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Alias.Example.DataAccess
+namespace Aliases.Example.DataAccess
 {
     public class DependencyResolver
     {

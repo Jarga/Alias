@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Alias.Example.DataAccess.Repositories.Keys.Admin
+namespace Aliases.Example.DataAccess.Repositories.Keys.Admin
 {
     public class UserKey
     {

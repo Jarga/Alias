@@ -1,11 +1,11 @@
-﻿using Alias.Example.DataAccess.Repositories.Interfaces.Admin;
-using Alias.Example.DataAccess.Repositories.Keys.Admin;
-using Alias.Example.DataAccess.Repositories.Models.Admin;
+﻿using Aliases.Example.DataAccess.Repositories.Interfaces.Admin;
+using Aliases.Example.DataAccess.Repositories.Keys.Admin;
+using Aliases.Example.DataAccess.Repositories.Models.Admin;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Alias.Example.DataAccess.Repositories.Admin
+namespace Aliases.Example.DataAccess.Repositories.Admin
 {
     public class UserRepository : IUserRepository
     {

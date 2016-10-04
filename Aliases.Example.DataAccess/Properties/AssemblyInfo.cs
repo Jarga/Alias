@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Alias.Example.DataAccess")]
+[assembly: AssemblyTitle("Aliases.Example.DataAccess")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Advent Software, Inc.")]
-[assembly: AssemblyProduct("Alias.Example.DataAccess")]
+[assembly: AssemblyProduct("Aliases.Example.DataAccess")]
 [assembly: AssemblyCopyright("Copyright © Advent Software, Inc. 2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("50973d76-9f37-4294-bf91-2e83f860e2cd")]
+[assembly: Guid("f632d9bd-7932-420f-b116-5cb75c69be37")]
 
 // Version information for an assembly consists of the following four values:
 //

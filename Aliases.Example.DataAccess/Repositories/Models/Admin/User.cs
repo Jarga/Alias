@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Alias.Example.DataAccess.Repositories.Models.Admin
+namespace Aliases.Example.DataAccess.Repositories.Models.Admin
 {
     public class User
     {
