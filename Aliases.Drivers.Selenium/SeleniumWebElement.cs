@@ -94,6 +94,12 @@ namespace Aliases.Drivers.Selenium
             return BaseObject.Selected;
         }
 
+        public virtual bool IsEnabled()
+        {
+            EnsureElementFocus();
+            return BaseObject.Enabled;
+        }
+
         public virtual void SetChecked(bool value)
         {
             EnsureElementFocus();

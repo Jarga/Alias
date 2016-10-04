@@ -14,6 +14,7 @@ namespace Aliases.Common.Shared
         bool WaitForDisappear(int timeout);
         bool IsDisplayed();
         bool IsSelected();
+        bool IsEnabled();
         void WaitForAttributeState(string attributeName, Func<string, bool> condition, int timeout);
        
         string Attribute(string attributeName);
