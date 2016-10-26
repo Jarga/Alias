@@ -85,7 +85,7 @@ namespace Aliases.Drivers.Selenium.Configuration
             };
         }
 
-        public IWebDriver GetWebDriver(Browser browser)
+        public virtual IWebDriver GetWebDriver(Browser browser)
         {
             IWebDriver driver;
             switch (browser)
@@ -116,12 +116,12 @@ namespace Aliases.Drivers.Selenium.Configuration
             return driver;
         }
 
-        public IWebDriver StartFirefox()
+        public virtual IWebDriver StartFirefox()
         {
             return new FirefoxDriver();
         }
 
-        public IWebDriver StartChrome()
+        public virtual IWebDriver StartChrome()
         {
             //I hate disabling the extensions but a popup window sometimes jumps out on tests in windows if you don't
             ChromeOptions options = new ChromeOptions();
@@ -130,7 +130,7 @@ namespace Aliases.Drivers.Selenium.Configuration
             return new ChromeDriver(options);
         }
 
-        public IWebDriver StartIE()
+        public virtual IWebDriver StartIE()
         {
             return new InternetExplorerDriver(new InternetExplorerOptions
             {
@@ -138,12 +138,12 @@ namespace Aliases.Drivers.Selenium.Configuration
             });
         }
 
-        public IWebDriver StartSafari()
+        public virtual IWebDriver StartSafari()
         {
             return new SafariDriver();
         }
 
-        public IWebDriver StartPhantom()
+        public virtual IWebDriver StartPhantom()
         {
             return new PhantomJSDriver();
         }
