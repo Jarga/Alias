@@ -191,6 +191,11 @@ namespace Aliases.Drivers.Selenium
             return new SeleniumDialog(Driver);
         }
 
+        public ITestableWebPage Frame(Alias alias)
+        {
+            return new SeleniumWebFrame(this, (FindSubElement(alias) as SeleniumWebElement).BaseObject);
+        }
+
         public void Hover(Alias alias)
         {
             EnsureFocus();

@@ -59,6 +59,7 @@
     <Compile Include="Helpers\FindExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SeleniumDialog.cs" />
+    <Compile Include="SeleniumWebFrame.cs" />
     <Compile Include="SeleniumWebElement.cs" />
     <Compile Include="SeleniumWebObject.cs" />
     <Compile Include="SeleniumWebPage.cs" />

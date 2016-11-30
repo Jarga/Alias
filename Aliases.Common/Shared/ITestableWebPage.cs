@@ -16,7 +16,6 @@ namespace Aliases.Common.Shared
         string GetCurrentUrl();
         string GetScreenshot();
         void BrowserBack();
-        IDialog Dialog();
 
         void Type(string text);
         void Click();
@@ -28,6 +27,8 @@ namespace Aliases.Common.Shared
         string TagName();
         string InnerHtml();
 
+        IDialog Dialog();
+        ITestableWebPage Frame(Alias alias);
         void Hover(Alias alias);
     }
 }

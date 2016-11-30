@@ -166,6 +166,11 @@ namespace Aliases.Common
             return TryWithScreenshot(() => BaseObject.Dialog());
         }
 
+        public ITestableWebPage Frame(Alias alias)
+        {
+            return TryWithScreenshot(() => BaseObject.Frame(alias));
+        }
+
         public void Type(string text)
         {
             TryWithScreenshot(() => BaseObject.Type(text));
