@@ -31,7 +31,7 @@ namespace Aliases.Drivers.Selenium
         /// Returns a new page, used when creating new pages while reusing the same driver
         /// </summary>
         /// <returns></returns>
-        public ITestableWebPage AsNew()
+        public object Clone()
         {
             return new SeleniumWebPage(Driver);
         }

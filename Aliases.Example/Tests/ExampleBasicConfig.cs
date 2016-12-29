@@ -1,5 +1,6 @@
 ﻿using Aliases.Drivers.Selenium.Configuration;
 using Aliases.Example.Application.Google.Pages;
+using Aliases.Example.TestTypes;
 using Aliases.TestExecutors.XUnit.TestClasses;
 using Aliases.TestExecutors.XUnit.TraitAttributes;
 using Xunit;
@@ -7,9 +8,9 @@ using Xunit.Abstractions;
 
 namespace Aliases.Example.Tests
 {
-    public class Example : BasicXUnitTests<SeleniumTestConfiguration>
+    public class ExampleBasicConfig : BasicXUnitTests<SeleniumTestConfiguration>
     {
-        public Example(ITestOutputHelper output) : base(output){}
+        public ExampleBasicConfig(ITestOutputHelper output) : base(output){}
 
         [Fact]
         [CustomTrait("Suite", "Example")]

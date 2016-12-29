@@ -57,8 +57,8 @@ namespace Aliases.Common
         {
             var ctorArgs = new List<object>();
             
-            //Rebuild configuration with new page that will have a clean SubElements property
-            ctorArgs.Add(TestConfiguration.Create(TestConfiguration.TestOutput, TestConfiguration.BaseTestUrl, TestConfiguration.TestEnvironmentType, AsNew()));
+            //Rebuild configuration so any latent state is not passed to the next page
+            ctorArgs.Add(TestConfiguration.Clone() as ITestConfiguration);
 
             if (additionalParams != null)
             {
@@ -79,9 +79,9 @@ namespace Aliases.Common
             return ctor.Invoke(ctorArgs.ToArray()) as T;
         }
 
-        public ITestableWebPage AsNew()
+        public object Clone()
         {
-            return BaseObject.AsNew();
+            return new WebPage(TestConfiguration.Clone() as ITestConfiguration);
         }
 
         public void EnsureFocus()

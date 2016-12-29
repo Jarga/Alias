@@ -3,10 +3,9 @@ using Aliases.Common.Shared.Types;
 
 namespace Aliases.Common.Shared
 {
-    public interface ITestableWebPage : ISearchableWebObject, IDisposable
+    //Clone() allows a hook to reset any residual state that may have been set since the page has been created.
+    public interface ITestableWebPage : ISearchableWebObject, IDisposable, ICloneable
     {
-        //AsNew() allows a hook to reset any residual state that may have been set since the page has been created.
-        ITestableWebPage AsNew();
         void EnsureFocus();
         void SetActiveWindow(string windowUrlContains, int timeout);
         void Open(Uri uri);

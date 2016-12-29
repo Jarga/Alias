@@ -5,7 +5,7 @@ using Aliases.Common.Shared.Enumerations;
 
 namespace Aliases.Common.Configuration
 {
-    public interface ITestConfiguration : IDisposable
+    public interface ITestConfiguration : IDisposable, ICloneable
     {
         string BaseTestUrl { get; set; }
 

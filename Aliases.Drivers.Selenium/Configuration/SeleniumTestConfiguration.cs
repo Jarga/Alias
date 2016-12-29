@@ -13,7 +13,7 @@ using OpenQA.Selenium.Safari;
 
 namespace Aliases.Drivers.Selenium.Configuration
 {
-    public class SeleniumTestConfiguration : ITestConfiguration
+    public class SeleniumTestConfiguration : ITestConfiguration, ICloneable
     {
         public string BaseTestUrl { get; set; }
 
@@ -118,39 +118,111 @@ namespace Aliases.Drivers.Selenium.Configuration
 
         public virtual IWebDriver StartFirefox()
         {
+            var profile = GetFirefoxProfile();
+
+            if (profile != null)
+            {
+                return new FirefoxDriver(profile);
+            }
+
             return new FirefoxDriver();
+        }
+
+        public virtual FirefoxProfile GetFirefoxProfile()
+        {
+            return null;
         }
 
         public virtual IWebDriver StartChrome()
         {
             //I hate disabling the extensions but a popup window sometimes jumps out on tests in windows if you don't
-            ChromeOptions options = new ChromeOptions();
+            var options = GetChromeOptions();
+
+            if (options != null)
+            {
+                return new ChromeDriver(options);
+            }
+
+            return new ChromeDriver();
+        }
+
+        public virtual ChromeOptions GetChromeOptions()
+        {
+            //I hate disabling the extensions but a popup window sometimes jumps out on tests in windows if you don't
+            var options = new ChromeOptions();
             options.AddArguments("chrome.switches", "--disable-extensions");
 
-            return new ChromeDriver(options);
+            return options;
         }
 
         public virtual IWebDriver StartIE()
         {
-            return new InternetExplorerDriver(new InternetExplorerOptions
+            var options = GetIEOptions();
+
+            if (options != null)
             {
-                IntroduceInstabilityByIgnoringProtectedModeSettings = true, IgnoreZoomLevel = true
-            });
+                return new InternetExplorerDriver(options);
+            }
+
+            return new InternetExplorerDriver();
+        }
+
+        public virtual InternetExplorerOptions GetIEOptions()
+        {
+            var options = new InternetExplorerOptions
+            {
+                IntroduceInstabilityByIgnoringProtectedModeSettings = true,
+                IgnoreZoomLevel = true
+            };
+
+            return options;
         }
 
         public virtual IWebDriver StartSafari()
         {
+            var options = GetSafariOptions();
+
+            if (options != null)
+            {
+                return new SafariDriver(options);
+            }
+
             return new SafariDriver();
+        }
+
+        public virtual SafariOptions GetSafariOptions()
+        {
+            return null;
         }
 
         public virtual IWebDriver StartPhantom()
         {
+            var options = GetPhantomOptions();
+
+            if (options != null)
+            {
+                return new PhantomJSDriver(options);
+            }
+
             return new PhantomJSDriver();
+        }
+
+        public virtual PhantomJSOptions GetPhantomOptions()
+        {
+            return null;
         }
 
         public void Dispose()
         {
             BaseTestPageType.Dispose();
+        }
+
+        public object Clone()
+        {
+            return new SeleniumTestConfiguration(BaseTestUrl, TestEnvironmentType, BaseTestPageType.Clone() as ITestableWebPage, TestOutput, BaseTestPageType.DefaultActionTimeout)
+            {
+                Browser = Browser
+            };
         }
     }
 }
