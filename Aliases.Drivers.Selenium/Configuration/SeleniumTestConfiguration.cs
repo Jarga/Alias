@@ -212,12 +212,12 @@ namespace Aliases.Drivers.Selenium.Configuration
             return null;
         }
 
-        public void Dispose()
+        public virtual void Dispose()
         {
             BaseTestPageType.Dispose();
         }
 
-        public object Clone()
+        public virtual object Clone()
         {
             return new SeleniumTestConfiguration(BaseTestUrl, TestEnvironmentType, BaseTestPageType.Clone() as ITestableWebPage, TestOutput, BaseTestPageType.DefaultActionTimeout)
             {
