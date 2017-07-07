@@ -27,14 +27,27 @@ namespace Aliases.Drivers.Selenium.Configuration
 
         public SeleniumTestConfiguration() {}
 
-        public SeleniumTestConfiguration(string baseTestUrl, EnvironmentType? testEnvironmentType, ITestableWebPage baseTestPageType, ITestOutput testOutput, int actionTimeout)
+        public SeleniumTestConfiguration(TestOptions testOptions)
         {
-            BaseTestUrl = baseTestUrl;
-            TestEnvironmentType = testEnvironmentType;
-            BaseTestPageType = baseTestPageType;
-            TestOutput = testOutput;
+            BaseTestUrl = testOptions.BaseTestUrl;
+            TestEnvironmentType = testOptions.TestEnvironmentType;
+            BaseTestPageType = testOptions.BaseTestPageType;
+            TestOutput = testOptions.TestOutput;
 
-            BaseTestPageType.DefaultActionTimeout = actionTimeout;
+            BaseTestPageType.DefaultActionTimeout = testOptions.ActionTimeout;
+        }
+
+        private TestOptions createTestOptionsFromProperties(bool cloneBasetTestPageType)
+        {
+            return new TestOptions
+            {
+                BaseTestUrl = BaseTestUrl,
+                TestEnvironmentType = TestEnvironmentType,
+                BaseTestPageType = cloneBasetTestPageType ? BaseTestPageType.Clone() as ITestableWebPage : BaseTestPageType,
+                TestOutput = TestOutput,
+                ActionTimeout = BaseTestPageType.DefaultActionTimeout,
+                Browser = Browser,
+            };
         }
 
         /// <summary>
@@ -42,57 +55,55 @@ namespace Aliases.Drivers.Selenium.Configuration
         /// 
         /// Looks for process level environment variables first, if those do not exist it will use the app.config entries
         /// </summary>
-        /// <param name="testOutput"></param>
-        /// <param name="baseTestUrl"></param>
-        /// <param name="testEnvironmentType"></param>
-        /// <param name="baseTestPageType"></param>
+        /// <param name="testOptions"></param>
         /// <returns></returns>
-        public ITestConfiguration Create(ITestOutput testOutput, string baseTestUrl = null, EnvironmentType? testEnvironmentType = null, ITestableWebPage baseTestPageType = null)
+        public ITestConfiguration Create(TestOptions testOptions)
         {
             //Set Test base url
-            if (string.IsNullOrWhiteSpace(baseTestUrl))
+            if (string.IsNullOrWhiteSpace(testOptions.BaseTestUrl))
             {
-                baseTestUrl = Environment.GetEnvironmentVariable("TestAutomationUrl", EnvironmentVariableTarget.Process) ?? ConfigurationManager.AppSettings["TestAutomationUrl"];
+                testOptions.BaseTestUrl = Environment.GetEnvironmentVariable("TestAutomationUrl", EnvironmentVariableTarget.Process) ?? ConfigurationManager.AppSettings["TestAutomationUrl"];
             }
 
             //Set Test EnvironmentType
-            if (!testEnvironmentType.HasValue)
+            if (!testOptions.TestEnvironmentType.HasValue)
             {
                 string environment = Environment.GetEnvironmentVariable("TestAutomationEnvironment", EnvironmentVariableTarget.Process) ?? ConfigurationManager.AppSettings["TestAutomationEnvironment"];
 
                 EnvironmentType environmentType;
                 Enum.TryParse(environment, true, out environmentType);
 
-                testEnvironmentType = environmentType;
+                testOptions.TestEnvironmentType = environmentType;
             }
-            
+
             Browser browserType = Browser.Chrome;
 
             //Set Page Type
-            if (baseTestPageType == null)
+            if (testOptions.BaseTestPageType == null)
             {
                 string browser = Environment.GetEnvironmentVariable("TestAutomationBrowser", EnvironmentVariableTarget.Process) ?? ConfigurationManager.AppSettings["TestAutomationBrowser"];
 
                 Enum.TryParse(browser, true, out browserType);
 
                 IWebDriver driver = GetWebDriver(browserType);
-                baseTestPageType = new SeleniumWebPage(driver);
+                testOptions.BaseTestPageType = new SeleniumWebPage(driver);
             }
-            
-            return new SeleniumTestConfiguration(baseTestUrl, testEnvironmentType, baseTestPageType, testOutput, 60)
-            {
-                Browser = browserType
-            };
+
+            testOptions.Browser = browserType;
+
+            return new SeleniumTestConfiguration(testOptions);
         }
 
         public virtual IWebDriver GetWebDriver(Browser browser)
         {
             IWebDriver driver;
+            var deleteCookies = true;
             switch (browser)
             {
 
                 case Browser.IE:
                     driver = StartIE();
+                    deleteCookies = false;
                     break;
                 case Browser.Firefox:
                     driver = StartFirefox();
@@ -111,7 +122,7 @@ namespace Aliases.Drivers.Selenium.Configuration
                     break;
             }
 
-            driver.Manage().Cookies.DeleteAllCookies();
+            if (deleteCookies) driver.Manage().Cookies.DeleteAllCookies();
 
             return driver;
         }
@@ -219,10 +230,7 @@ namespace Aliases.Drivers.Selenium.Configuration
 
         public virtual object Clone()
         {
-            return new SeleniumTestConfiguration(BaseTestUrl, TestEnvironmentType, BaseTestPageType.Clone() as ITestableWebPage, TestOutput, BaseTestPageType.DefaultActionTimeout)
-            {
-                Browser = Browser
-            };
+            return new SeleniumTestConfiguration(createTestOptionsFromProperties(true));
         }
     }
 }
