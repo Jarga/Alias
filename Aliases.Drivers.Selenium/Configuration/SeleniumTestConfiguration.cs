@@ -25,7 +25,7 @@ namespace Aliases.Drivers.Selenium.Configuration
 
         public ITestOutput TestOutput { get; set; }
 
-        public SeleniumTestConfiguration() {}
+        public SeleniumTestConfiguration() { }
 
         public SeleniumTestConfiguration(TestOptions testOptions)
         {
@@ -97,13 +97,11 @@ namespace Aliases.Drivers.Selenium.Configuration
         public virtual IWebDriver GetWebDriver(Browser browser)
         {
             IWebDriver driver;
-            var deleteCookies = true;
             switch (browser)
             {
 
                 case Browser.IE:
                     driver = StartIE();
-                    deleteCookies = false;
                     break;
                 case Browser.Firefox:
                     driver = StartFirefox();
@@ -122,7 +120,7 @@ namespace Aliases.Drivers.Selenium.Configuration
                     break;
             }
 
-            if (deleteCookies) driver.Manage().Cookies.DeleteAllCookies();
+            driver.Manage().Cookies.DeleteAllCookies();
 
             return driver;
         }
