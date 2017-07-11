@@ -17,6 +17,6 @@ namespace Aliases.Common.Configuration
 
         ITestOutput TestOutput { get; set; }
 
-        ITestConfiguration Create(ITestOutput testOutput, string baseTestUrl = null, EnvironmentType? testEnvironmentType = null, ITestableWebPage baseTestPageType = null);
+        ITestConfiguration Create(TestOptions testOptions);
     }
 }
