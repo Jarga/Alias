@@ -31,6 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Aliases.Common, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Aliases.Common.2.1.0\lib\net451\Aliases.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -65,10 +69,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Aliases.Common\Aliases.Common.csproj">
-      <Project>{5cb8222c-3bce-4bde-a7a0-aec88a6756aa}</Project>
-      <Name>Aliases.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Aliases.Common\Aliases.Common.csproj">
       <Project>{5cb8222c-3bce-4bde-a7a0-aec88a6756aa}</Project>
       <Name>Aliases.Common</Name>
