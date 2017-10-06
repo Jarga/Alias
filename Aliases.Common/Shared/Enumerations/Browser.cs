@@ -12,6 +12,7 @@ namespace Aliases.Common.Shared.Enumerations
         PhantomJS = 16,
         Android = 32,
         IPhone = 64,
-        IPad = 128
+        IPad = 128,
+        Edge = 256
     }
 }

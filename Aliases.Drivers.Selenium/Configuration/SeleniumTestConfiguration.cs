@@ -10,6 +10,7 @@ using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
 using OpenQA.Selenium.PhantomJS;
 using OpenQA.Selenium.Safari;
+using OpenQA.Selenium.Edge;
 
 namespace Aliases.Drivers.Selenium.Configuration
 {
@@ -103,6 +104,9 @@ namespace Aliases.Drivers.Selenium.Configuration
                 case Browser.IE:
                     driver = StartIE();
                     break;
+                case Browser.Edge:
+                    driver = StartEdge();
+                    break;
                 case Browser.Firefox:
                     driver = StartFirefox();
                     break;
@@ -185,6 +189,23 @@ namespace Aliases.Drivers.Selenium.Configuration
             };
 
             return options;
+        }
+
+        public virtual IWebDriver StartEdge()
+        {
+            var options = GetEdgeOptions();
+
+            if (options != null)
+            {
+                return new EdgeDriver(options);
+            }
+
+            return new EdgeDriver();
+        }
+
+        public virtual EdgeOptions GetEdgeOptions()
+        {
+            return null;
         }
 
         public virtual IWebDriver StartSafari()
